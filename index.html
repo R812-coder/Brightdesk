@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications for Google Sheets — Slack, Discord & Google Chat Alerts</title>
+    <meta name="description" content="Get Slack, Discord, or Google Chat notifications when your Google Sheet changes. New row alerts, conditional notifications, custom messages. No Zapier needed. Set up in 60 seconds.">
+    <meta name="keywords" content="google sheets notifications, slack notifications google sheets, google sheets to slack, discord notifications spreadsheet, google sheets alerts, google sheets change notification, zapier alternative">
+    <link rel="canonical" href="https://YOURDOMAIN.com/sheetnotify">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Notifications for Google Sheets — Slack, Discord & Chat Alerts">
+    <meta property="og:description" content="Get notified in Slack, Discord, or Google Chat when your Google Sheet changes. Set up in 60 seconds. No Zapier needed.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://YOURDOMAIN.com/sheetnotify/og-image.png">
+
+    <!-- Schema.org markup for rich results -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Notifications for Google Sheets",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Google Sheets",
+        "description": "Send Slack, Discord, or Google Chat notifications when your Google Sheet changes. New row alerts, conditional notifications, and custom message templates.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Free tier available. Pro from $3.99/month."
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "1"
+        }
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1a1a2e;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 24px;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #107cc3;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo img { width: 32px; height: 32px; border-radius: 6px; }
+        nav a.cta-link {
+            background: #107cc3;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        nav a.cta-link:hover { background: #0b5ea3; }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 60px 24px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: #e8f4fe;
+            color: #107cc3;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+        }
+        .hero h1 span { color: #107cc3; }
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: #107cc3;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover { background: #0b5ea3; }
+        .btn-secondary {
+            background: #f1f3f4;
+            color: #333;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        .btn-secondary:hover { background: #e2e5e8; }
+
+        .zapier-compare {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+        .zapier-compare strong { color: #333; }
+
+        /* PLATFORMS */
+        .platforms {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            padding: 40px 24px;
+            flex-wrap: wrap;
+        }
+        .platform-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+        .platform-icon .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        .platform-icon.slack .icon-circle { background: #f3e8f9; }
+        .platform-icon.discord .icon-circle { background: #e8ecf9; }
+        .platform-icon.gchat .icon-circle { background: #e8f5e9; }
+
+        /* HOW IT WORKS */
+        .how-it-works {
+            background: #f8f9fa;
+            padding: 60px 24px;
+        }
+        .section-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .step {
+            text-align: center;
+            padding: 24px;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #107cc3;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .step h3 { font-size: 18px; margin-bottom: 8px; }
+        .step p { font-size: 14px; color: #666; }
+
+        /* FEATURES */
+        .features {
+            padding: 60px 24px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .feature {
+            padding: 24px;
+            border: 1px solid #e8eaed;
+            border-radius: 12px;
+            transition: box-shadow 0.2s;
+        }
+        .feature:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .feature .emoji { font-size: 28px; margin-bottom: 12px; }
+        .feature h3 { font-size: 16px; margin-bottom: 6px; }
+        .feature p { font-size: 14px; color: #666; }
+
+        /* PRICING */
+        .pricing {
+            background: #f8f9fa;
+            padding: 60px 24px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .price-card {
+            background: #fff;
+            border: 1px solid #e8eaed;
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .price-card.featured {
+            border: 2px solid #107cc3;
+            position: relative;
+        }
+        .price-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #107cc3;
+            color: #fff;
+            padding: 4px 16px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .price-card h3 { font-size: 22px; margin-bottom: 8px; }
+        .price-card .price { font-size: 40px; font-weight: 800; color: #107cc3; }
+        .price-card .price-period { font-size: 14px; color: #888; }
+        .price-card ul { text-align: left; list-style: none; padding: 20px 0; }
+        .price-card li { padding: 6px 0; font-size: 14px; color: #444; }
+        .price-card li::before { content: '✓ '; color: #34a853; font-weight: 700; }
+
+        /* FAQ */
+        .faq { padding: 60px 24px; }
+        .faq-list { max-width: 700px; margin: 0 auto; }
+        .faq-item {
+            border-bottom: 1px solid #e8eaed;
+            padding: 20px 0;
+        }
+        .faq-item h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .faq-item p { font-size: 14px; color: #666; }
+
+        /* CTA */
+        .final-cta {
+            text-align: center;
+            padding: 60px 24px;
+            background: #107cc3;
+            color: #fff;
+        }
+        .final-cta h2 { font-size: 32px; margin-bottom: 12px; }
+        .final-cta p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+        .final-cta .btn-primary { background: #fff; color: #107cc3; }
+        .final-cta .btn-primary:hover { background: #f0f0f0; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 13px;
+            color: #999;
+        }
+        footer a { color: #666; text-decoration: none; margin: 0 12px; }
+        footer a:hover { color: #333; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .steps { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">
+            <img src="icon_128.png" alt="Notifications for Google Sheets"> Sheet Notify
+        </a>
+        <a href="https://workspace.google.com/marketplace/app/APPID" class="cta-link">Install Free</a>
+    </nav>
+
+    <section class="hero">
+        <div class="badge">Google Sheets Add-on</div>
+        <h1>Get <span>Slack & Discord notifications</span> from Google Sheets</h1>
+        <p>New row added? Cell changed? Condition met? Get instant notifications in Slack, Discord, or Google Chat. Set up in 60 seconds. No Zapier needed.</p>
+        <div class="cta-buttons">
+            <a href="https://workspace.google.com/marketplace/app/APPID" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"></path><path d="M9 9h6v6H9z"></path></svg>
+                Install for Free
+            </a>
+            <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+        </div>
+        <p class="zapier-compare">Replaces Zapier ($20+/month) for this workflow. <strong>Save $240+/year.</strong></p>
+    </section>
+
+    <section class="platforms">
+        <div class="platform-icon slack">
+            <div class="icon-circle">💬</div>
+            Slack
+        </div>
+        <div class="platform-icon discord">
+            <div class="icon-circle">🎮</div>
+            Discord
+        </div>
+        <div class="platform-icon gchat">
+            <div class="icon-circle">💚</div>
+            Google Chat
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-inner">
+            <h2 class="section-title">Set Up in 60 Seconds</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Pick a Sheet</h3>
+                    <p>Select which sheet to monitor from the sidebar dropdown.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Set a Trigger</h3>
+                    <p>New row added, cell changed, or a condition is met (e.g. "Amount > 1000").</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Paste Webhook URL</h3>
+                    <p>Paste your Slack, Discord, or Google Chat webhook. Click Test. Done.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-inner">
+            <h2 class="section-title">Everything You Need, Nothing You Don't</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="emoji">⚡</div>
+                    <h3>Conditional Notifications</h3>
+                    <p>Only get notified when it matters. "Notify me when Column E > 100" or "when Status contains 'urgent'."</p>
+                </div>
+                <div class="feature">
+                    <div class="emoji">✏️</div>
+                    <h3>Custom Message Templates</h3>
+                    <p>Use placeholders like {Name}, {Email}, {Amount} to build rich, readable notifications.</p>
+                </div>
+                <div class="feature">
+                    <div class="emoji">🔄</div>
+                    <h3>Reliable Polling</h3>
+                    <p>Catches ALL changes — manual edits, form submissions, IMPORTRANGE updates, API writes. Nothing slips through.</p>
+                </div>
+                <div class="feature">
+                    <div class="emoji">📋</div>
+                    <h3>Notification Dashboard</h3>
+                    <p>See notification history, delivery status, and errors right in the sidebar. Know it's working.</p>
+                </div>
+                <div class="feature">
+                    <div class="emoji">🔔</div>
+                    <h3>Multi-Platform</h3>
+                    <p>Slack, Discord, and Google Chat in one add-on. Send different alerts to different channels.</p>
+                </div>
+                <div class="feature">
+                    <div class="emoji">🛡️</div>
+                    <h3>Private & Secure</h3>
+                    <p>No external servers. Your data goes directly from Google Sheets to your webhook. We never see it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-inner">
+            <h2 class="section-title">Simple Pricing</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <div class="price-period">forever</div>
+                    <ul>
+                        <li>1 notification rule</li>
+                        <li>100 notifications/month</li>
+                        <li>5-minute polling interval</li>
+                        <li>Slack, Discord, Google Chat</li>
+                        <li>Default message templates</li>
+                    </ul>
+                    <a href="https://workspace.google.com/marketplace/app/APPID" class="btn-primary" style="display:block; text-align:center;">Install Free</a>
+                </div>
+                <div class="price-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">$3.99<span style="font-size:16px; font-weight:400;">/mo</span></div>
+                    <div class="price-period">or $29.99/year (save 37%)</div>
+                    <ul>
+                        <li>Unlimited notification rules</li>
+                        <li>Unlimited notifications</li>
+                        <li>1-minute polling interval</li>
+                        <li>Custom message templates</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="https://workspace.google.com/marketplace/app/APPID" class="btn-primary" style="display:block; text-align:center;">Start Free, Upgrade Later</a>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:20px; color:#888; font-size:14px;">Zapier charges $20+/month for this same workflow. <strong>Save 80%.</strong></p>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="section-inner">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>How do I get a webhook URL?</h3>
+                    <p>For Slack: Go to api.slack.com/apps → Create App → Incoming Webhooks → Add to Channel → Copy URL. For Discord: Channel Settings → Integrations → Webhooks → New Webhook → Copy URL. For Google Chat: Space settings → Apps & integrations → Webhooks → Add webhook.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is there a delay in notifications?</h3>
+                    <p>The add-on polls your sheet every 5 minutes (Free) or every 1 minute (Pro). So notifications arrive within 1-5 minutes of the change. This is sufficient for most use cases like lead alerts, inventory warnings, and status updates.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it work with Google Form responses?</h3>
+                    <p>Yes! Since we use polling (not the onEdit trigger), we catch ALL changes — including form submissions, IMPORTRANGE updates, Apps Script writes, and API changes.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is my data safe?</h3>
+                    <p>Yes. The add-on runs entirely within Google's infrastructure. Your data goes directly from Google Sheets to your webhook URL — we have no external server in between. We never see your data. Read our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Why not just use Zapier?</h3>
+                    <p>Zapier charges $20+/month for this workflow (and counts against your task limit). We do the same thing for $3.99/month or free — with a simpler setup that lives right inside Google Sheets.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I send different alerts to different channels?</h3>
+                    <p>Yes! Create multiple rules — each can monitor a different sheet, use different triggers, and send to different webhook URLs. For example: new leads → #sales, low inventory → #warehouse.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <h2>Stop checking your spreadsheet. Let it notify you.</h2>
+        <p>Join thousands of teams who replaced Zapier with a simpler, cheaper solution.</p>
+        <a href="https://workspace.google.com/marketplace/app/APPID" class="btn-primary">Install Free from Google Marketplace</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Sheet Notify. A Google Workspace Add-on.</p>
+        <p>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="mailto:sheetnotify-support@googlegroups.com">Contact</a>
+        </p>
+    </footer>
+
+</body>
+</html>
