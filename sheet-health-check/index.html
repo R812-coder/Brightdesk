@@ -1,62 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
- <meta name="google-site-verification" content="GUzXUe2794aCOmqIBSPNYSGEhV_wtllH3n1I3-FS_hA" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sheet Health Check — Find Errors in Your Google Sheets</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      color: #202124;
-      line-height: 1.6;
-    }
-    h1 { font-size: 28px; margin-bottom: 8px; }
-    .subtitle { color: #5f6368; font-size: 18px; margin-bottom: 32px; }
-    h2 { font-size: 20px; margin-top: 32px; margin-bottom: 12px; }
-    ul { padding-left: 20px; }
-    li { margin-bottom: 8px; }
-    .footer {
-      margin-top: 48px; padding-top: 24px; border-top: 1px solid #e0e0e0;
-      font-size: 14px; color: #5f6368;
-    }
-    a { color: #1a73e8; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="GUzXUe2794aCOmqIBSPNYSGEhV_wtllH3n1I3-FS_hA" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheet Health Check — Find Errors in Your Google Sheets</title>
+    <meta name="description" content="One-click Google Sheets auditor. Scans for formula errors, inconsistencies, hardcoded values, and performance issues. Free add-on.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #202124;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        .nav {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 20px 24px;
+        }
+        .nav a {
+            font-size: 14px;
+            color: #107cc3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .nav a:hover { text-decoration: underline; }
+
+        /* HERO */
+        .hero {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 20px 24px 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+        }
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            flex-shrink: 0;
+        }
+        .hero-text h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+        .hero-text .subtitle {
+            font-size: 18px;
+            color: #5f6368;
+            margin-bottom: 16px;
+        }
+        .hero-text p {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        .btn-install {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #34a853;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .btn-install:hover { background: #2d9249; }
+
+        /* FEATURES */
+        .features {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+        .features h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .feature-card {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e8eaed;
+        }
+        .feature-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #202124;
+        }
+        .feature-card p {
+            font-size: 13px;
+            color: #5f6368;
+        }
+        .feature-card .icon {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        /* HOW IT WORKS */
+        .how-it-works {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+        .how-it-works h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .how-it-works p {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 12px;
+        }
+
+        /* PRIVACY SECTION */
+        .privacy-section {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+        .privacy-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .privacy-section p {
+            font-size: 15px;
+            color: #444;
+        }
+
+        /* FOOTER */
+        .footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 24px;
+            border-top: 1px solid #e8eaed;
+            font-size: 13px;
+            color: #9aa0a6;
+        }
+        .footer a {
+            color: #5f6368;
+            text-decoration: none;
+            margin-right: 16px;
+        }
+        .footer a:hover { color: #202124; }
+
+        @media (max-width: 600px) {
+            .hero { flex-direction: column; align-items: center; text-align: center; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-  <h1>Sheet Health Check</h1>
-  <p class="subtitle">Spell check, but for your spreadsheet formulas.</p>
 
-  <p>Sheet Health Check is a Google Sheets add-on that scans your entire spreadsheet
-  in seconds and finds problems you'd never catch manually.</p>
+    <div class="nav">
+        <a href="/">← BrightDesk</a>
+    </div>
 
-  <h2>What it checks</h2>
-  <ul>
-    <li><strong>Formula errors</strong> — finds every #REF!, #DIV/0!, #N/A, #VALUE!, and more across all sheets</li>
-    <li><strong>Inconsistent formulas</strong> — detects when a column of formulas has one cell that doesn't match the pattern</li>
-    <li><strong>Hardcoded values</strong> — flags cells where someone accidentally pasted a value over a formula</li>
-    <li><strong>Empty formula results</strong> — finds formulas that return blank, indicating possible broken logic</li>
-    <li><strong>Performance issues</strong> — identifies excess empty rows and columns slowing down your spreadsheet</li>
-  </ul>
+    <section class="hero">
+        <img src="icon-128.png" alt="Sheet Health Check" class="hero-icon">
+        <div class="hero-text">
+            <h1>Sheet Health Check</h1>
+            <p class="subtitle">Spell check, but for your spreadsheet formulas.</p>
+            <p>A Google Sheets add-on that scans your entire spreadsheet in seconds and finds problems you'd never catch manually.</p>
+            <a href="https://workspace.google.com/marketplace" class="btn-install">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"></path><path d="M9 9h6v6H9z"></path></svg>
+                Install Free
+            </a>
+        </div>
+    </section>
 
-  <h2>How it works</h2>
-  <p>Open Sheet Health Check from the menu, click "Run Health Check," and get your
-  health score with a categorized list of every issue. Click any issue to jump
-  directly to the problem cell.</p>
+    <section class="features">
+        <h2>What it checks</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">🚨</div>
+                <h3>Formula errors</h3>
+                <p>Finds every #REF!, #DIV/0!, #N/A, #VALUE!, and more across all sheets.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔍</div>
+                <h3>Inconsistent formulas</h3>
+                <p>Detects when a column of formulas has one cell that doesn't match the pattern.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📌</div>
+                <h3>Hardcoded values</h3>
+                <p>Flags cells where someone accidentally pasted a value over a formula.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⚪</div>
+                <h3>Empty formula results</h3>
+                <p>Finds formulas that return blank, indicating possible broken logic.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⚡</div>
+                <h3>Performance issues</h3>
+                <p>Identifies excess empty rows and columns slowing down your spreadsheet.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🖱️</div>
+                <h3>Click-to-navigate</h3>
+                <p>Click any issue in the results to jump directly to the problem cell.</p>
+            </div>
+        </div>
+    </section>
 
-  <h2>Fast and private</h2>
-  <p>Sheet Health Check runs entirely within Google's infrastructure. Your data never
-  leaves Google's servers. No external APIs, no tracking, no data collection.</p>
+    <section class="how-it-works">
+        <h2>How it works</h2>
+        <p>Open Sheet Health Check from the Extensions menu, click "Run Health Check," and get your health score with a categorized list of every issue. Click any issue to jump directly to the problem cell.</p>
+    </section>
 
-  <div class="footer">
-    <p>
-      <a href="privacy">Privacy Policy</a> ·
-      <a href="terms">Terms of Service</a> ·
-      Contact: <a href="mailto:support-sheethealthcheck@googlegroups.com">support-sheethealthcheck@googlegroups.com</a>
-    </p>
-  </div>
+    <section class="privacy-section">
+        <h2>Fast and private</h2>
+        <p>Sheet Health Check runs entirely within Google's infrastructure. Your data never leaves Google's servers. No external APIs, no tracking, no data collection. Uses only the <strong>spreadsheets.currentonly</strong> scope — the minimum permission possible.</p>
+    </section>
+
+    <div class="footer">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="mailto:support-sheethealthcheck@googlegroups.com">Contact</a>
+    </div>
+
 </body>
 </html>
