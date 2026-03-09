@@ -94,7 +94,7 @@
 <body>
 
 <nav>
-    <div class="nav-inner">
+       <div class="nav-inner">
         <a href="../" class="nav-brand">
             <div class="nav-brand-icon" style="background: none;">
     <img src="https://brightdesk.dev/timesheet-for-google-calendar/icon-32.png" alt="" width="32" height="32" style="border-radius: 8px;">
@@ -107,7 +107,7 @@
 
 <div class="content">
     <h1>Privacy Policy</h1>
-    <p class="effective">Effective date: March 4, 2026</p>
+    <p class="effective">Effective date: March 9, 2026</p>
 
     <div class="highlight-box">
         <p><strong>The short version:</strong> Timesheet for Google Calendar reads your calendar events to generate timesheets in your spreadsheet. Your data never leaves Google's servers. We don't collect, store, transmit, or sell your data. We have no servers, no databases, and no analytics.</p>
@@ -151,19 +151,40 @@
     <h2>5. Data Storage</h2>
     <p>Your project mappings (color-to-project assignments, keyword rules, and hourly rates) are stored using Google Apps Script's PropertiesService, which keeps data within Google's infrastructure tied to your specific spreadsheet or user account. The developer (BrightDesk) has no access to this stored configuration data.</p>
 
-    <h2>6. Third-Party Services</h2>
+    <h2>6. Data Protection</h2>
+    <p>Timesheet for Google Calendar protects your data through the following mechanisms:</p>
+    <ul>
+        <li><strong>No external transmission:</strong> All data processing occurs entirely within Google's infrastructure using Google Apps Script. Your Google Calendar and Google Sheets data is never transmitted to any external server, third-party service, or developer-owned system.</li>
+        <li><strong>Minimal scope access:</strong> The add-on requests only the minimum OAuth scopes necessary to function. Calendar access is read-only (<code>calendar.readonly</code>) — the add-on cannot modify or delete your calendar events. Spreadsheet access is limited to the current spreadsheet only (<code>spreadsheets.currentonly</code>).</li>
+        <li><strong>No developer access:</strong> The developer (BrightDesk) has no ability to access, view, or retrieve any user's Google Calendar data, spreadsheet content, or configuration settings. There are no developer-controlled servers or databases.</li>
+        <li><strong>Google infrastructure security:</strong> All data remains protected by Google's own security infrastructure, including encryption in transit and at rest, as provided by the Google Apps Script platform and Google Workspace services.</li>
+        <li><strong>No logging or tracking:</strong> The add-on does not log, record, or track any user activity, calendar content, or spreadsheet data. No analytics, telemetry, or monitoring tools are used.</li>
+    </ul>
+
+    <h2>7. Data Retention and Deletion</h2>
+    <p><strong>Google Calendar data:</strong> Calendar event data (titles, times, colors, descriptions) is accessed in real-time only during timesheet generation. This data is read from the Google Calendar API, processed in memory to create timesheet rows, and written to your spreadsheet. <strong>No calendar data is cached, stored, or retained by the add-on after generation completes.</strong> Calendar data exists only in temporary memory during the generation process and is discarded immediately afterward.</p>
+    <p><strong>Configuration data:</strong> Your project mappings, keyword rules, and settings are stored via Google Apps Script's PropertiesService. This data is retained until you take one of the following actions:</p>
+    <ul>
+        <li><strong>Manual deletion:</strong> You can clear all configuration data at any time using Extensions → Timesheet for Google Calendar → Clear Timesheet Data, or by uninstalling the add-on.</li>
+        <li><strong>Uninstallation:</strong> When you uninstall the add-on from Google Workspace, all associated PropertiesService data (both DocumentProperties and UserProperties) is removed by Google's platform.</li>
+        <li><strong>Spreadsheet deletion:</strong> If you delete the Google Sheets spreadsheet, all DocumentProperties associated with that spreadsheet are automatically deleted by Google.</li>
+    </ul>
+    <p><strong>Generated timesheet data:</strong> The timesheet output (Timesheet, Summary, and Review tabs) is standard spreadsheet content owned entirely by you. It remains in your spreadsheet until you delete it. The add-on has no ongoing access to or control over this generated data.</p>
+    <p><strong>Requesting data deletion:</strong> Since the developer does not collect or store any user data on external systems, there is no developer-held data to delete. All data resides within your Google account and can be deleted by you at any time through the methods described above. If you have any questions about data deletion, contact us at <a href="mailto:support-calendartimesheet@googlegroups.com">support-calendartimesheet@googlegroups.com</a>.</p>
+
+    <h2>8. Third-Party Services</h2>
     <p>Timesheet for Google Calendar uses <strong>zero external APIs or third-party services</strong>. All code runs entirely within Google Apps Script. No data is transmitted outside of Google's servers at any point.</p>
 
-    <h2>7. Data Sharing</h2>
+    <h2>9. Data Sharing</h2>
     <p>We do not share, sell, rent, or trade any user data with any third party. There is no data to share — we don't collect any.</p>
 
-    <h2>8. Children's Privacy</h2>
+    <h2>10. Children's Privacy</h2>
     <p>Timesheet for Google Calendar is a professional billing tool not directed at children under 13. We do not knowingly collect information from children.</p>
 
-    <h2>9. Changes to This Policy</h2>
+    <h2>11. Changes to This Policy</h2>
     <p>If we update this privacy policy, we will post the revised version on this page with an updated effective date. Material changes will be noted at the top of the policy.</p>
 
-    <h2>10. Contact</h2>
+    <h2>12. Contact</h2>
     <p>Questions or concerns about this privacy policy? Contact us at:</p>
     <p><a href="mailto:support-calendartimesheet@googlegroups.com">support-calendartimesheet@googlegroups.com</a></p>
     <p>Developer: BrightDesk — <a href="https://brightdesk.dev">brightdesk.dev</a></p>
