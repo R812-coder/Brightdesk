@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog for Google Sheets — Automatic Edit Tracking &amp; Audit Trail | BrightDesk</title>
+  <meta name="description" content="Automatically log every cell edit in Google Sheets — who changed what, when, old → new value. Free audit trail add-on with sidebar browser. No coding needed.">
+  <link rel="canonical" href="https://brightdesk.dev/changelog-for-google-sheets/">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #4285F4;
+      --blue-dark: #2D6FDB;
+      --green: #34A853;
+      --red-soft: #FDDEDE;
+      --red-text: #C5221F;
+      --green-soft: #CEEAD6;
+      --green-text: #137333;
+      --slate-900: #1a1a2e;
+      --slate-700: #374151;
+      --slate-500: #6b7280;
+      --slate-200: #e5e7eb;
+      --slate-100: #f3f4f6;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--slate-700);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ─────────────────────────── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 24px;
+    }
+    .nav-brand {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--slate-900);
+    }
+    .nav-brand span { color: var(--blue); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--slate-500); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--slate-900); text-decoration: none; }
+
+    /* ── Hero ─────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 72px 24px 48px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--green-soft);
+      color: var(--green-text);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--slate-900);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+    .hero p {
+      font-size: 19px;
+      color: var(--slate-500);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-1px); text-decoration: none; }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(66,133,244,0.3);
+    }
+    .btn-primary:hover { background: var(--blue-dark); color: var(--white); }
+    .btn-outline {
+      background: var(--white);
+      color: var(--slate-700);
+      border: 1.5px solid var(--slate-200);
+    }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+    .hero-note {
+      font-size: 13px;
+      color: var(--slate-500);
+      margin-top: 14px;
+    }
+
+    /* ── Demo ─────────────────────────── */
+    .demo {
+      max-width: 900px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .demo-visual {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .demo-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--slate-200);
+      padding: 10px 16px;
+      display: flex;
+      gap: 6px;
+    }
+    .demo-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--slate-200);
+    }
+    .demo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .demo-table th {
+      background: var(--blue);
+      color: var(--white);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .demo-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--slate-200);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+    .demo-table tr:nth-child(even) { background: #FAFBFC; }
+    .val-old { background: var(--red-soft); color: var(--red-text); padding: 2px 6px; border-radius: 3px; }
+    .val-new { background: var(--green-soft); color: var(--green-text); padding: 2px 6px; border-radius: 3px; }
+
+    /* ── Features ─────────────────────── */
+    .features {
+      max-width: 1080px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 32px;
+      color: var(--slate-900);
+      margin-bottom: 48px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .feature-card {
+      padding: 28px;
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      transition: box-shadow 0.2s;
+    }
+    .feature-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .feature-icon { font-size: 28px; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 16px; color: var(--slate-900); margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: var(--slate-500); line-height: 1.6; }
+
+    /* ── Pricing ──────────────────────── */
+    .pricing {
+      background: var(--slate-100);
+      padding: 80px 24px;
+      margin-bottom: 0;
+    }
+    .pricing h2 {
+      text-align: center;
+      font-size: 32px;
+      color: var(--slate-900);
+      margin-bottom: 12px;
+    }
+    .pricing-sub {
+      text-align: center;
+      color: var(--slate-500);
+      font-size: 16px;
+      margin-bottom: 48px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .price-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .price-card.featured {
+      border-color: var(--blue);
+      box-shadow: 0 4px 20px rgba(66,133,244,0.15);
+      position: relative;
+    }
+    .price-card.featured::before {
+      content: 'BEST VALUE';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 10px;
+      letter-spacing: 0.5px;
+    }
+    .price-name { font-size: 18px; font-weight: 600; color: var(--slate-900); margin-bottom: 4px; }
+    .price-amount {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin: 12px 0 4px;
+    }
+    .price-amount span { font-size: 16px; font-weight: 400; color: var(--slate-500); }
+    .price-period { font-size: 13px; color: var(--slate-500); margin-bottom: 20px; }
+    .price-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+    .price-features li {
+      padding: 6px 0;
+      font-size: 14px;
+      color: var(--slate-700);
+    }
+    .price-features li::before { content: '✓ '; color: var(--green); font-weight: 700; }
+    .price-features li.disabled { color: var(--slate-500); }
+    .price-features li.disabled::before { content: '— '; color: var(--slate-200); }
+
+    /* ── Use Cases ────────────────────── */
+    .use-cases {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .use-cases h2 { font-size: 32px; color: var(--slate-900); margin-bottom: 32px; text-align: center; }
+    .use-case {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .use-case-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .use-case h3 { font-size: 15px; color: var(--slate-900); margin-bottom: 2px; }
+    .use-case p { font-size: 14px; color: var(--slate-500); }
+
+    /* ── CTA ──────────────────────────── */
+    .bottom-cta {
+      text-align: center;
+      padding: 64px 24px 80px;
+      background: var(--slate-900);
+      color: var(--white);
+    }
+    .bottom-cta h2 { font-size: 28px; margin-bottom: 12px; }
+    .bottom-cta p { color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+    .bottom-cta .btn-primary { font-size: 16px; padding: 16px 32px; }
+
+    /* ── Footer ───────────────────────── */
+    .footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--slate-500);
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: var(--slate-500); }
+
+    /* ── Responsive ───────────────────── */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-brand"><span>Bright</span>Desk</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://brightdesk.dev">All Add-ons</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">✨ 7-day free trial — all features unlocked</div>
+    <h1>Know exactly <em>who changed what</em> in your Google Sheets</h1>
+    <p>Automatically log every cell edit with timestamp, user email, old value, and new value. No coding. One-click install.</p>
+    <div class="cta-row">
+      <a href="h</a>
+      <a href="#features" class="btn btn-outline">See how it works</a>
+    </div>
+    <p class="hero-note">Free forever with limits · Pro from $5/month · Works with any Google Sheet</p>
+  </section>
+
+  <!-- Demo Visual -->
+  <section class="demo">
+    <div class="demo-visual">
+      <div class="demo-bar">
+        <div class="demo-dot"></div>
+        <div class="demo-dot"></div>
+        <div class="demo-dot"></div>
+      </div>
+      <table class="demo-table">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>User</th>
+            <th>Sheet</th>
+            <th>Cell</th>
+            <th>Old Value</th>
+            <th>New Value</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-03-15 14:34:02</td>
+            <td>john@company.com</td>
+            <td>Budget</td>
+            <td>B5</td>
+            <td><span class="val-old">1500</span></td>
+            <td><span class="val-new">2000</span></td>
+            <td>Edit</td>
+          </tr>
+          <tr>
+            <td>2026-03-15 14:31:18</td>
+            <td>jane@company.com</td>
+            <td>Budget</td>
+            <td>A1:D20</td>
+            <td></td>
+            <td></td>
+            <td>Range Edit</td>
+          </tr>
+          <tr>
+            <td>2026-03-15 13:15:44</td>
+            <td>john@company.com</td>
+            <td>Tasks</td>
+            <td>C3</td>
+            <td><span class="val-old">In Progress</span></td>
+            <td><span class="val-new">Complete</span></td>
+            <td>Edit</td>
+          </tr>
+          <tr>
+            <td>2026-03-15 11:02:09</td>
+            <td>sarah@company.com</td>
+            <td>Budget</td>
+            <td>E12</td>
+            <td><span class="val-old">Q2 Forecast</span></td>
+            <td><span class="val-new">Q2 Actual</span></td>
+            <td>Edit</td>
+          </tr>
+          <tr>
+            <td>2026-03-14 17:45:33</td>
+            <td>mike@company.com</td>
+            <td>Inventory</td>
+            <td>F8</td>
+            <td><span class="val-old">250</span></td>
+            <td><span class="val-new">0</span></td>
+            <td>Edit</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <h2>Everything you need to track changes</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Automatic logging</h3>
+        <p>Every cell edit is captured instantly — timestamp, user email, cell reference, old value, and new value. No manual work.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Interactive sidebar</h3>
+        <p>Browse your change history without leaving your spreadsheet. Filter by user, sheet, or date range to find exactly what you need.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>User attribution</h3>
+        <p>See which team member made each change. Perfect for shared spreadsheets where accountability matters.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Data stays yours</h3>
+        <p>All history is stored in your own Google Sheet. Nothing is sent to external servers. BrightDesk has zero access to your data.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📥</div>
+        <h3>CSV export</h3>
+        <p>Export your filtered changelog to CSV for compliance reports, audits, or analysis in other tools.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏱️</div>
+        <h3>One-click setup</h3>
+        <p>Install from the Marketplace, click "Start Tracking," and you're done. No configuration, no coding, no APIs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="use-cases">
+    <h2>Built for teams who share spreadsheets</h2>
+    <div class="use-case">
+      <div class="use-case-icon">💰</div>
+      <div>
+        <h3>Finance teams</h3>
+        <p>Track every change to budgets, forecasts, and financial models. Know who updated a number and what it was before.</p>
+      </div>
+    </div>
+    <div class="use-case">
+      <div class="use-case-icon">🏥</div>
+      <div>
+        <h3>Healthcare &amp; compliance</h3>
+        <p>Maintain audit trails for regulatory compliance. Document every data modification with user attribution and timestamps.</p>
+      </div>
+    </div>
+    <div class="use-case">
+      <div class="use-case-icon">🎓</div>
+      <div>
+        <h3>Education</h3>
+        <p>Monitor grade sheet changes, track roster updates, and ensure data integrity across shared academic spreadsheets.</p>
+      </div>
+    </div>
+    <div class="use-case">
+      <div class="use-case-icon">📋</div>
+      <div>
+        <h3>Operations &amp; project management</h3>
+        <p>See who updated task statuses, changed inventory numbers, or modified project data — and when.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <h2>Simple, transparent pricing</h2>
+    <p class="pricing-sub">Start with a 7-day free trial. All features included.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Free</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">forever</div>
+        <ul class="price-features">
+          <li>Track 1 sheet tab</li>
+          <li>7-day sidebar history</li>
+          <li>Basic change browsing</li>
+          <li class="disabled">CSV export</li>
+          <li class="disabled">Filter by user</li>
+          <li class="disabled">Unlimited history</li>
+        </ul>
+        <a href="https:/>Install Free</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Pro Yearly</div>
+        <div class="price-amount">$49<span>/yr</span></div>
+        <div class="price-period">~$4.08/month — save 32%</div>
+        <ul class="price-features">
+          <li>Track all sheets</li>
+          <li>Unlimited history</li>
+          <li>Filter by user &amp; date</li>
+          <li>CSV export</li>
+          <li>Priority support</li>
+          <li>All future features</li>
+        </ul>
+        <a href="checkout.html" class="btn btn-primary" style="width:100%;justify-content:center;">Start 7-Day Trial</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Pro Monthly</div>
+        <div class="price-amount">$6<span>/mo</span></div>
+        <div class="price-period">billed monthly</div>
+        <ul class="price-features">
+          <li>Track all sheets</li>
+          <li>Unlimited history</li>
+          <li>Filter by user &amp; date</li>
+          <li>CSV export</li>
+          <li>Priority support</li>
+          <li>All future features</li>
+        </ul>
+        <a href="checkout.html?plan=monthly" class="btn btn-outline" style="width:100%;justify-content:center;">Start 7-Day Trial</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bottom-cta">
+    <h2>Stop guessing who changed your data</h2>
+    <p>Install in 30 seconds. Free forever with limits. No credit card required.</p>
+    <a href=">Install Changelog for Google Sheets™</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>&copy; 2026 BrightDesk. Google Sheets™ is a trademark of Google LLC.</div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="mailto:rayanbuilds.dev@gmail.com">Support</a>
+    </div>
+  </footer>
+
+</body>
+</html>
