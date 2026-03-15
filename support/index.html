@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — BrightDesk</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1a1a1a;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .logo a {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 36px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+        }
+        .field {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        label .required {
+            color: #e53e3e;
+        }
+        select, input, textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            color: #1a1a1a;
+            background: #fff;
+            transition: border-color 0.15s;
+        }
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px 24px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn:hover { background: #1d4ed8; }
+        .btn:active { background: #1e40af; }
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+            color: #999;
+            font-size: 13px;
+        }
+        .footer a { color: #666; }
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #1e40af;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo"><a href="/">BrightDesk</a></div>
+        <h1>Contact Support</h1>
+        <p class="subtitle">We typically respond within 24 hours.</p>
+
+        <div class="card">
+            <div class="info-box">
+                Having trouble with an add-on? Try refreshing the page and reopening the add-on from the Extensions menu first. Many issues resolve with a refresh.
+            </div>
+
+            <div class="field">
+                <label>Which add-on do you need help with? <span class="required">*</span></label>
+                <select id="addon">
+                    <option value="">Select an add-on...</option>
+                    <option value="Sheet Health Check">Sheet Health Check</option>
+                    <option value="Notifications for Google Sheets">Notifications for Google Sheets</option>
+                    <option value="Calendar Events for Google Forms">Calendar Events for Google Forms</option>
+                    <option value="Timesheet for Google Calendar">Timesheet for Google Calendar</option>
+                    <option value="Sheet Attendance">Sheet Attendance</option>
+                    <option value="Sheet Approvals">Sheet Approvals</option>
+                    <option value=" Changelog for Google Sheets"> Changelog for Google Sheets</option>
+                    <option value="Other">Other / General question</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>What's this about? <span class="required">*</span></label>
+                <select id="category">
+                    <option value="">Select a category...</option>
+                    <option value="Technical issue">I'm having a technical issue</option>
+                    <option value="Bug report">I'd like to report a bug</option>
+                    <option value="Feature request">I'd like to suggest a feature</option>
+                    <option value="Billing">Billing or subscription question</option>
+                    <option value="Setup help">I need help setting up the add-on</option>
+                    <option value="Other">Something else</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Describe your issue or question <span class="required">*</span></label>
+                <textarea id="message" placeholder="Please include as much detail as possible. If reporting a bug, describe what you expected to happen vs. what actually happened."></textarea>
+            </div>
+
+            <div class="field">
+                <label>Your name</label>
+                <input type="text" id="name" placeholder="Full name">
+            </div>
+
+            <div class="field">
+                <label>Your email address <span class="required">*</span></label>
+                <input type="email" id="email" placeholder="you@example.com">
+            </div>
+
+            <button class="btn" onclick="submitForm()">Send Message</button>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 BrightDesk. All rights reserved.</p>
+            <p style="margin-top: 4px;">
+                <a href="/">Home</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            var addon = document.getElementById('addon').value;
+            var category = document.getElementById('category').value;
+            var message = document.getElementById('message').value;
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+
+            if (!addon || !category || !message || !email) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            var subject = '[' + addon + '] ' + category;
+            var body = 'Add-on: ' + addon + '\n'
+                + 'Category: ' + category + '\n'
+                + 'Name: ' + (name || 'Not provided') + '\n'
+                + 'Email: ' + email + '\n\n'
+                + '--- Description ---\n\n'
+                + message;
+
+            var mailto = 'mailto:rayanbuilds.dev@gmail.com'
+                + '?subject=' + encodeURIComponent(subject)
+                + '&body=' + encodeURIComponent(body);
+
+            window.location.href = mailto;
+        }
+    </script>
+</body>
+</html>
