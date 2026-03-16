@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upgrade to Pro — Changelog for Google Sheets | BrightDesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; color: #374151; background: #f3f4f6; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      max-width: 480px;
+      width: 100%;
+      margin: 24px;
+      padding: 40px 36px;
+      text-align: center;
+    }
+    .logo { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+    .logo span { color: #4285F4; }
+    .subtitle { color: #6b7280; font-size: 14px; margin-bottom: 32px; }
+    h1 { font-size: 24px; color: #1a1a2e; margin-bottom: 8px; }
+    .desc { color: #6b7280; font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
+    .plan-option {
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .plan-option:hover { border-color: #4285F4; }
+    .plan-option.selected { border-color: #4285F4; box-shadow: 0 0 0 3px rgba(66,133,244,0.12); }
+    .plan-name { font-weight: 600; color: #1a1a2e; font-size: 15px; }
+    .plan-price { font-weight: 700; color: #1a1a2e; font-size: 18px; }
+    .plan-detail { font-size: 12px; color: #6b7280; margin-top: 2px; }
+    .plan-badge {
+      background: #E6F4EA;
+      color: #137333;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .btn-checkout {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: #4285F4;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.15s;
+    }
+    .btn-checkout:hover { background: #2D6FDB; }
+    .secure { font-size: 12px; color: #6b7280; margin-top: 12px; }
+    .back-link { display: block; margin-top: 20px; color: #4285F4; font-size: 13px; text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    .features-list { text-align: left; margin: 20px 0; }
+    .features-list li { font-size: 13px; color: #374151; padding: 4px 0; list-style: none; }
+    .features-list li::before { content: '✓ '; color: #34A853; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo"><span>Bright</span>Desk</div>
+    <div class="subtitle">Changelog for Google Sheets™</div>
+
+    <h1>Upgrade to Pro</h1>
+    <p class="desc">Unlock unlimited tracking, full history, CSV export, and advanced filters.</p>
+
+    <div class="plan-option selected" id="yearlyPlan" onclick="selectPlan('yearly')">
+      <div>
+        <div class="plan-name">Yearly <span class="plan-badge">Save 32%</span></div>
+        <div class="plan-detail">Billed annually</div>
+      </div>
+      <div class="plan-price">$49<span style="font-size:13px;font-weight:400;color:#6b7280">/yr</span></div>
+    </div>
+
+    <div class="plan-option" id="monthlyPlan" onclick="selectPlan('monthly')">
+      <div>
+        <div class="plan-name">Monthly</div>
+        <div class="plan-detail">Billed monthly</div>
+      </div>
+      <div class="plan-price">$6<span style="font-size:13px;font-weight:400;color:#6b7280">/mo</span></div>
+    </div>
+
+    <ul class="features-list">
+      <li>Track all sheet tabs</li>
+      <li>Unlimited history browsing</li>
+      <li>CSV export</li>
+      <li>Filter by user &amp; date range</li>
+      <li>Priority support</li>
+      <li>30-day money-back guarantee</li>
+    </ul>
+
+    <button class="btn-checkout" id="checkoutBtn" onclick="checkout()">Continue to Payment →</button>
+    <p class="secure">🔒 Secure checkout powered by Stripe</p>
+    <a href="./" class="back-link">← Back to Changelog for Google Sheets</a>
+  </div>
+
+  <script>
+    // TODO: Replace these with your actual Stripe Payment Links
+    var STRIPE_YEARLY = 'https://buy.stripe.com/PLACEHOLDER_YEARLY';
+    var STRIPE_MONTHLY = 'https://buy.stripe.com/PLACEHOLDER_MONTHLY';
+
+    var selectedPlan = 'yearly';
+
+    // Check URL param for pre-selected plan
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('plan') === 'monthly') {
+      selectPlan('monthly');
+    }
+
+    function selectPlan(plan) {
+      selectedPlan = plan;
+      document.getElementById('yearlyPlan').classList.toggle('selected', plan === 'yearly');
+      document.getElementById('monthlyPlan').classList.toggle('selected', plan === 'monthly');
+    }
+
+    function checkout() {
+      var url = selectedPlan === 'yearly' ? STRIPE_YEARLY : STRIPE_MONTHLY;
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>
