@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Paying $144/Year for Time Tracking — Your Google Calendar Already Does It</title>
+    <meta name="description" content="Harvest costs $144/year. Toggl costs $108/year. Your Google Calendar is free — and it already tracks your time. Here's how to turn it into a billing timesheet.">
+    <meta name="keywords" content="harvest alternative, toggl alternative, free time tracking freelancer, google calendar time tracking, cheap timesheet tool">
+    <link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/blog/stop-paying-for-time-tracking/">
+
+    <meta property="og:title" content="Stop Paying $144/Year for Time Tracking">
+    <meta property="og:description" content="Your Google Calendar already tracks your time. Here's how to turn it into a billing timesheet for free.">
+    <meta property="og:type" content="article">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf9; --surface: #ffffff; --text: #1c1917;
+            --text-2: #44403c; --text-3: #78716c; --border: #e7e5e4;
+            --accent: #2563eb; --accent-soft: #eff6ff;
+            --green: #16a34a; --green-soft: #f0fdf4;
+            --amber: #d97706; --amber-soft: #fffbeb;
+            --red: #dc2626; --red-soft: #fef2f2;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+        nav { background: rgba(250,250,249,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
+        .nav-inner { max-width: 720px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem; }
+        .nav-brand img { width: 28px; height: 28px; border-radius: 6px; }
+        .nav-links a { text-decoration: none; color: var(--text-3); font-size: 0.825rem; font-weight: 500; margin-left: 1.5rem; }
+
+        article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+        .article-meta { font-size: 0.8rem; color: var(--text-3); margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; }
+        .article-meta .tag { background: var(--red-soft); color: var(--red); padding: 2px 10px; border-radius: 100px; font-weight: 600; font-size: 0.75rem; }
+
+        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--text); line-height: 1.25; margin-bottom: 1rem; }
+        .article-subtitle { font-size: 1.1rem; color: var(--text-3); margin-bottom: 2rem; line-height: 1.7; }
+        h2 { font-size: 1.35rem; color: var(--text); font-weight: 700; margin: 2.5rem 0 0.75rem; }
+        h3 { font-size: 1.05rem; color: var(--text); font-weight: 600; margin: 1.75rem 0 0.5rem; }
+        p { margin-bottom: 1.25rem; font-size: 1rem; }
+        a { color: var(--accent); }
+        ol, ul { margin: 0 0 1.25rem 1.5rem; }
+        li { margin-bottom: 0.5rem; font-size: 1rem; }
+        strong { color: var(--text); }
+
+        .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.925rem; }
+        .callout-tip { background: var(--green-soft); border-left: 4px solid var(--green); }
+        .callout-info { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+        .callout strong { display: block; margin-bottom: 0.375rem; }
+
+        /* Price comparison */
+        .price-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .price-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 10px; padding: 1.25rem; text-align: center;
+        }
+        .price-card.highlight { border-color: var(--accent); border-width: 2px; }
+        .price-name { font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; color: var(--text); }
+        .price-amount { font-size: 1.75rem; font-weight: 700; color: var(--text); margin-bottom: 0.125rem; }
+        .price-amount .period { font-size: 0.8rem; font-weight: 400; color: var(--text-3); }
+        .price-note { font-size: 0.8rem; color: var(--text-3); }
+        .price-card.highlight .price-amount { color: var(--green); }
+        .price-card .savings { font-size: 0.8rem; font-weight: 600; color: var(--green); margin-top: 0.5rem; }
+
+        .comp-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 1.5rem 0; font-size: 0.875rem; }
+        .comp-table th { background: #f5f5f4; padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+        .comp-table td { padding: 0.625rem 1rem; border-top: 1px solid #f5f5f4; }
+        .yes { color: var(--green); font-weight: 600; }
+        .no { color: var(--text-3); }
+
+        .cta-box { background: var(--surface); border: 2px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
+        .cta-box h3 { color: var(--accent); margin-top: 0; }
+        .cta-box p { font-size: 0.925rem; margin-bottom: 1rem; }
+        .cta-btn { display: inline-block; padding: 0.75rem 1.75rem; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--amber-soft), #fff7ed);
+            border: 1px solid #fde68a; border-radius: 10px;
+            padding: 1.5rem; margin: 1.5rem 0; text-align: center;
+        }
+        .highlight-box .big-number { font-size: 2.5rem; font-weight: 700; color: var(--red); }
+        .highlight-box p { font-size: 0.925rem; color: var(--text-2); margin: 0.5rem 0 0; }
+
+        footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; max-width: 720px; margin: 0 auto; }
+        .footer-text { font-size: 0.75rem; color: var(--text-3); line-height: 1.7; }
+        .footer-text a { color: var(--text-3); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            .price-grid { grid-template-columns: 1fr; }
+            article { padding: 2rem 1rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="nav-brand">
+            <img src="https://brightdesk.dev/timesheet-for-google-calendar/icon-32.png" alt="">
+            Timesheet for Google Calendar
+        </a>
+        <div class="nav-links">
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Home</a>
+            <a href="https://brightdesk.dev">BrightDesk</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="article-meta">
+        <span class="tag">Opinion</span>
+        <span>March 2026</span>
+        <span>&middot;</span>
+        <span>6 min read</span>
+    </div>
+
+    <h1>Stop Paying $144/Year for Time Tracking</h1>
+    <p class="article-subtitle">If you&rsquo;re a freelancer using Harvest, Toggl, or any other paid time tracker, ask yourself: do I actually need a separate app to track time I&rsquo;m already tracking in Google Calendar?</p>
+
+    <h2>The expensive time tracking trap</h2>
+    <p>Here&rsquo;s a scenario that plays out every day. A freelance consultant blocks out &ldquo;Client A &mdash; Strategy Meeting&rdquo; in Google Calendar from 10:00 to 11:30 AM. Then they open Harvest or Toggl and type &ldquo;Strategy Meeting, Client A, 1.5 hours.&rdquo;</p>
+    <p><strong>They entered the same information twice.</strong> Once in the tool they actually use to manage their day (Calendar), and once in the tool that generates invoices (time tracker). That duplication costs time and introduces errors &mdash; and they&rsquo;re paying over $100/year for the privilege.</p>
+
+    <div class="highlight-box">
+        <div class="big-number">$144/year</div>
+        <p>What Harvest charges a single freelancer for something your free Google Calendar already does.</p>
+    </div>
+
+    <h2>What you&rsquo;re actually paying for</h2>
+    <p>Time tracking apps like Harvest and Toggl are powerful tools built for teams of 10-100+ people who need approval workflows, team dashboards, project budgeting, and Jira integrations. They&rsquo;re enterprise software priced for enterprises.</p>
+    <p>But if you&rsquo;re a solo freelancer, a small agency of 2-3 people, or a consultant who just needs to turn calendar hours into invoices, you&rsquo;re paying for features you&rsquo;ll never use. What you actually need is simpler: <strong>take the events in my calendar, calculate the hours, apply my rates, and give me a spreadsheet.</strong></p>
+
+    <h2>The Google Calendar approach</h2>
+    <p>The idea is simple: <strong>use the tool you already use</strong>. Most freelancers already block time in Google Calendar for client work. Many already color-code by client. The data is there &mdash; it just needs to be extracted and formatted.</p>
+    <p>Google Calendar events have everything a timesheet needs: date, start time, end time (duration is calculated), event title (description of work), and event color (project category). The only thing missing is the hourly rate, which stays constant per client anyway.</p>
+
+    <h3>What this looks like in practice</h3>
+    <p>Here&rsquo;s a typical week for a freelance consultant:</p>
+    <ul>
+        <li>Monday: 3 events colored red (Client A), 1 event colored green (Client B)</li>
+        <li>Tuesday: 2 red events, 1 blue event (internal/non-billable)</li>
+        <li>Wednesday: 1 green event, 2 red events</li>
+        <li>Thursday: 4 red events</li>
+        <li>Friday: 1 green event, 1 uncolored event (&ldquo;Acme meeting&rdquo;)</li>
+    </ul>
+    <p>With a tool like <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a>, those events become a formatted spreadsheet in one click:</p>
+    <ul>
+        <li>Red &rarr; Client A at $150/hr</li>
+        <li>Green &rarr; Client B at $125/hr</li>
+        <li>Blue &rarr; Internal at $0/hr</li>
+        <li>&ldquo;Acme&rdquo; (keyword match) &rarr; Client A at $150/hr</li>
+    </ul>
+    <p>Total hours, total billing per project, and a summary tab ready for invoicing. No manual entry, no second app.</p>
+
+    <h2>Cost comparison</h2>
+
+    <div class="price-grid">
+        <div class="price-card">
+            <div class="price-name">Harvest</div>
+            <div class="price-amount">$144 <span class="period">/year</span></div>
+            <div class="price-note">per user</div>
+        </div>
+        <div class="price-card">
+            <div class="price-name">Toggl Track</div>
+            <div class="price-amount">$108 <span class="period">/year</span></div>
+            <div class="price-note">per user (Starter)</div>
+        </div>
+        <div class="price-card highlight">
+            <div class="price-name">Calendar Timesheet</div>
+            <div class="price-amount">$39 <span class="period">/year</span></div>
+            <div class="price-note">Pro (free tier available)</div>
+            <div class="savings">Save 73% vs Harvest</div>
+        </div>
+    </div>
+
+    <h2>Feature comparison: what actually matters for freelancers</h2>
+
+    <table class="comp-table">
+        <thead>
+            <tr><th>Feature</th><th>Harvest</th><th>Toggl</th><th>Calendar Timesheet</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Manual time entry required</td>
+                <td class="no">Yes</td>
+                <td class="no">Yes</td>
+                <td class="yes">No &mdash; reads from Calendar</td>
+            </tr>
+            <tr>
+                <td>Works inside Google Sheets</td>
+                <td class="no">No &mdash; separate app</td>
+                <td class="no">No &mdash; separate app</td>
+                <td class="yes">Yes</td>
+            </tr>
+            <tr>
+                <td>Auto-categorize by calendar color</td>
+                <td class="no">No</td>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+            </tr>
+            <tr>
+                <td>Billing error detection</td>
+                <td class="no">No</td>
+                <td class="no">No</td>
+                <td class="yes">Yes (Review tab)</td>
+            </tr>
+            <tr>
+                <td>Recurring event handling</td>
+                <td class="no">Manual entry each time</td>
+                <td class="no">Manual entry each time</td>
+                <td class="yes">Auto-expanded into rows</td>
+            </tr>
+            <tr>
+                <td>Setup time</td>
+                <td class="no">30+ minutes</td>
+                <td class="no">30+ minutes</td>
+                <td class="yes">2 minutes</td>
+            </tr>
+            <tr>
+                <td>Team dashboards</td>
+                <td class="yes">Yes</td>
+                <td class="yes">Yes</td>
+                <td class="no">No (solo/small team focus)</td>
+            </tr>
+            <tr>
+                <td>Project budgeting</td>
+                <td class="yes">Yes</td>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+            </tr>
+            <tr>
+                <td>Jira/Asana integration</td>
+                <td class="yes">Yes</td>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout callout-info">
+        <strong>When should you use Harvest or Toggl instead?</strong>
+        If you manage a team of 5+ people, need project budgeting, approval workflows, or integrations with project management tools like Jira, then the enterprise tools are worth the price. But if you&rsquo;re a solo freelancer, a 2-3 person agency, or a consultant who just needs calendar-to-timesheet, you&rsquo;re dramatically overpaying.
+    </div>
+
+    <h2>The workflow: 60 seconds, every billing cycle</h2>
+    <ol>
+        <li><strong>During the week:</strong> Use Google Calendar as you normally do. Color events by client.</li>
+        <li><strong>End of billing period:</strong> Open your timesheet spreadsheet</li>
+        <li><strong>One click:</strong> Extensions &rarr; Timesheet for Google Calendar &rarr; Refresh Timesheet</li>
+        <li><strong>Review:</strong> Check the Summary tab for totals, Review tab for any flagged issues</li>
+        <li><strong>Invoice:</strong> Copy the numbers into your invoice template (or share the sheet directly)</li>
+    </ol>
+    <p>Total time: under 60 seconds. No app switching, no manual entry, no data duplication.</p>
+
+    <h2>What about the free tier?</h2>
+    <p>Timesheet for Google Calendar has a genuinely usable free tier: 1 calendar, 2-week date range, 3 color mappings, 3 keyword rules, and the Timesheet tab. For a freelancer with 1-3 clients who bills weekly, the free tier might be all you need.</p>
+    <p>Pro ($39/year) adds unlimited everything, the Summary tab (project totals), the Review tab (billing error detection), and description parsing. Even at the Pro price, you&rsquo;re saving 64-73% compared to Toggl or Harvest.</p>
+
+    <div class="cta-box">
+        <h3>Try it free &mdash; no credit card required</h3>
+        <p>Install from the Google Workspace Marketplace. Set up in 2 minutes. If you bill hourly and use Google Calendar, this will save you time and money every single billing cycle.</p>
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="cta-btn">Get Started Free</a>
+    </div>
+</article>
+
+<footer>
+    <p class="footer-text">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> &middot;
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/privacy/">Privacy</a> &middot;
+        <a href="https://brightdesk.dev">BrightDesk</a><br>
+        Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. Harvest and Toggl are trademarks of their respective owners. &copy; 2026 BrightDesk.
+    </p>
+</footer>
+
+</body>
+</html>
