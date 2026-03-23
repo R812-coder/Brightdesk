@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Timesheet from Google Calendar (2026 Guide)</title>
+    <meta name="description" content="Learn how to turn Google Calendar events into a formatted billing timesheet in Google Sheets. Step-by-step guide with free tools for freelancers and consultants.">
+    <meta name="keywords" content="google calendar timesheet, create timesheet from google calendar, export google calendar to spreadsheet, time tracking google calendar, freelancer timesheet">
+    <link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-create-timesheet-from-google-calendar/">
+
+    <meta property="og:title" content="How to Create a Timesheet from Google Calendar (2026 Guide)">
+    <meta property="og:description" content="Turn Google Calendar events into billing timesheets in Google Sheets. Step-by-step guide for freelancers.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-create-timesheet-from-google-calendar/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --surface: #ffffff;
+            --text: #1c1917;
+            --text-2: #44403c;
+            --text-3: #78716c;
+            --border: #e7e5e4;
+            --accent: #2563eb;
+            --accent-soft: #eff6ff;
+            --green: #16a34a;
+            --green-soft: #f0fdf4;
+            --amber: #d97706;
+            --amber-soft: #fffbeb;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-2);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            background: rgba(250,250,249,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 50;
+        }
+        .nav-inner {
+            max-width: 720px; margin: 0 auto; padding: 0.75rem 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem; }
+        .nav-brand img { width: 28px; height: 28px; border-radius: 6px; }
+        .nav-links a { text-decoration: none; color: var(--text-3); font-size: 0.825rem; font-weight: 500; margin-left: 1.5rem; }
+        .nav-links a:hover { color: var(--text); }
+
+        /* ARTICLE */
+        article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+        .article-meta {
+            font-size: 0.8rem; color: var(--text-3); margin-bottom: 1rem;
+            display: flex; gap: 1rem; align-items: center;
+        }
+        .article-meta .tag {
+            background: var(--accent-soft); color: var(--accent);
+            padding: 2px 10px; border-radius: 100px; font-weight: 600;
+            font-size: 0.75rem; letter-spacing: 0.02em;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            color: var(--text); line-height: 1.25;
+            margin-bottom: 1rem; letter-spacing: -0.02em;
+        }
+        .article-subtitle {
+            font-size: 1.1rem; color: var(--text-3);
+            margin-bottom: 2rem; line-height: 1.7;
+        }
+
+        h2 {
+            font-size: 1.35rem; color: var(--text); font-weight: 700;
+            margin: 2.5rem 0 0.75rem; letter-spacing: -0.01em;
+        }
+        h3 {
+            font-size: 1.05rem; color: var(--text); font-weight: 600;
+            margin: 1.75rem 0 0.5rem;
+        }
+
+        p { margin-bottom: 1.25rem; font-size: 1rem; }
+
+        a { color: var(--accent); }
+
+        img {
+            width: 100%; border-radius: 10px;
+            border: 1px solid var(--border); margin: 1.5rem 0;
+        }
+
+        ol, ul { margin: 0 0 1.25rem 1.5rem; }
+        li { margin-bottom: 0.5rem; font-size: 1rem; }
+
+        strong { color: var(--text); }
+
+        /* Callout boxes */
+        .callout {
+            border-radius: 10px; padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0; font-size: 0.925rem;
+        }
+        .callout-tip { background: var(--green-soft); border-left: 4px solid var(--green); }
+        .callout-warn { background: var(--amber-soft); border-left: 4px solid var(--amber); }
+        .callout-info { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+        .callout strong { display: block; margin-bottom: 0.375rem; }
+
+        /* CTA box */
+        .cta-box {
+            background: var(--surface); border: 2px solid var(--accent);
+            border-radius: 12px; padding: 1.5rem; margin: 2rem 0;
+            text-align: center;
+        }
+        .cta-box h3 { color: var(--accent); margin-top: 0; }
+        .cta-box p { font-size: 0.925rem; margin-bottom: 1rem; }
+        .cta-btn {
+            display: inline-block; padding: 0.75rem 1.75rem;
+            background: var(--accent); color: #fff; border-radius: 8px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+        }
+        .cta-btn:hover { background: #1d4ed8; color: #fff; }
+
+        /* Table of contents */
+        .toc {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0;
+        }
+        .toc-title { font-size: 0.85rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+        .toc ol { margin: 0 0 0 1.25rem; }
+        .toc li { margin-bottom: 0.375rem; font-size: 0.9rem; }
+        .toc a { text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+
+        /* Code */
+        code {
+            background: #f5f5f4; padding: 2px 6px; border-radius: 4px;
+            font-size: 0.875rem; color: var(--text);
+        }
+
+        /* Comparison table */
+        .comp-table {
+            width: 100%; border-collapse: collapse;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 10px; overflow: hidden; margin: 1.5rem 0;
+            font-size: 0.875rem;
+        }
+        .comp-table th { background: #f5f5f4; padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+        .comp-table td { padding: 0.625rem 1rem; border-top: 1px solid #f5f5f4; }
+        .comp-table .yes { color: var(--green); font-weight: 600; }
+        .comp-table .no { color: var(--text-3); }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border); padding: 2rem 1.5rem;
+            text-align: center; max-width: 720px; margin: 0 auto;
+        }
+        .footer-text { font-size: 0.75rem; color: var(--text-3); line-height: 1.7; }
+        .footer-text a { color: var(--text-3); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            article { padding: 2rem 1rem 3rem; }
+        }
+    </style>
+
+    <!-- Schema.org structured data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Create a Timesheet from Google Calendar",
+        "description": "Learn how to turn Google Calendar events into a formatted billing timesheet in Google Sheets. Free step-by-step guide.",
+        "step": [
+            {"@type": "HowToStep", "name": "Color-code your calendar events", "text": "Assign Google Calendar event colors to different projects or clients."},
+            {"@type": "HowToStep", "name": "Install Timesheet for Google Calendar", "text": "Install the free add-on from the Google Workspace Marketplace."},
+            {"@type": "HowToStep", "name": "Map colors to projects", "text": "In the sidebar, assign each color to a project name and hourly rate."},
+            {"@type": "HowToStep", "name": "Generate your timesheet", "text": "Select a date range and click Generate to create a formatted timesheet."}
+        ],
+        "tool": {"@type": "HowToTool", "name": "Timesheet for Google Calendar"}
+    }
+    </script>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="nav-brand">
+            <img src="https://brightdesk.dev/timesheet-for-google-calendar/icon-32.png" alt="">
+            Timesheet for Google Calendar
+        </a>
+        <div class="nav-links">
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Home</a>
+            <a href="https://brightdesk.dev">BrightDesk</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="article-meta">
+        <span class="tag">Guide</span>
+        <span>March 2026</span>
+        <span>&middot;</span>
+        <span>8 min read</span>
+    </div>
+
+    <h1>How to Create a Timesheet from Google Calendar</h1>
+    <p class="article-subtitle">If you track your time in Google Calendar (and most freelancers already do), your calendar is already a timesheet &mdash; it just needs to be formatted. Here&rsquo;s how to turn those events into a clean, billable timesheet in Google Sheets.</p>
+
+    <div class="toc">
+        <div class="toc-title">In this guide</div>
+        <ol>
+            <li><a href="#problem">The problem: Calendar has the data, but no export</a></li>
+            <li><a href="#manual">Method 1: Manual copy-paste (free, slow)</a></li>
+            <li><a href="#addon">Method 2: One-click with an add-on (free, fast)</a></li>
+            <li><a href="#setup">Setting up color-based categorization</a></li>
+            <li><a href="#generate">Generating your first timesheet</a></li>
+            <li><a href="#tips">Tips for accurate billing</a></li>
+        </ol>
+    </div>
+
+    <h2 id="problem">The problem: Calendar has the data, but no export</h2>
+    <p>Google Calendar knows exactly what you did, when you did it, and how long it took. Every meeting, work session, and client call is logged with a start time, end time, and title. For freelancers and consultants billing hourly, this is a goldmine of time data.</p>
+    <p>The problem? Google Calendar&rsquo;s only native export format is <code>.ics</code> &mdash; which is designed for transferring events between calendar apps, not for generating spreadsheets. There&rsquo;s no built-in way to get a simple table of events with hours and billing amounts.</p>
+    <p>This gap forces thousands of freelancers to manually re-enter their hours into separate time tracking tools like Harvest ($144/year) or Toggl ($108/year) &mdash; essentially duplicating data that already exists in their calendar.</p>
+    <p>There are two ways to solve this. Let&rsquo;s start with the manual method, then cover the fast way.</p>
+
+    <h2 id="manual">Method 1: Manual copy-paste (free, slow)</h2>
+    <p>You can create a timesheet by hand in Google Sheets. Here&rsquo;s the process:</p>
+    <ol>
+        <li><strong>Create a Google Sheet</strong> with columns: Date, Start Time, End Time, Duration, Project, Description</li>
+        <li><strong>Open Google Calendar</strong> in a separate tab</li>
+        <li><strong>Go through each day</strong> of your billing period</li>
+        <li><strong>For each event</strong>, type the date, start time, end time, event name, and project into the spreadsheet</li>
+        <li><strong>Calculate duration</strong> with a formula like <code>=(C2-B2)*24</code> for each row</li>
+        <li><strong>Add a rate column</strong> and multiply duration &times; rate for each row</li>
+        <li><strong>Sum everything</strong> at the bottom</li>
+    </ol>
+
+    <div class="callout callout-warn">
+        <strong>Why this method breaks down quickly:</strong>
+        This works for a week with 10 events. It becomes painful for a month with 60+ events. And it completely falls apart when you have recurring events (weekly standups show as one event in Calendar but should be 4-5 separate timesheet rows), events spanning midnight, or multiple calendars. You&rsquo;ll also need to handle timezone conversions manually if you work across time zones.
+    </div>
+
+    <h2 id="addon">Method 2: One-click with an add-on (free, fast)</h2>
+    <p>The faster approach is to use a Google Sheets add-on that reads your calendar events automatically and generates a formatted timesheet. <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> does exactly this &mdash; it reads your events (read-only, it never modifies your calendar), categorizes them by project using the colors you already assign in Calendar, and generates a complete timesheet with hours, rates, and billing amounts.</p>
+    <p>Here&rsquo;s how to set it up:</p>
+
+    <h3>Step 1: Install the add-on</h3>
+    <ol>
+        <li>Open any Google Sheet</li>
+        <li>Go to <strong>Extensions &rarr; Add-ons &rarr; Get add-ons</strong></li>
+        <li>Search for <strong>&ldquo;Timesheet for Google Calendar&rdquo;</strong></li>
+        <li>Click Install and grant the requested permissions (read-only calendar access + write to current spreadsheet)</li>
+    </ol>
+
+    <h3 id="setup">Step 2: Set up color-based categorization</h3>
+    <p>This is the key insight that makes this approach work: <strong>you probably already color-code your Google Calendar events by project</strong>. If not, start now &mdash; it takes seconds per event and it&rsquo;s the fastest way to categorize your time.</p>
+    <p>In Google Calendar, right-click any event and pick a color. Use a consistent system:</p>
+    <ul>
+        <li><strong>Tomato (red)</strong> &rarr; Client A</li>
+        <li><strong>Basil (green)</strong> &rarr; Client B</li>
+        <li><strong>Peacock (blue)</strong> &rarr; Internal work</li>
+        <li><strong>Banana (yellow)</strong> &rarr; Client C</li>
+    </ul>
+    <p>In the add-on sidebar, go to the <strong>Mappings</strong> tab. You&rsquo;ll see all 11 Google Calendar colors listed. For each color you use, type the project name and hourly rate. Click <strong>Save Mappings</strong>.</p>
+
+    <div class="callout callout-tip">
+        <strong>Don&rsquo;t color every event?</strong>
+        That&rsquo;s fine. Use keyword rules as a backup. In the Mappings tab, add rules like: title contains &ldquo;Acme&rdquo; &rarr; Client A at $150/hr. The add-on checks color first, then keywords, so both systems work together.
+    </div>
+
+    <h3 id="generate">Step 3: Generate your timesheet</h3>
+    <ol>
+        <li>Go to the <strong>Generate</strong> tab in the sidebar</li>
+        <li>Select which calendars to include (checkboxes)</li>
+        <li>Pick a date range: This Week, Last Week, This Month, Last Month, or Custom</li>
+        <li>Click <strong>Preview Stats</strong> to see a summary before generating (total events, hours, billing)</li>
+        <li>Click <strong>Generate Timesheet</strong></li>
+    </ol>
+    <p>The add-on creates three tabs in your spreadsheet:</p>
+    <ul>
+        <li><strong>Timesheet</strong> &mdash; Every event as a row with Date, Day, Start, End, Event name, Hours, Project, Rate, Amount, and Notes</li>
+        <li><strong>Summary</strong> &mdash; Total hours and billing per project, ready for invoicing</li>
+        <li><strong>Review</strong> &mdash; Flags potential billing errors: uncategorized events, overlapping meetings, untitled events, and suspiciously short events</li>
+    </ul>
+
+    <div class="callout callout-info">
+        <strong>One-click refresh for future billing cycles:</strong>
+        After your first setup, you don&rsquo;t need to reconfigure anything. Just go to <strong>Extensions &rarr; Timesheet for Google Calendar &rarr; Refresh Timesheet</strong> and it regenerates with your saved settings. True one-click, no sidebar needed.
+    </div>
+
+    <h2>How it handles the hard problems</h2>
+    <p>The manual method falls apart on edge cases. Here&rsquo;s how the add-on handles them:</p>
+
+    <table class="comp-table">
+        <thead>
+            <tr><th>Problem</th><th>Manual method</th><th>Add-on</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Recurring events (weekly standup)</td>
+                <td class="no">Shows as 1 entry &mdash; you manually split</td>
+                <td class="yes">Each instance is a separate row</td>
+            </tr>
+            <tr>
+                <td>Timezone handling</td>
+                <td class="no">Events export in UTC/Zulu time</td>
+                <td class="yes">All times in your local timezone</td>
+            </tr>
+            <tr>
+                <td>Quarter-hour rounding</td>
+                <td class="no">Manual calculation per row</td>
+                <td class="yes">Configurable: 15 min, 6 min, or exact</td>
+            </tr>
+            <tr>
+                <td>All-day events</td>
+                <td class="no">Mixed in with timed events</td>
+                <td class="yes">Automatically skipped (not billable)</td>
+            </tr>
+            <tr>
+                <td>Declined meetings</td>
+                <td class="no">You have to remember to exclude</td>
+                <td class="yes">Automatically skipped</td>
+            </tr>
+            <tr>
+                <td>Overlapping events</td>
+                <td class="no">Double-billing risk if not caught</td>
+                <td class="yes">Flagged in the Review tab</td>
+            </tr>
+            <tr>
+                <td>Multiple calendars</td>
+                <td class="no">Check each calendar separately</td>
+                <td class="yes">Merged and sorted chronologically</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="tips">Tips for accurate billing</h2>
+
+    <h3>1. Color events as you create them</h3>
+    <p>Don&rsquo;t wait until the end of the week to color-code. When you create a new event, pick the color immediately. It takes one extra click and saves you from the &ldquo;what project was this for?&rdquo; guessing game later.</p>
+
+    <h3>2. Use the Review tab</h3>
+    <p>Before sending an invoice, check the Review tab for uncategorized events. These are events the add-on couldn&rsquo;t match to any project &mdash; they need your attention. Either add a color/keyword mapping for them, or decide they&rsquo;re not billable.</p>
+
+    <h3>3. Set up keyword rules for recurring patterns</h3>
+    <p>If you have events like &ldquo;Acme standup&rdquo; or &ldquo;[ClientB] design review&rdquo; that follow a naming pattern, add keyword rules. The title text &ldquo;Acme&rdquo; will auto-match even if you forget to color the event.</p>
+
+    <h3>4. Choose the right rounding</h3>
+    <p>Standard billing practice is quarter-hour (15-minute) rounding. Lawyers often use sixth-hour (6-minute / 0.1 hour) increments. Set this in Settings before generating &mdash; it applies to all events.</p>
+
+    <h3>5. Generate at the end of each billing period</h3>
+    <p>Make it a habit: last day of the week/month &rarr; open your timesheet spreadsheet &rarr; Extensions &rarr; Refresh Timesheet &rarr; review &rarr; invoice. The whole process takes under a minute.</p>
+
+    <div class="cta-box">
+        <h3>Ready to turn your calendar into a timesheet?</h3>
+        <p>Timesheet for Google Calendar is free to use. Install it in under a minute, set up your color mappings, and generate your first timesheet today.</p>
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="cta-btn">Get Started &mdash; Free</a>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+
+    <h3>Does the add-on modify my calendar events?</h3>
+    <p>No. It uses read-only access (<code>calendar.readonly</code>) and can never create, edit, or delete your events. It only reads event data to generate the timesheet.</p>
+
+    <h3>Does my data leave Google&rsquo;s servers?</h3>
+    <p>No. All processing happens within Google Apps Script on Google&rsquo;s infrastructure. No data is transmitted to external servers, and the developer has no access to your calendar or spreadsheet data.</p>
+
+    <h3>What&rsquo;s free vs. paid?</h3>
+    <p>Free tier: 1 calendar, 2-week date range, 3 color mappings, 3 keyword rules, Timesheet tab. Pro ($39/year): unlimited calendars and date ranges, all 11 color mappings, unlimited keyword rules, Summary + Review tabs, description parsing, no branding footer.</p>
+
+    <h3>Can I use it with shared/team calendars?</h3>
+    <p>Yes. Any calendar visible in your Google Calendar (including shared calendars from coworkers) can be selected in the sidebar. Pro users can pull from multiple calendars simultaneously.</p>
+
+</article>
+
+<footer>
+    <p class="footer-text">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> &middot;
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/privacy/">Privacy</a> &middot;
+        <a href="https://brightdesk.dev">BrightDesk</a><br>
+        Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. &copy; 2026 BrightDesk.
+    </p>
+</footer>
+
+</body>
+</html>
