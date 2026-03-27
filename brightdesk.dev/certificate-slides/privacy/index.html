@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Certificate Slides for Google Slides™</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #333; line-height: 1.8; background: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 32px; max-width: 800px; margin: 0 auto;
+        }
+        .logo { font-weight: 700; font-size: 20px; text-decoration: none; color: #1a1f36; }
+        .logo span { color: #2563eb; }
+        nav a.back { font-size: 14px; color: #666; text-decoration: none; }
+        nav a.back:hover { color: #333; }
+        main {
+            max-width: 700px; margin: 0 auto; padding: 40px 24px 80px;
+        }
+        h1 { font-size: 32px; font-weight: 700; color: #1a1f36; margin-bottom: 8px; }
+        .updated { font-size: 13px; color: #999; margin-bottom: 32px; }
+        h2 { font-size: 20px; font-weight: 700; color: #1a1f36; margin: 32px 0 12px; }
+        p { font-size: 15px; margin-bottom: 16px; color: #444; }
+        ul { margin: 0 0 16px 20px; }
+        li { font-size: 15px; margin-bottom: 6px; color: #444; }
+        footer {
+            text-align: center; padding: 32px; font-size: 12px; color: #999;
+            border-top: 1px solid #eee;
+        }
+        footer a { color: #666; text-decoration: none; margin: 0 8px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo"><span>Bright</span>Desk</a>
+        <a href="./" class="back">← Back to Certificate Slides</a>
+    </nav>
+    <main>
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated: March 27, 2026</p>
+
+        <p>Certificate Slides for Google Slides™ ("the Add-on") is developed and maintained by BrightDesk. This policy explains how the Add-on handles your data.</p>
+
+        <h2>What Data the Add-on Accesses</h2>
+        <p>The Add-on accesses the following data within your Google account when you use it:</p>
+        <ul>
+            <li><strong>Google Slides presentations:</strong> The Add-on reads your current Slides template to detect placeholders, creates copies of the template for each certificate, and replaces placeholder text with your data.</li>
+            <li><strong>Google Sheets data:</strong> The Add-on reads the Google Sheet you connect to retrieve recipient names, email addresses, dates, and any other columns you use as placeholders.</li>
+            <li><strong>Google Drive files:</strong> The Add-on creates PDF certificates and saves them to a folder in your Google Drive. It also copies template presentations from the shared template library to your Drive.</li>
+            <li><strong>Email (Gmail):</strong> If you enable email delivery, the Add-on sends certificate PDFs as email attachments from your own Google/Gmail account to recipients listed in your Sheet.</li>
+        </ul>
+
+        <h2>How Your Data Is Used</h2>
+        <p>Your data is used solely to generate, deliver, and track certificates as you direct. Specifically:</p>
+        <ul>
+            <li>Sheet data is read to populate certificate placeholders — names, dates, courses, etc.</li>
+            <li>Slides templates are copied and modified to create individual certificates.</li>
+            <li>PDFs are generated and stored in your own Google Drive.</li>
+            <li>Emails are sent from your own Gmail/Workspace account, not from BrightDesk servers.</li>
+            <li>Certificate tracking records (IDs, timestamps, Drive links) are stored in a Sheet tab within your own Google account.</li>
+        </ul>
+
+        <h2>Data Storage and Transfer</h2>
+        <p><strong>No data is stored on external servers.</strong> All data — your Sheet data, Slides templates, generated certificates, and tracking logs — stays entirely within your Google account. The Add-on runs on Google's Apps Script infrastructure and does not transfer your data to any third-party servers, databases, or cloud services.</p>
+        <p>The only external communication is license key validation, which sends only your email address and license key to verify your subscription status. No document content or personal data is included in this process.</p>
+
+        <h2>Data Sharing</h2>
+        <p>BrightDesk does not sell, share, trade, or rent your personal information or data to any third parties. Your data is never used for advertising, analytics, or any purpose other than operating the Add-on as described above.</p>
+
+        <h2>OAuth Scopes</h2>
+        <p>The Add-on requests the following Google OAuth permissions:</p>
+        <ul>
+            <li><strong>presentations</strong> — To read your Slides template, create copies, and replace placeholder text in each certificate.</li>
+            <li><strong>spreadsheets.readonly</strong> — To read recipient data (names, emails, dates) from the Google Sheet you connect.</li>
+            <li><strong>drive.file</strong> — To save generated PDF certificates to your Drive and copy template files.</li>
+            <li><strong>script.container.ui</strong> — To display the sidebar interface within Google Slides.</li>
+            <li><strong>script.send_mail</strong> — To email certificates as PDF attachments from your own Gmail/Workspace account (paid feature).</li>
+        </ul>
+
+        <h2>Data Retention</h2>
+        <p>The Add-on does not independently retain any of your data. All generated files and records remain in your Google account under your control. You can delete certificates, tracking logs, and template copies at any time through Google Drive and Google Sheets. Uninstalling the Add-on removes its access to your account.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>The Add-on does not knowingly collect personal information from children under 13 (or the applicable age in your jurisdiction). If you are a teacher using the Add-on to generate certificates for students, the student data (names) is processed within your own Google account and is never transmitted to BrightDesk or any third party.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the Add-on after changes constitutes acceptance of the updated policy.</p>
+
+        <h2>Contact</h2>
+        <p>If you have questions about this Privacy Policy, contact us at <a href="mailto:support-certificateslides@googlegroups.com">support-certificateslides@googlegroups.com</a>.</p>
+    </main>
+    <footer>
+        <a href="./">Certificate Slides</a> · <a href="terms.html">Terms of Service</a> · <a href="/">BrightDesk</a>
+        <p style="margin-top:8px;">Google Slides™ and Google Sheets™ are trademarks of Google LLC.</p>
+    </footer>
+</body>
+</html>
