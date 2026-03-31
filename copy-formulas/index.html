@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Formulas for Google Sheets — Auto-Copy Formulas into Form Response Rows | BrightDesk</title>
+  <meta name="description" content="Automatically copy formulas from row 2 into every new Google Forms response row. Works with VLOOKUP, IF, COUNTIF, and any formula. Filter compatible. Never skip a row.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; }
+
+    /* Nav */
+    .nav { padding: 16px 24px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; }
+    .nav-brand { color: #1a1a1a; text-decoration: none; font-weight: 700; font-size: 16px; }
+    .nav-links a { color: #555; text-decoration: none; font-size: 14px; margin-left: 24px; }
+    .nav-links a:hover { color: #0F9D58; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 64px 24px 48px; max-width: 760px; margin: 0 auto; }
+    .hero h1 { font-size: 36px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .hero h1 span { color: #0F9D58; }
+    .hero p { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto 28px; }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-install {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; background: #0F9D58; color: #fff;
+      font-size: 16px; font-weight: 600; border-radius: 8px;
+      text-decoration: none; transition: background 0.15s;
+    }
+    .btn-install:hover { background: #0b8043; }
+    .btn-demo {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; background: #fff; color: #0F9D58;
+      font-size: 16px; font-weight: 600; border-radius: 8px;
+      border: 1px solid #dadce0; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-demo:hover { background: #f1f3f4; }
+    .hero-note { font-size: 13px; color: #888; margin-top: 12px; }
+
+    /* Trust bar */
+    .trust-bar {
+      display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+      padding: 24px; max-width: 700px; margin: 0 auto;
+    }
+    .trust-item { font-size: 13px; color: #666; display: flex; align-items: center; gap: 6px; }
+    .trust-check { color: #0F9D58; font-weight: 700; }
+
+    /* Problem/Solution */
+    .section { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
+    .section h2 { font-size: 24px; font-weight: 700; margin-bottom: 16px; text-align: center; }
+    .section p { font-size: 15px; color: #444; margin-bottom: 16px; }
+
+    .problem-solution {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      max-width: 800px; margin: 0 auto; padding: 0 24px 48px;
+    }
+    @media (max-width: 640px) { .problem-solution { grid-template-columns: 1fr; } }
+    .ps-card {
+      border: 1px solid #e0e0e0; border-radius: 12px; padding: 24px;
+    }
+    .ps-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+    .ps-card.problem { border-color: #fce8e6; background: #fef7f6; }
+    .ps-card.problem h3 { color: #c5221f; }
+    .ps-card.solution { border-color: #ceead6; background: #f1f8f4; }
+    .ps-card.solution h3 { color: #137333; }
+    .ps-card ul { list-style: none; }
+    .ps-card ul li { padding: 6px 0; font-size: 14px; color: #444; }
+    .ps-card.problem ul li::before { content: "✗ "; color: #c5221f; font-weight: 700; }
+    .ps-card.solution ul li::before { content: "✓ "; color: #0F9D58; font-weight: 700; }
+
+    /* How it works */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      max-width: 800px; margin: 24px auto 0; padding: 0 24px;
+    }
+    @media (max-width: 640px) { .steps-grid { grid-template-columns: 1fr; } }
+    .step-card { text-align: center; padding: 20px; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%; background: #e6f4ea;
+      color: #0F9D58; font-weight: 700; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .step-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .step-card p { font-size: 13px; color: #666; }
+
+    /* Features */
+    .features-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      max-width: 700px; margin: 24px auto 0;
+    }
+    @media (max-width: 640px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 16px; background: #f8f9fa; border-radius: 8px;
+    }
+    .feature-icon { color: #0F9D58; font-weight: 700; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .feature-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .feature-item p { font-size: 12px; color: #666; }
+
+    /* Permissions comparison */
+    .permissions-section { background: #f8f9fa; padding: 48px 24px; margin: 48px 0; }
+    .perm-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      max-width: 700px; margin: 24px auto 0;
+    }
+    @media (max-width: 640px) { .perm-compare { grid-template-columns: 1fr; } }
+    .perm-card {
+      background: #fff; border: 1px solid #e0e0e0; border-radius: 12px;
+      padding: 24px; text-align: center;
+    }
+    .perm-card h3 { font-size: 15px; margin-bottom: 4px; }
+    .perm-card .count { font-size: 40px; font-weight: 800; margin: 8px 0; }
+    .perm-card .label { font-size: 13px; color: #666; }
+    .perm-card.ours { border-color: #ceead6; }
+    .perm-card.ours .count { color: #0F9D58; }
+    .perm-card.theirs .count { color: #c5221f; }
+
+    /* Pricing */
+    .pricing-card {
+      max-width: 420px; margin: 24px auto 0;
+      background: #fff; border: 2px solid #0F9D58; border-radius: 12px;
+      padding: 32px; text-align: center;
+    }
+    .pricing-card .price { font-size: 36px; font-weight: 800; color: #0F9D58; }
+    .pricing-card .price span { font-size: 16px; font-weight: 400; color: #666; }
+    .pricing-card .per-month { font-size: 14px; color: #888; margin: 4px 0 20px; }
+    .pricing-card ul { list-style: none; text-align: left; margin-bottom: 24px; }
+    .pricing-card ul li { padding: 6px 0; font-size: 14px; border-bottom: 1px solid #f1f3f4; }
+    .pricing-card ul li::before { content: "✓ "; color: #0F9D58; font-weight: 700; }
+    .pricing-card ul li:last-child { border-bottom: none; }
+
+    /* Use cases */
+    .use-cases { max-width: 700px; margin: 24px auto 0; }
+    .use-case-item { padding: 12px 0; border-bottom: 1px solid #f1f3f4; }
+    .use-case-item:last-child { border-bottom: none; }
+    .use-case-item strong { color: #1a1a1a; }
+    .use-case-item p { font-size: 14px; color: #555; margin-top: 2px; }
+
+    /* CTA */
+    .cta-section { text-align: center; padding: 64px 24px; background: #f1f8f4; margin-top: 48px; }
+    .cta-section h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    .cta-section p { color: #555; margin-bottom: 24px; }
+
+    /* Footer */
+    .footer { text-align: center; padding: 32px 24px; font-size: 13px; color: #888; border-top: 1px solid #eee; }
+    .footer a { color: #666; margin: 0 10px; text-decoration: none; }
+    .footer a:hover { color: #0F9D58; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://brightdesk.dev" class="nav-brand">BrightDesk</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="https://brightdesk.dev/support">Support</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Auto-copy formulas into every <span>Google Forms</span> response row</h1>
+  <p>Add your VLOOKUP, IF, COUNTIF, or any formula to row 2. Copy Formulas copies it into every new submission automatically. No skipped rows. No broken filters.</p>
+  <div class="hero-buttons">
+    <!-- REPLACE with actual marketplace listing URL after publishing -->
+    <a href="https://workspace.google.com/marketplace" class="btn-install">Install Free</a>
+    <a href="#how-it-works" class="btn-demo">See How It Works</a>
+  </div>
+  <div class="hero-note">Free plan available. Pro starts at $49/year.</div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-check">&#10003;</span> Works with spreadsheet filters</div>
+  <div class="trust-item"><span class="trust-check">&#10003;</span> Only 3 permissions required</div>
+  <div class="trust-item"><span class="trust-check">&#10003;</span> Activity log for every row</div>
+</div>
+
+<!-- Problem / Solution -->
+<div class="problem-solution">
+  <div class="ps-card problem">
+    <h3>The problem</h3>
+    <ul>
+      <li>Google Forms pushes new rows but ignores your formulas</li>
+      <li>ARRAYFORMULA can't handle IMPORTRANGE, data validation, or formatting</li>
+      <li>Existing tools skip 7-8% of rows randomly</li>
+      <li>Filters break formula copying in other add-ons</li>
+    </ul>
+  </div>
+  <div class="ps-card solution">
+    <h3>The solution</h3>
+    <ul>
+      <li>Copies every formula from your template row into new rows</li>
+      <li>Works with any formula type including VLOOKUP, QUERY, IF</li>
+      <li>Processes every single row with zero skips</li>
+      <li>Fully compatible with spreadsheet filters</li>
+    </ul>
+  </div>
+</div>
+
+<!-- How it works -->
+<section class="section" id="how-it-works">
+  <h2>Set up in under 60 seconds</h2>
+</section>
+<div class="steps-grid">
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <h3>Add formulas to row 2</h3>
+    <p>Put your calculations in the first response row — VLOOKUP, IF, COUNTIF, anything.</p>
+  </div>
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <h3>Open Copy Formulas</h3>
+    <p>Go to Extensions, select Copy Formulas. Your formulas are detected instantly.</p>
+  </div>
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <h3>Toggle ON</h3>
+    <p>Every future form submission gets your formulas automatically. Check the activity log anytime.</p>
+  </div>
+</div>
+
+<!-- Features -->
+<section class="section" id="features">
+  <h2>Built for reliability</h2>
+</section>
+<div class="features-grid">
+  <div class="feature-item">
+    <span class="feature-icon">&#10003;</span>
+    <div>
+      <h4>Filter compatible</h4>
+      <p>Filters on your response sheet won't break formula copying. Other tools can't do this.</p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <span class="feature-icon">&#10003;</span>
+    <div>
+      <h4>Zero skipped rows</h4>
+      <p>Concurrency-safe processing with automatic retry. Every row gets every formula.</p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <span class="feature-icon">&#10003;</span>
+    <div>
+      <h4>Activity log</h4>
+      <p>See exactly which rows were processed and when. Never wonder if it's working.</p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <span class="feature-icon">&#10003;</span>
+    <div>
+      <h4>Paste as values</h4>
+      <p>Choose per-column whether to keep live formulas or paste calculated results.</p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <span class="feature-icon">&#10003;</span>
+    <div>
+      <h4>Flexible source row</h4>
+      <p>Pick any row from 2-10 as your template. Matches your existing workflow.</p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <span class="feature-icon">&#10003;</span>
+    <div>
+      <h4>Minimal permissions</h4>
+      <p>Only 3 permissions. No access to email, contacts, Drive, or external services.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Permissions comparison -->
+<div class="permissions-section">
+  <section class="section" style="padding-bottom:0;">
+    <h2>Fewer permissions. More trust.</h2>
+    <p style="text-align:center;">Copy Formulas requests only what it needs — access to the spreadsheet it's installed on.</p>
+  </section>
+  <div class="perm-compare">
+    <div class="perm-card ours">
+      <h3>Copy Formulas</h3>
+      <div class="count">3</div>
+      <div class="label">permissions requested</div>
+    </div>
+    <div class="perm-card theirs">
+      <h3>Other tools</h3>
+      <div class="count">8</div>
+      <div class="label">permissions requested</div>
+    </div>
+  </div>
+</div>
+
+<!-- Use Cases -->
+<section class="section">
+  <h2>Common use cases</h2>
+  <div class="use-cases">
+    <div class="use-case-item">
+      <strong>Order totals</strong>
+      <p>Auto-calculate subtotals, tax, and shipping from form order submissions.</p>
+    </div>
+    <div class="use-case-item">
+      <strong>Student grades</strong>
+      <p>VLOOKUP scores against a rubric or calculate weighted averages per response.</p>
+    </div>
+    <div class="use-case-item">
+      <strong>Reference numbers</strong>
+      <p>Generate unique IDs, invoice numbers, or ticket codes for every submission.</p>
+    </div>
+    <div class="use-case-item">
+      <strong>Data validation</strong>
+      <p>Copy dropdown lists, checkboxes, or conditional formatting into response rows.</p>
+    </div>
+    <div class="use-case-item">
+      <strong>Inventory tracking</strong>
+      <p>COUNTIF against a threshold to flag when submitted quantities exceed stock.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <h2>Simple pricing</h2>
+  <div class="pricing-card">
+    <div class="price">$49 <span>/ year</span></div>
+    <div class="per-month">$4.08/month — less than a coffee</div>
+    <ul>
+      <li>Unlimited formula columns</li>
+      <li>Auto-copy on every form submission</li>
+      <li>Paste formulas as values</li>
+      <li>Full activity log (50 entries)</li>
+      <li>Filter compatibility</li>
+      <li>Data validation and formatting copy</li>
+      <li>Priority email support</li>
+    </ul>
+    <a href="https://brightdesk.dev/copy-formulas/checkout/" class="btn-install" style="width:100%; justify-content:center;">Start 7-Day Free Trial</a>
+    <div style="font-size:13px; color:#888; margin-top:10px;">Free plan: 3 formula columns, manual copy only.</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Stop losing formulas on every form submission</h2>
+  <p>Join thousands of Google Sheets users who never manually copy formulas again.</p>
+  <a href="https://workspace.google.com/marketplace" class="btn-install">Install Copy Formulas — Free</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div style="margin-bottom:12px;">
+    <a href="https://brightdesk.dev">BrightDesk</a>
+    <a href="https://brightdesk.dev/copy-formulas/privacy/">Privacy</a>
+    <a href="https://brightdesk.dev/copy-formulas/terms/">Terms</a>
+    <a href="https://brightdesk.dev/support">Support</a>
+  </div>
+  <div>Copy Formulas for Google Sheets is not affiliated with or endorsed by Google.</div>
+</footer>
+
+</body>
+</html>
