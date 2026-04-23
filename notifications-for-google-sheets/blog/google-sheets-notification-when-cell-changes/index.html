@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Google Sheets Notification When Cell Changes — Complete Guide</title>
+<meta name="description" content="Get notified when a specific cell, column, or range changes in Google Sheets. Apps Script examples and no-code setup.">
+<link rel="canonical" href="https://brightdesk.dev/notifications-for-google-sheets/blog/google-sheets-notification-when-cell-changes/">
+<meta property="og:title" content="Google Sheets Notification When Cell Changes — Complete Guide"><meta property="og:description" content="Get notified when a specific cell, column, or range changes in Google Sheets. Apps Script examples and no-code setup.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+    :root { --bg:#fafaf9;--surface:#fff;--text:#1c1917;--text-2:#44403c;--text-3:#78716c;--border:#e7e5e4;--accent:#2563eb;--accent-soft:#eff6ff;--green:#16a34a;--green-soft:#f0fdf4;--amber:#d97706;--amber-soft:#fffbeb; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-2);line-height:1.8;-webkit-font-smoothing:antialiased}
+    nav{position:sticky;top:0;z-index:50;background:rgba(250,250,249,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:720px;margin:0 auto;padding:0.75rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+    .nav-brand{text-decoration:none;color:var(--text);font-weight:600;font-size:0.9rem}
+    .nav-links a{text-decoration:none;color:var(--text-3);font-size:0.825rem;font-weight:500;margin-left:1.5rem}
+    article{max-width:720px;margin:0 auto;padding:3rem 1.5rem 4rem}
+    .article-meta{font-size:0.8rem;color:var(--text-3);margin-bottom:1rem;display:flex;gap:1rem;align-items:center}
+    .article-meta .tag{background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:100px;font-weight:600;font-size:0.75rem}
+    h1{font-family:'DM Serif Display',serif;font-size:clamp(1.75rem,4vw,2.5rem);color:var(--text);line-height:1.25;margin-bottom:1rem}
+    .subtitle{font-size:1.1rem;color:var(--text-3);margin-bottom:2rem;line-height:1.7}
+    h2{font-size:1.35rem;color:var(--text);font-weight:700;margin:2.5rem 0 0.75rem}
+    h3{font-size:1.05rem;color:var(--text);font-weight:600;margin:1.75rem 0 0.5rem}
+    p{margin-bottom:1.25rem;font-size:1rem}
+    a{color:var(--accent)}
+    ol,ul{margin:0 0 1.25rem 1.5rem}
+    li{margin-bottom:0.5rem}
+    strong{color:var(--text)}
+    code{background:#f5f5f4;padding:2px 6px;border-radius:4px;font-size:0.875rem}
+    pre{background:#1c1917;color:#e7e5e4;padding:1.25rem;border-radius:10px;overflow-x:auto;margin:1.5rem 0;font-size:0.85rem;line-height:1.6}
+    .callout{border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;font-size:0.925rem}
+    .callout-tip{background:var(--green-soft);border-left:4px solid var(--green)}
+    .callout-warn{background:var(--amber-soft);border-left:4px solid var(--amber)}
+    .callout-info{background:var(--accent-soft);border-left:4px solid var(--accent)}
+    .callout strong{display:block;margin-bottom:0.375rem}
+    .toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+    .toc-title{font-size:0.85rem;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.75rem}
+    .toc ol{margin:0 0 0 1.25rem} .toc li{margin-bottom:0.375rem;font-size:0.9rem}
+    .toc a{text-decoration:none} .toc a:hover{text-decoration:underline}
+    .cta-box{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center}
+    .cta-box h3{color:var(--accent);margin-top:0} .cta-box p{font-size:0.925rem;margin-bottom:1rem}
+    .cta-btn{display:inline-block;padding:0.75rem 1.75rem;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem}
+    .comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.5rem 0;font-size:0.875rem}
+    .comp-table th{background:#f5f5f4;padding:0.75rem 1rem;text-align:left;font-weight:600}
+    .comp-table td{padding:0.625rem 1rem;border-top:1px solid #f5f5f4}
+    .yes{color:var(--green);font-weight:600} .no{color:var(--text-3)}
+    footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;max-width:720px;margin:0 auto}
+    .footer-text{font-size:0.75rem;color:var(--text-3);line-height:1.7}
+    .footer-text a{color:var(--text-3);text-decoration:none}
+    @media(max-width:640px){article{padding:2rem 1rem 3rem}}
+</style>
+</head><body>
+<nav><div class="nav-inner">
+<a href="https://brightdesk.dev/notifications-for-google-sheets/" class="nav-brand">Notifications for Google Sheets</a>
+<div class="nav-links"><a href="https://brightdesk.dev/notifications-for-google-sheets/">Home</a><a href="https://brightdesk.dev/notifications-for-google-sheets/blog/">Blog</a><a href="https://brightdesk.dev">BrightDesk</a></div>
+</div></nav>
+<article>
+<div class="article-meta"><span class="tag">Guide</span><span>2026</span><span>&middot;</span><span>8 min read</span></div>
+
+<h1>Google Sheets Notification When Cell Changes</h1>
+<p class="subtitle">Need to know the instant a specific cell is edited? Here&rsquo;s how to set up cell-level change notifications &mdash; from a single cell to an entire column.</p>
+
+<div class="toc"><div class="toc-title">In this guide</div><ol>
+<li><a href="#when">When you need cell-level notifications</a></li>
+<li><a href="#single">Monitor a single cell</a></li>
+<li><a href="#column">Monitor an entire column</a></li>
+<li><a href="#range">Monitor a range of cells</a></li>
+<li><a href="#value">Notify only for specific values</a></li>
+<li><a href="#old-new">Include old and new values</a></li>
+<li><a href="#multiple">Multiple rules on one sheet</a></li>
+<li><a href="#troubleshoot">Troubleshooting</a></li>
+</ol></div>
+
+<h2 id="when">When you need cell-level notifications</h2>
+<p>Google Sheets&rsquo; built-in notifications are all-or-nothing. There&rsquo;s no way to say &ldquo;only email me when cell B2 changes.&rdquo; But that&rsquo;s exactly what many people need:</p>
+<ul>
+<li>A manager tracking a quarterly revenue number</li>
+<li>A team lead watching project status changes</li>
+<li>A warehouse operator monitoring stock counts</li>
+<li>A teacher waiting for grade submissions</li>
+</ul>
+
+<h2 id="single">Monitor a single cell</h2>
+<h3>With Apps Script</h3>
+<p>Create a function that checks <code>e.range.getA1Notation()</code> against your target cell (e.g., &ldquo;B2&rdquo;) and sends an email if it matches. Set up an installable trigger (not simple <code>onEdit</code>).</p>
+<h3>With an add-on</h3>
+<p>In <a href="https://brightdesk.dev/notifications-for-google-sheets/">Notifications for Google Sheets</a>, create a rule targeting column B. No code needed.</p>
+
+<h2 id="column">Monitor an entire column</h2>
+<p>The most common use case. &ldquo;Email me when anything in the Status column changes.&rdquo;</p>
+<p>In Apps Script, check <code>e.range.getColumn()</code> against the column number you want. In an add-on, select the column in the rule builder.</p>
+
+<h2 id="range">Monitor a range of cells</h2>
+<p>Watch a block like C2:F50 (the data area, excluding headers). In Apps Script, add range checking for column and row bounds. In an add-on, select which columns to watch.</p>
+
+<h2 id="value">Notify only for specific values</h2>
+<p>The most useful notifications filter by value, not just location:</p>
+<ul>
+<li><strong>&ldquo;Status = Urgent&rdquo;</strong> &mdash; Ignore Draft, In Progress, Done. Only fire for Urgent.</li>
+<li><strong>&ldquo;Quantity &lt; 10&rdquo;</strong> &mdash; Only fire when stock is low.</li>
+<li><strong>&ldquo;Cell is cleared&rdquo;</strong> &mdash; Someone deleted a value &mdash; might be accidental.</li>
+</ul>
+
+<h2 id="old-new">Include old and new values</h2>
+<p>Knowing a cell changed is useful. Knowing it changed from $50,000 to $48,000 is much more useful.</p>
+<p>In Apps Script, <code>e.oldValue</code> works for single-cell edits. For multi-cell pastes, it&rsquo;s unavailable. Add-ons with change tracking capture both values reliably and include them in the notification email.</p>
+
+<h2 id="multiple">Multiple rules on one sheet</h2>
+<p>Real spreadsheets need multiple alerts. A project tracker might need:</p>
+<ol>
+<li>&ldquo;Email PM when Status = Blocked&rdquo;</li>
+<li>&ldquo;Email client when Status = Ready for Review&rdquo;</li>
+<li>&ldquo;Email dev lead when Priority = Critical&rdquo;</li>
+<li>&ldquo;Email team when a new row is added&rdquo;</li>
+</ol>
+<p>Each rule watches a different column, triggers on different values, and emails different people. They all run simultaneously.</p>
+
+<h2 id="troubleshoot">Troubleshooting</h2>
+<h3>Emails not sending</h3>
+<p>If using Apps Script: verify you used an installable trigger (not simple <code>onEdit</code>). Check execution logs for errors. Verify you haven&rsquo;t hit the daily limit (100 for Gmail, 1,500 for Workspace).</p>
+<h3>Too many notifications</h3>
+<p>Your condition is too broad. Watch a specific column instead of the whole sheet, or add a value filter.</p>
+<h3>Notifications delayed</h3>
+<p>Edit triggers fire within seconds. Delays are usually Gmail delivery time (under a minute). Time-driven triggers run on a schedule and naturally have delays.</p>
+<h3>Old value not showing</h3>
+<p><code>e.oldValue</code> only works for single-cell edits. Multi-cell pastes don&rsquo;t provide it. Add-ons with dedicated change tracking handle this more reliably.</p>
+
+<div class="callout callout-info"><strong>The bottom line:</strong>
+Google Sheets is powerful for collaboration, but its built-in notifications are basic. For cell-level, column-level, or value-based notifications, you need either Apps Script or an add-on.</div>
+
+<div class="cta-box">
+<h3>Never miss a spreadsheet change again</h3>
+<p>Notifications for Google Sheets sends you email alerts when your spreadsheet is edited. No coding required. Set up in under a minute.</p>
+<a href="https://brightdesk.dev/notifications-for-google-sheets/" class="cta-btn" target="_blank">Get Started Free</a>
+</div>
+</article>
+<footer><p class="footer-text">
+<a href="https://brightdesk.dev/notifications-for-google-sheets/">Notifications for Google Sheets</a> &middot;
+<a href="https://brightdesk.dev">BrightDesk</a><br>
+Google Sheets&trade; is a trademark of Google LLC. &copy; 2026 BrightDesk.
+</p></footer>
+</body></html>
