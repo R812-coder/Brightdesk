@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Google Calendar for Project Time Tracking</title>
+    <meta name="description" content="Turn Google Calendar into a project time tracker with color coding, naming conventions, and automated reports. Guide for freelancers and small teams.">
+    <link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-use-google-calendar-for-project-time-tracking/">
+    <meta property="og:title" content="How to Use Google Calendar for Project Time Tracking">
+    <meta property="og:description" content="Turn Google Calendar into a project time tracker with color coding, naming conventions, and automated reports. Guide for freelancers and small teams.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-use-google-calendar-for-project-time-tracking/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --bg: #fafaf9; --surface: #ffffff; --text: #1c1917;
+        --text-2: #44403c; --text-3: #78716c; --border: #e7e5e4;
+        --accent: #2563eb; --accent-soft: #eff6ff;
+        --green: #16a34a; --green-soft: #f0fdf4;
+        --amber: #d97706; --amber-soft: #fffbeb;
+        --red-soft: #fef2f2;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 720px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem; }
+    .nav-links a { text-decoration: none; color: var(--text-3); font-size: 0.825rem; font-weight: 500; margin-left: 1.5rem; }
+    .nav-links a:hover { color: var(--text); }
+    article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .article-meta { font-size: 0.8rem; color: var(--text-3); margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; }
+    .article-meta .tag { background: var(--accent-soft); color: var(--accent); padding: 2px 10px; border-radius: 100px; font-weight: 600; font-size: 0.75rem; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--text); line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .subtitle { font-size: 1.1rem; color: var(--text-3); margin-bottom: 2rem; line-height: 1.7; }
+    h2 { font-size: 1.35rem; color: var(--text); font-weight: 700; margin: 2.5rem 0 0.75rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.05rem; color: var(--text); font-weight: 600; margin: 1.75rem 0 0.5rem; }
+    p { margin-bottom: 1.25rem; font-size: 1rem; }
+    a { color: var(--accent); }
+    ol, ul { margin: 0 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.5rem; font-size: 1rem; }
+    strong { color: var(--text); }
+    code { background: #f5f5f4; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem; color: var(--text); }
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.925rem; }
+    .callout-tip { background: var(--green-soft); border-left: 4px solid var(--green); }
+    .callout-warn { background: var(--amber-soft); border-left: 4px solid var(--amber); }
+    .callout-info { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+    .callout strong { display: block; margin-bottom: 0.375rem; }
+    .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .toc-title { font-size: 0.85rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+    .toc ol { margin: 0 0 0 1.25rem; }
+    .toc li { margin-bottom: 0.375rem; font-size: 0.9rem; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .cta-box { background: var(--surface); border: 2px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
+    .cta-box h3 { color: var(--accent); margin-top: 0; }
+    .cta-box p { font-size: 0.925rem; margin-bottom: 1rem; }
+    .cta-btn { display: inline-block; padding: 0.75rem 1.75rem; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .cta-btn:hover { background: #1d4ed8; color: #fff; }
+    .comp-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 1.5rem 0; font-size: 0.875rem; }
+    .comp-table th { background: #f5f5f4; padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .comp-table td { padding: 0.625rem 1rem; border-top: 1px solid #f5f5f4; }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; max-width: 720px; margin: 0 auto; }
+    .footer-text { font-size: 0.75rem; color: var(--text-3); line-height: 1.7; }
+    .footer-text a { color: var(--text-3); text-decoration: none; }
+    @media (max-width: 640px) { article { padding: 2rem 1rem 3rem; } }
+</style>
+    
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="nav-brand">Timesheet for Google Calendar</a>
+        <div class="nav-links">
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Home</a>
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/blog/">Blog</a>
+            <a href="https://brightdesk.dev">BrightDesk</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="article-meta">
+        <span class="tag">Guide</span>
+        <span>2026</span>
+        <span>&middot;</span>
+        <span>8 min read</span>
+    </div>
+
+    
+    <h1>How to Use Google Calendar for Project Time Tracking</h1>
+    <p class="subtitle">Turn Google Calendar into a project time tracker with color coding, naming conventions, and automated reporting. No new tools to learn.</p>
+
+    <div class="toc">
+        <div class="toc-title">In this guide</div>
+        <ol>
+            <li><a href="#concept">The calendar-as-tracker concept</a></li>
+            <li><a href="#structure">Structure your calendar for tracking</a></li>
+            <li><a href="#colors">Color coding by project</a></li>
+            <li><a href="#naming">Naming conventions for reporting</a></li>
+            <li><a href="#multiple">Handling multiple projects</a></li>
+            <li><a href="#reports">Generate time reports</a></li>
+            <li><a href="#team">Team time tracking with shared calendars</a></li>
+        </ol>
+    </div>
+
+    <h2 id="concept">The calendar-as-tracker concept</h2>
+    <p>Traditional project time tracking works like this: you start a timer when you begin work, stop it when you finish, and hope you remembered to press the buttons. If you forgot, you reconstruct your day from memory &mdash; which is never accurate.</p>
+    <p>Calendar-based time tracking flips this. Instead of tracking time reactively (start/stop timers), you track it proactively (schedule work blocks). The work block IS the time entry. When you&rsquo;re done, adjust the end time if needed. Your calendar becomes a visual audit trail of exactly how your time was spent.</p>
+    <p>This works because most knowledge workers already plan their day in their calendar. The gap isn&rsquo;t in recording time &mdash; it&rsquo;s in extracting it into a report.</p>
+
+    <h2 id="structure">Structure your calendar for tracking</h2>
+    <p>To use Google Calendar for project tracking effectively, treat it with a bit more discipline than a personal calendar:</p>
+    <ul>
+        <li><strong>One event per task</strong> &mdash; Don&rsquo;t create a 4-hour block called &ldquo;Work.&rdquo; Break it into &ldquo;Wireframes,&rdquo; &ldquo;Client Review,&rdquo; &ldquo;Revisions.&rdquo;</li>
+        <li><strong>Accurate start and end times</strong> &mdash; If a meeting ran 10 minutes long, update the event. Those minutes add up.</li>
+        <li><strong>Log unplanned work</strong> &mdash; Quick client calls, email follow-ups, and troubleshooting should get calendar events too. Create them after the fact if needed.</li>
+        <li><strong>Use separate calendars for personal and work</strong> &mdash; Keep your &ldquo;Doctor appointment&rdquo; and &ldquo;Lunch with Alex&rdquo; in a personal calendar so they don&rsquo;t clutter your project data.</li>
+    </ul>
+
+    <h2 id="colors">Color coding by project</h2>
+    <p>Google Calendar offers 11 event colors. This is the foundation of project time tracking. Each color represents one project or client.</p>
+    <p>A practical system for an agency or multi-project freelancer:</p>
+    <ul>
+        <li><strong>Tomato</strong> &mdash; Project Alpha (highest priority)</li>
+        <li><strong>Basil</strong> &mdash; Project Beta</li>
+        <li><strong>Peacock</strong> &mdash; Project Gamma</li>
+        <li><strong>Banana</strong> &mdash; Project Delta</li>
+        <li><strong>Sage</strong> &mdash; Ongoing retainer work</li>
+        <li><strong>Graphite</strong> &mdash; Internal / non-project time</li>
+    </ul>
+    <p>With this system, you can glance at your calendar and immediately see how your week is distributed. Too much gray? You&rsquo;re spending too much time on internal work. Not enough of a specific project color? You might be falling behind on a deadline.</p>
+
+    <div class="callout callout-tip">
+        <strong>What if I have more than 11 projects?</strong>
+        Use keyword rules as a supplement. Color-code your top 5-6 active projects. For others, include the project name in the event title and set up keyword matching rules. The combination covers any number of projects.
+    </div>
+
+    <h2 id="naming">Naming conventions for reporting</h2>
+    <p>Your event titles become the line items in your time report. A consistent naming convention makes reports readable and filters useful.</p>
+    <p>Recommended format: <strong>Project &mdash; Task Category</strong></p>
+    <ul>
+        <li>&ldquo;Alpha &mdash; Design Review&rdquo;</li>
+        <li>&ldquo;Alpha &mdash; Development&rdquo;</li>
+        <li>&ldquo;Beta &mdash; Client Meeting&rdquo;</li>
+        <li>&ldquo;Beta &mdash; QA Testing&rdquo;</li>
+    </ul>
+    <p>This lets you filter by project (everything with &ldquo;Alpha&rdquo;) or by activity type (everything with &ldquo;Design Review&rdquo;) when analyzing your time data.</p>
+
+    <h2 id="multiple">Handling multiple projects</h2>
+    <p>When you&rsquo;re juggling 3-5 projects simultaneously, context switching is the real cost. Your calendar data can reveal this:</p>
+    <ul>
+        <li><strong>Fragmentation</strong> &mdash; If you switch between project colors 10 times in a day, you&rsquo;re losing time to context switching. Try to batch similar project work.</li>
+        <li><strong>Imbalance</strong> &mdash; Your timesheet summary shows exactly how many hours each project got. If one project is consistently underserved, you&rsquo;ll see it in the numbers.</li>
+        <li><strong>Overlap risk</strong> &mdash; Overlapping events across projects can indicate you&rsquo;re overcommitted. A timesheet tool with a Review tab flags these automatically.</li>
+    </ul>
+
+    <h2 id="reports">Generate time reports</h2>
+    <p>At the end of each week or sprint, you need a report showing hours per project. Two options:</p>
+
+    <h3>Manual pivot table</h3>
+    <p>If you&rsquo;ve already exported your calendar events to a Google Sheet (see our <a href="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-export-google-calendar-events-to-google-sheets/">export guide</a>), create a pivot table: Data &rarr; Pivot table. Set Rows to &ldquo;Project,&rdquo; Values to &ldquo;Hours&rdquo; (SUM). This gives you a clean breakdown.</p>
+
+    <h3>One-click with an add-on</h3>
+    <p><a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> generates three tabs in one click: a detailed Timesheet (every event), a Summary (hours and billing per project), and a Review (flagged issues like overlaps and uncategorized events). The Summary tab is your project time report &mdash; ready to share with a manager or client.</p>
+
+    <h2 id="team">Team time tracking with shared calendars</h2>
+    <p>For small teams (2-5 people), shared Google Calendars make team time tracking possible without enterprise software:</p>
+    <ol>
+        <li><strong>Create a shared calendar per project</strong> &mdash; Settings &rarr; Add calendar &rarr; Create new calendar. Share it with team members.</li>
+        <li><strong>Everyone logs work events to the shared calendar</strong> &mdash; Same color coding and naming conventions.</li>
+        <li><strong>The project lead generates a timesheet</strong> &mdash; Select the shared calendar in the add-on, choose the date range, and generate. The output shows who worked on what, for how long.</li>
+    </ol>
+    <p>This doesn&rsquo;t replace enterprise time tracking for large teams, but for a freelancer with 1-2 subcontractors or a small agency, it&rsquo;s a free and effective solution.</p>
+
+    <div class="callout callout-info">
+        <strong>The key principle:</strong>
+        Your calendar is a database of how you spend your time. Treating it as such &mdash; with consistent colors, descriptive titles, and accurate times &mdash; turns it into a powerful project tracking tool that requires no extra apps, no extra cost, and no extra data entry.
+    </div>
+
+
+    
+    <div class="cta-box">
+        <h3>Ready to automate your timesheet?</h3>
+        <p>Timesheet for Google Calendar reads your events and generates formatted billing timesheets in Google Sheets&trade;. 7-day free trial, all features unlocked.</p>
+        <a href="https://workspace.google.com/marketplace/app/timesheet_for_google_calendar/638595833401" class="cta-btn" target="_blank">Start Free Trial</a>
+    </div>
+
+</article>
+
+<footer>
+    <p class="footer-text">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> &middot;
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/privacy/">Privacy</a> &middot;
+        <a href="https://brightdesk.dev">BrightDesk</a><br>
+        Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. &copy; 2026 BrightDesk.
+    </p>
+</footer>
+
+</body>
+</html>
