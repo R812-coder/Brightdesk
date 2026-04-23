@@ -52,4 +52,13 @@
   <url><loc>https://brightdesk.dev/attendance-tracker-for-google-sheets/privacy/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/attendance-tracker-for-google-sheets/terms/</loc><priority>0.3</priority></url>
 
+
+  <!-- Notifications for Google Sheets Blog Posts -->
+  <url><loc>https://brightdesk.dev/notifications-for-google-sheets/blog/</loc><priority>0.8</priority></url>
+  <url><loc>https://brightdesk.dev/notifications-for-google-sheets/blog/how-to-get-email-notifications-from-google-sheets/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/notifications-for-google-sheets/blog/how-to-get-notified-when-someone-edits-google-sheets/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/notifications-for-google-sheets/blog/how-to-send-automatic-emails-from-google-sheets/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/notifications-for-google-sheets/blog/how-to-set-up-alerts-in-google-sheets/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/notifications-for-google-sheets/blog/google-sheets-notification-when-cell-changes/</loc><priority>0.9</priority></url>
+
 </urlset>
