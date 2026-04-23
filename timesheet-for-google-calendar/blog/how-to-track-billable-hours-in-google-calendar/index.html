@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Track Billable Hours in Google Calendar (2026 Guide)</title>
+    <meta name="description" content="Learn how to track billable hours using Google Calendar. Color-code by client, name events for invoicing, and extract hours automatically. Free guide for freelancers.">
+    <link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-track-billable-hours-in-google-calendar/">
+    <meta property="og:title" content="How to Track Billable Hours in Google Calendar (2026 Guide)">
+    <meta property="og:description" content="Learn how to track billable hours using Google Calendar. Color-code by client, name events for invoicing, and extract hours automatically. Free guide for freelancers.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-track-billable-hours-in-google-calendar/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --bg: #fafaf9; --surface: #ffffff; --text: #1c1917;
+        --text-2: #44403c; --text-3: #78716c; --border: #e7e5e4;
+        --accent: #2563eb; --accent-soft: #eff6ff;
+        --green: #16a34a; --green-soft: #f0fdf4;
+        --amber: #d97706; --amber-soft: #fffbeb;
+        --red-soft: #fef2f2;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 720px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem; }
+    .nav-links a { text-decoration: none; color: var(--text-3); font-size: 0.825rem; font-weight: 500; margin-left: 1.5rem; }
+    .nav-links a:hover { color: var(--text); }
+    article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .article-meta { font-size: 0.8rem; color: var(--text-3); margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; }
+    .article-meta .tag { background: var(--accent-soft); color: var(--accent); padding: 2px 10px; border-radius: 100px; font-weight: 600; font-size: 0.75rem; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--text); line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .subtitle { font-size: 1.1rem; color: var(--text-3); margin-bottom: 2rem; line-height: 1.7; }
+    h2 { font-size: 1.35rem; color: var(--text); font-weight: 700; margin: 2.5rem 0 0.75rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.05rem; color: var(--text); font-weight: 600; margin: 1.75rem 0 0.5rem; }
+    p { margin-bottom: 1.25rem; font-size: 1rem; }
+    a { color: var(--accent); }
+    ol, ul { margin: 0 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.5rem; font-size: 1rem; }
+    strong { color: var(--text); }
+    code { background: #f5f5f4; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem; color: var(--text); }
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.925rem; }
+    .callout-tip { background: var(--green-soft); border-left: 4px solid var(--green); }
+    .callout-warn { background: var(--amber-soft); border-left: 4px solid var(--amber); }
+    .callout-info { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+    .callout strong { display: block; margin-bottom: 0.375rem; }
+    .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .toc-title { font-size: 0.85rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+    .toc ol { margin: 0 0 0 1.25rem; }
+    .toc li { margin-bottom: 0.375rem; font-size: 0.9rem; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .cta-box { background: var(--surface); border: 2px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
+    .cta-box h3 { color: var(--accent); margin-top: 0; }
+    .cta-box p { font-size: 0.925rem; margin-bottom: 1rem; }
+    .cta-btn { display: inline-block; padding: 0.75rem 1.75rem; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .cta-btn:hover { background: #1d4ed8; color: #fff; }
+    .comp-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 1.5rem 0; font-size: 0.875rem; }
+    .comp-table th { background: #f5f5f4; padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .comp-table td { padding: 0.625rem 1rem; border-top: 1px solid #f5f5f4; }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; max-width: 720px; margin: 0 auto; }
+    .footer-text { font-size: 0.75rem; color: var(--text-3); line-height: 1.7; }
+    .footer-text a { color: var(--text-3); text-decoration: none; }
+    @media (max-width: 640px) { article { padding: 2rem 1rem 3rem; } }
+</style>
+    
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="nav-brand">Timesheet for Google Calendar</a>
+        <div class="nav-links">
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Home</a>
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/blog/">Blog</a>
+            <a href="https://brightdesk.dev">BrightDesk</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="article-meta">
+        <span class="tag">Guide</span>
+        <span>2026</span>
+        <span>&middot;</span>
+        <span>7 min read</span>
+    </div>
+
+    
+    <h1>How to Track Billable Hours in Google Calendar</h1>
+    <p class="subtitle">You&rsquo;re already blocking time for client work in Google Calendar. With the right system, those blocks become your billable hours &mdash; no separate time tracker needed.</p>
+
+    <div class="toc">
+        <div class="toc-title">In this guide</div>
+        <ol>
+            <li><a href="#why">Why your calendar is already a time tracker</a></li>
+            <li><a href="#color-system">Set up a color-coding system</a></li>
+            <li><a href="#naming">Event naming conventions that help billing</a></li>
+            <li><a href="#extract">Extract billable hours into a spreadsheet</a></li>
+            <li><a href="#automate">Automate it with an add-on</a></li>
+            <li><a href="#tips">5 habits for accurate billable hour tracking</a></li>
+        </ol>
+    </div>
+
+    <h2 id="why">Why your calendar is already a time tracker</h2>
+    <p>Think about what a time tracker actually records: the date, the start time, the end time, and a description of the work. Now look at your Google Calendar. Every event already has all four of those data points. The only thing missing is the hourly rate, which stays constant per client anyway.</p>
+    <p>The problem isn&rsquo;t that you aren&rsquo;t tracking your time. It&rsquo;s that Google Calendar doesn&rsquo;t have a &ldquo;generate timesheet&rdquo; button. So you end up re-entering the same data into Harvest, Toggl, or a manual spreadsheet &mdash; duplicating work you&rsquo;ve already done.</p>
+    <p>The solution is to treat your calendar as your single source of truth for billable hours, then extract the data when it&rsquo;s time to invoice.</p>
+
+    <h2 id="color-system">Set up a color-coding system</h2>
+    <p>Google Calendar has 11 event colors. The most effective billing system assigns one color per client or project. This takes one extra click when you create an event, and it pays off every billing cycle.</p>
+    <p>Here&rsquo;s a system that works well for most freelancers:</p>
+    <ul>
+        <li><strong>Tomato (red)</strong> &mdash; Your highest-value client</li>
+        <li><strong>Basil (green)</strong> &mdash; Second client</li>
+        <li><strong>Peacock (blue)</strong> &mdash; Third client</li>
+        <li><strong>Banana (yellow)</strong> &mdash; Fourth client</li>
+        <li><strong>Graphite (gray)</strong> &mdash; Internal / non-billable work</li>
+    </ul>
+    <p>Right-click any event in Google Calendar and select a color from the palette. Once you build this habit, you&rsquo;ll have a visually scannable week where you can immediately see how your time is distributed across clients.</p>
+
+    <div class="callout callout-tip">
+        <strong>Consistency matters more than the specific colors.</strong>
+        Pick a system and stick with it. Don&rsquo;t change which color means which client mid-project &mdash; it makes extraction harder later.
+    </div>
+
+    <h2 id="naming">Event naming conventions that help billing</h2>
+    <p>A good event title does two things: it reminds you what you worked on, and it gives your client a clear line item on their invoice. Here are naming patterns that work:</p>
+    <ul>
+        <li><strong>Client Name &mdash; Task</strong>: &ldquo;Acme Corp &mdash; Homepage Redesign&rdquo;</li>
+        <li><strong>Client Name &mdash; Category</strong>: &ldquo;Acme Corp &mdash; Design Review&rdquo;</li>
+        <li><strong>Project Code &mdash; Description</strong>: &ldquo;ACM-042 &mdash; Wireframe Revisions&rdquo;</li>
+    </ul>
+    <p>Avoid vague titles like &ldquo;Work&rdquo; or &ldquo;Meeting.&rdquo; When you generate a timesheet two weeks later, you won&rsquo;t remember what &ldquo;Meeting&rdquo; was about, and your client won&rsquo;t accept it on an invoice either.</p>
+
+    <h2 id="extract">Extract billable hours into a spreadsheet</h2>
+    <p>At the end of your billing period, you need to pull the data out of Google Calendar and into a format you can invoice from. There are two approaches.</p>
+
+    <h3>The manual method</h3>
+    <p>Open Google Calendar in one tab and a Google Sheet in another. Go through each day, and for each billable event, type the date, start time, end time, client name, and task description into the spreadsheet. Add a formula to calculate duration: <code>=(end_time - start_time) * 24</code>. Multiply by your hourly rate.</p>
+    <p>This works, but it takes 20-30 minutes per week and is error-prone. You&rsquo;ll inevitably miss events, mistype times, or forget to account for recurring meetings.</p>
+
+    <h3>The automated method</h3>
+    <p>Use a Google Sheets add-on that reads your calendar events and generates the timesheet automatically. <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> does exactly this. It reads your events (read-only), maps colors to client names and hourly rates, and generates a formatted timesheet with hours and billing amounts in one click.</p>
+
+    <h2 id="automate">Automate it with an add-on</h2>
+    <p>Here&rsquo;s the one-time setup:</p>
+    <ol>
+        <li><strong>Install</strong> the add-on from the Google Workspace Marketplace</li>
+        <li><strong>Open the sidebar</strong> in any Google Sheet (Extensions &rarr; Timesheet for Google Calendar &rarr; Open Settings)</li>
+        <li><strong>Map your colors</strong> to client names and hourly rates in the Mappings tab (Tomato = Acme Corp at $150/hr, etc.)</li>
+        <li><strong>Add keyword rules</strong> for events you don&rsquo;t always color (title contains &ldquo;Acme&rdquo; &rarr; Acme Corp)</li>
+        <li><strong>Click Generate</strong> &mdash; get a complete timesheet with Timesheet, Summary, and Review tabs</li>
+    </ol>
+    <p>After the first setup, future billing cycles are one click: Extensions &rarr; Refresh Timesheet. Your mappings are saved.</p>
+
+    <h2 id="tips">5 habits for accurate billable hour tracking</h2>
+    <h3>1. Color events as you create them</h3>
+    <p>Don&rsquo;t batch-color at the end of the week. One extra click when creating the event saves 10 minutes of guesswork later.</p>
+
+    <h3>2. Create events for unscheduled work</h3>
+    <p>If a client calls you for 20 minutes, add a calendar event after the call. Otherwise that time vanishes from your records. Many freelancers undercharge by 10-15% simply because they don&rsquo;t log ad-hoc work.</p>
+
+    <h3>3. Use descriptive titles</h3>
+    <p>&ldquo;Client A &mdash; API Integration&rdquo; is billable. &ldquo;Stuff&rdquo; is not. Your event titles become your invoice line items.</p>
+
+    <h3>4. Review before invoicing</h3>
+    <p>Before sending an invoice, scan for uncategorized events (events without a color or keyword match), overlapping events (potential double-billing), and suspiciously short events (accidental calendar entries). A good timesheet tool flags these for you.</p>
+
+    <h3>5. Bill at the same time every period</h3>
+    <p>Pick a cadence &mdash; weekly or monthly &mdash; and generate your timesheet at the same time every cycle. Last Friday of the month, open your sheet, one-click refresh, review, invoice. The routine is what makes it reliable.</p>
+
+
+    
+    <div class="cta-box">
+        <h3>Ready to automate your timesheet?</h3>
+        <p>Timesheet for Google Calendar reads your events and generates formatted billing timesheets in Google Sheets&trade;. 7-day free trial, all features unlocked.</p>
+        <a href="https://workspace.google.com/marketplace/app/timesheet_for_google_calendar/638595833401" class="cta-btn" target="_blank">Start Free Trial</a>
+    </div>
+
+</article>
+
+<footer>
+    <p class="footer-text">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> &middot;
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/privacy/">Privacy</a> &middot;
+        <a href="https://brightdesk.dev">BrightDesk</a><br>
+        Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. &copy; 2026 BrightDesk.
+    </p>
+</footer>
+
+</body>
+</html>
