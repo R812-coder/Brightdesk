@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Calendar Time Tracking for Freelancers — Complete Guide</title>
+    <meta name="description" content="The complete guide to using Google Calendar as your time tracker. Setup, daily workflow, billing process, and comparison with Harvest and Toggl.">
+    <link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/blog/google-calendar-time-tracking-for-freelancers/">
+    <meta property="og:title" content="Google Calendar Time Tracking for Freelancers — Complete Guide">
+    <meta property="og:description" content="The complete guide to using Google Calendar as your time tracker. Setup, daily workflow, billing process, and comparison with Harvest and Toggl.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://brightdesk.dev/timesheet-for-google-calendar/blog/google-calendar-time-tracking-for-freelancers/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --bg: #fafaf9; --surface: #ffffff; --text: #1c1917;
+        --text-2: #44403c; --text-3: #78716c; --border: #e7e5e4;
+        --accent: #2563eb; --accent-soft: #eff6ff;
+        --green: #16a34a; --green-soft: #f0fdf4;
+        --amber: #d97706; --amber-soft: #fffbeb;
+        --red-soft: #fef2f2;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 720px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem; }
+    .nav-links a { text-decoration: none; color: var(--text-3); font-size: 0.825rem; font-weight: 500; margin-left: 1.5rem; }
+    .nav-links a:hover { color: var(--text); }
+    article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .article-meta { font-size: 0.8rem; color: var(--text-3); margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; }
+    .article-meta .tag { background: var(--accent-soft); color: var(--accent); padding: 2px 10px; border-radius: 100px; font-weight: 600; font-size: 0.75rem; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--text); line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .subtitle { font-size: 1.1rem; color: var(--text-3); margin-bottom: 2rem; line-height: 1.7; }
+    h2 { font-size: 1.35rem; color: var(--text); font-weight: 700; margin: 2.5rem 0 0.75rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.05rem; color: var(--text); font-weight: 600; margin: 1.75rem 0 0.5rem; }
+    p { margin-bottom: 1.25rem; font-size: 1rem; }
+    a { color: var(--accent); }
+    ol, ul { margin: 0 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.5rem; font-size: 1rem; }
+    strong { color: var(--text); }
+    code { background: #f5f5f4; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem; color: var(--text); }
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.925rem; }
+    .callout-tip { background: var(--green-soft); border-left: 4px solid var(--green); }
+    .callout-warn { background: var(--amber-soft); border-left: 4px solid var(--amber); }
+    .callout-info { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+    .callout strong { display: block; margin-bottom: 0.375rem; }
+    .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .toc-title { font-size: 0.85rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+    .toc ol { margin: 0 0 0 1.25rem; }
+    .toc li { margin-bottom: 0.375rem; font-size: 0.9rem; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .cta-box { background: var(--surface); border: 2px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
+    .cta-box h3 { color: var(--accent); margin-top: 0; }
+    .cta-box p { font-size: 0.925rem; margin-bottom: 1rem; }
+    .cta-btn { display: inline-block; padding: 0.75rem 1.75rem; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .cta-btn:hover { background: #1d4ed8; color: #fff; }
+    .comp-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 1.5rem 0; font-size: 0.875rem; }
+    .comp-table th { background: #f5f5f4; padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .comp-table td { padding: 0.625rem 1rem; border-top: 1px solid #f5f5f4; }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; max-width: 720px; margin: 0 auto; }
+    .footer-text { font-size: 0.75rem; color: var(--text-3); line-height: 1.7; }
+    .footer-text a { color: var(--text-3); text-decoration: none; }
+    @media (max-width: 640px) { article { padding: 2rem 1rem 3rem; } }
+</style>
+    
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="nav-brand">Timesheet for Google Calendar</a>
+        <div class="nav-links">
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Home</a>
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/blog/">Blog</a>
+            <a href="https://brightdesk.dev">BrightDesk</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="article-meta">
+        <span class="tag">Guide</span>
+        <span>2026</span>
+        <span>&middot;</span>
+        <span>9 min read</span>
+    </div>
+
+    
+    <h1>Google Calendar Time Tracking for Freelancers</h1>
+    <p class="subtitle">The complete guide to using Google Calendar as your primary time tracking tool. No extra apps, no monthly fees, no duplicate data entry.</p>
+
+    <div class="toc">
+        <div class="toc-title">In this guide</div>
+        <ol>
+            <li><a href="#why-calendar">Why Google Calendar beats dedicated time trackers</a></li>
+            <li><a href="#setup">The 10-minute setup</a></li>
+            <li><a href="#daily">Your daily workflow</a></li>
+            <li><a href="#billing">End-of-period billing workflow</a></li>
+            <li><a href="#vs">Google Calendar vs Harvest vs Toggl</a></li>
+            <li><a href="#mistakes">Common mistakes and how to avoid them</a></li>
+            <li><a href="#advanced">Advanced tips</a></li>
+        </ol>
+    </div>
+
+    <h2 id="why-calendar">Why Google Calendar beats dedicated time trackers</h2>
+    <p>As a freelancer, you already use Google Calendar to manage your day. Client meetings, focus blocks, deadlines &mdash; they&rsquo;re all there. Using a separate time tracker means entering the same information in two places.</p>
+    <p>Here&rsquo;s what that duplication actually costs:</p>
+    <ul>
+        <li><strong>Time</strong> &mdash; 5-10 minutes per day manually logging, or 20+ hours per year</li>
+        <li><strong>Money</strong> &mdash; $108-$144/year for Harvest or Toggl</li>
+        <li><strong>Accuracy</strong> &mdash; Forgetting to start/stop timers means lost billable hours. Calendar events are always there because you created them to manage your schedule, not to track time.</li>
+    </ul>
+    <p>The insight is simple: <strong>your calendar is already a time tracker</strong>. It just needs to be formatted for billing.</p>
+
+    <h2 id="setup">The 10-minute setup</h2>
+    <p>This is a one-time configuration that pays off every billing cycle.</p>
+
+    <h3>Step 1: Choose your color system (2 minutes)</h3>
+    <p>Assign one Google Calendar color per client. Keep non-billable work uncolored or use a dedicated &ldquo;internal&rdquo; color like Graphite. Write down your system somewhere &mdash; a sticky note on your monitor works fine.</p>
+
+    <h3>Step 2: Install the timesheet add-on (1 minute)</h3>
+    <p>Open any Google Sheet &rarr; Extensions &rarr; Add-ons &rarr; Get add-ons &rarr; search &ldquo;Timesheet for Google Calendar&rdquo; &rarr; Install.</p>
+
+    <h3>Step 3: Set up mappings (5 minutes)</h3>
+    <p>Open the sidebar (Extensions &rarr; Timesheet for Google Calendar &rarr; Open Settings). Go to the Mappings tab. For each color you use, type the client name and hourly rate. Add keyword rules for events you don&rsquo;t always color. Click Save.</p>
+
+    <h3>Step 4: Configure settings (2 minutes)</h3>
+    <p>In the Settings tab, choose your rounding method (quarter-hour is standard), currency, and whether to skip all-day and declined events.</p>
+    <p>That&rsquo;s it. You&rsquo;re done. This setup carries forward forever.</p>
+
+    <h2 id="daily">Your daily workflow</h2>
+    <p>This is the whole system, day to day:</p>
+    <ol>
+        <li><strong>Create calendar events for client work</strong> &mdash; you already do this</li>
+        <li><strong>Pick the right color</strong> &mdash; one extra click when creating the event</li>
+        <li><strong>Add unscheduled work after it happens</strong> &mdash; quick 20-minute client call? Add a calendar event so it doesn&rsquo;t get lost</li>
+    </ol>
+    <p>That&rsquo;s it. No timer to start and stop. No app to switch to. No end-of-day log review. Your calendar handles everything passively.</p>
+
+    <h2 id="billing">End-of-period billing workflow</h2>
+    <p>When it&rsquo;s time to invoice (weekly, biweekly, or monthly):</p>
+    <ol>
+        <li>Open your timesheet spreadsheet</li>
+        <li>Go to Extensions &rarr; Timesheet for Google Calendar &rarr; Refresh Timesheet</li>
+        <li>Check the Summary tab for per-project totals</li>
+        <li>Check the Review tab for any flagged issues (uncategorized events, overlaps)</li>
+        <li>Copy the numbers into your invoice</li>
+    </ol>
+    <p>Total time: under 60 seconds. No sidebar needed &mdash; your saved mappings are reused automatically.</p>
+
+    <h2 id="vs">Google Calendar vs Harvest vs Toggl</h2>
+    <table class="comp-table">
+        <thead><tr><th></th><th>Google Calendar + Add-on</th><th>Harvest</th><th>Toggl Track</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Annual cost</strong></td><td class="yes">$49/year (free trial)</td><td>$144/year</td><td>$108/year</td></tr>
+            <tr><td><strong>Data entry required</strong></td><td class="yes">None &mdash; reads calendar</td><td>Manual start/stop</td><td>Manual start/stop</td></tr>
+            <tr><td><strong>Forgot to start timer?</strong></td><td class="yes">Not possible &mdash; events exist</td><td>Hours lost</td><td>Hours lost</td></tr>
+            <tr><td><strong>Works in Google Sheets</strong></td><td class="yes">Yes</td><td class="no">Separate app</td><td class="no">Separate app</td></tr>
+            <tr><td><strong>Billing error detection</strong></td><td class="yes">Review tab</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td><strong>Team dashboards</strong></td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td><strong>Best for</strong></td><td>Solo freelancers, small teams</td><td>Teams of 5+</td><td>Teams of 5+</td></tr>
+        </tbody>
+    </table>
+
+    <div class="callout callout-info">
+        <strong>When Harvest or Toggl makes more sense:</strong>
+        If you manage a team of 5+ people and need approval workflows, project budgets, or Jira integration, the enterprise tools earn their price. For solo freelancers and small teams who just need calendar-to-invoice, they&rsquo;re overkill.
+    </div>
+
+    <h2 id="mistakes">Common mistakes and how to avoid them</h2>
+    <h3>Not logging ad-hoc work</h3>
+    <p>A 15-minute client phone call doesn&rsquo;t show up in your calendar unless you add it. Make it a habit: if you do billable work that wasn&rsquo;t pre-scheduled, create a calendar event immediately after.</p>
+
+    <h3>Forgetting to color events</h3>
+    <p>Set up keyword rules as a safety net. If your events include the client name in the title (which they should), a keyword rule catches uncolored events automatically.</p>
+
+    <h3>Not reviewing before invoicing</h3>
+    <p>Always check for overlapping events (double-billing risk) and uncategorized events (missed hours). The Review tab in the add-on does this automatically.</p>
+
+    <h3>Using the wrong rounding</h3>
+    <p>Check your client contracts. Most specify quarter-hour (15-minute) rounding. Some (especially legal) use tenth-hour (6-minute) rounding. Using the wrong increment can lead to disputes.</p>
+
+    <h2 id="advanced">Advanced tips</h2>
+    <h3>Use shared calendars for team tracking</h3>
+    <p>If you work with subcontractors, have them add their work events to a shared Google Calendar with your color system. The add-on can pull from multiple calendars simultaneously.</p>
+
+    <h3>Create a dedicated timesheet spreadsheet</h3>
+    <p>Don&rsquo;t generate timesheets in random spreadsheets. Create one called &ldquo;2026 Timesheets&rdquo; and use it all year. Each refresh updates the same tabs, so you have a running record.</p>
+
+    <h3>Use description parsing for detailed line items</h3>
+    <p>If you add structured notes in your event description (like project codes or task categories), the add-on can parse these into your timesheet for more detailed reporting.</p>
+
+
+    
+    <div class="cta-box">
+        <h3>Ready to automate your timesheet?</h3>
+        <p>Timesheet for Google Calendar reads your events and generates formatted billing timesheets in Google Sheets&trade;. 7-day free trial, all features unlocked.</p>
+        <a href="https://workspace.google.com/marketplace/app/timesheet_for_google_calendar/638595833401" class="cta-btn" target="_blank">Start Free Trial</a>
+    </div>
+
+</article>
+
+<footer>
+    <p class="footer-text">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> &middot;
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/privacy/">Privacy</a> &middot;
+        <a href="https://brightdesk.dev">BrightDesk</a><br>
+        Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. &copy; 2026 BrightDesk.
+    </p>
+</footer>
+
+</body>
+</html>
