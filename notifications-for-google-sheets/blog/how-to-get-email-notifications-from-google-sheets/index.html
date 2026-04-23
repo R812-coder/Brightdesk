@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>How to Get Email Notifications from Google Sheets (2026 Guide)</title>
+<meta name="description" content="Learn 3 ways to get email notifications from Google Sheets. Built-in rules, Apps Script, and add-ons compared.">
+<link rel="canonical" href="https://brightdesk.dev/notifications-for-google-sheets/blog/how-to-get-email-notifications-from-google-sheets/">
+<meta property="og:title" content="How to Get Email Notifications from Google Sheets (2026 Guide)"><meta property="og:description" content="Learn 3 ways to get email notifications from Google Sheets. Built-in rules, Apps Script, and add-ons compared.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+    :root { --bg:#fafaf9;--surface:#fff;--text:#1c1917;--text-2:#44403c;--text-3:#78716c;--border:#e7e5e4;--accent:#2563eb;--accent-soft:#eff6ff;--green:#16a34a;--green-soft:#f0fdf4;--amber:#d97706;--amber-soft:#fffbeb; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-2);line-height:1.8;-webkit-font-smoothing:antialiased}
+    nav{position:sticky;top:0;z-index:50;background:rgba(250,250,249,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:720px;margin:0 auto;padding:0.75rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+    .nav-brand{text-decoration:none;color:var(--text);font-weight:600;font-size:0.9rem}
+    .nav-links a{text-decoration:none;color:var(--text-3);font-size:0.825rem;font-weight:500;margin-left:1.5rem}
+    article{max-width:720px;margin:0 auto;padding:3rem 1.5rem 4rem}
+    .article-meta{font-size:0.8rem;color:var(--text-3);margin-bottom:1rem;display:flex;gap:1rem;align-items:center}
+    .article-meta .tag{background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:100px;font-weight:600;font-size:0.75rem}
+    h1{font-family:'DM Serif Display',serif;font-size:clamp(1.75rem,4vw,2.5rem);color:var(--text);line-height:1.25;margin-bottom:1rem}
+    .subtitle{font-size:1.1rem;color:var(--text-3);margin-bottom:2rem;line-height:1.7}
+    h2{font-size:1.35rem;color:var(--text);font-weight:700;margin:2.5rem 0 0.75rem}
+    h3{font-size:1.05rem;color:var(--text);font-weight:600;margin:1.75rem 0 0.5rem}
+    p{margin-bottom:1.25rem;font-size:1rem}
+    a{color:var(--accent)}
+    ol,ul{margin:0 0 1.25rem 1.5rem}
+    li{margin-bottom:0.5rem}
+    strong{color:var(--text)}
+    code{background:#f5f5f4;padding:2px 6px;border-radius:4px;font-size:0.875rem}
+    pre{background:#1c1917;color:#e7e5e4;padding:1.25rem;border-radius:10px;overflow-x:auto;margin:1.5rem 0;font-size:0.85rem;line-height:1.6}
+    .callout{border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;font-size:0.925rem}
+    .callout-tip{background:var(--green-soft);border-left:4px solid var(--green)}
+    .callout-warn{background:var(--amber-soft);border-left:4px solid var(--amber)}
+    .callout-info{background:var(--accent-soft);border-left:4px solid var(--accent)}
+    .callout strong{display:block;margin-bottom:0.375rem}
+    .toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+    .toc-title{font-size:0.85rem;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.75rem}
+    .toc ol{margin:0 0 0 1.25rem} .toc li{margin-bottom:0.375rem;font-size:0.9rem}
+    .toc a{text-decoration:none} .toc a:hover{text-decoration:underline}
+    .cta-box{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center}
+    .cta-box h3{color:var(--accent);margin-top:0} .cta-box p{font-size:0.925rem;margin-bottom:1rem}
+    .cta-btn{display:inline-block;padding:0.75rem 1.75rem;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem}
+    .comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.5rem 0;font-size:0.875rem}
+    .comp-table th{background:#f5f5f4;padding:0.75rem 1rem;text-align:left;font-weight:600}
+    .comp-table td{padding:0.625rem 1rem;border-top:1px solid #f5f5f4}
+    .yes{color:var(--green);font-weight:600} .no{color:var(--text-3)}
+    footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;max-width:720px;margin:0 auto}
+    .footer-text{font-size:0.75rem;color:var(--text-3);line-height:1.7}
+    .footer-text a{color:var(--text-3);text-decoration:none}
+    @media(max-width:640px){article{padding:2rem 1rem 3rem}}
+</style>
+</head><body>
+<nav><div class="nav-inner">
+<a href="https://brightdesk.dev/notifications-for-google-sheets/" class="nav-brand">Notifications for Google Sheets</a>
+<div class="nav-links"><a href="https://brightdesk.dev/notifications-for-google-sheets/">Home</a><a href="https://brightdesk.dev/notifications-for-google-sheets/blog/">Blog</a><a href="https://brightdesk.dev">BrightDesk</a></div>
+</div></nav>
+<article>
+<div class="article-meta"><span class="tag">Guide</span><span>2026</span><span>&middot;</span><span>8 min read</span></div>
+
+<h1>How to Get Email Notifications from Google Sheets</h1>
+<p class="subtitle">Someone updates a critical spreadsheet and you don&rsquo;t find out until three days later. Here&rsquo;s how to get instant email alerts whenever your Google Sheet is edited.</p>
+
+<div class="toc"><div class="toc-title">In this guide</div><ol>
+<li><a href="#why">Why you need spreadsheet notifications</a></li>
+<li><a href="#built-in">Method 1: Built-in notification rules</a></li>
+<li><a href="#apps-script">Method 2: Custom Apps Script</a></li>
+<li><a href="#addon">Method 3: Add-on (no code)</a></li>
+<li><a href="#compare">Which method should you use?</a></li>
+<li><a href="#use-cases">Common use cases</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ol></div>
+
+<h2 id="why">Why you need spreadsheet notifications</h2>
+<p>Google Sheets is collaborative by design. Multiple people can edit the same spreadsheet at the same time. That&rsquo;s powerful, but it also means changes happen without you knowing. A vendor updates a price. A team member marks a task complete. An intern accidentally deletes a row.</p>
+<p>Without notifications, you&rsquo;re relying on manually checking the spreadsheet to catch changes. Email notifications turn your spreadsheet into an active tool that tells you when something important happens.</p>
+
+<h2 id="built-in">Method 1: Built-in notification rules</h2>
+<p>Google Sheets has a basic notification feature most people don&rsquo;t know about:</p>
+<ol>
+<li>Open your Google Sheet</li>
+<li>Go to <strong>Tools &rarr; Notification settings</strong></li>
+<li>Click <strong>Edit notification rules</strong></li>
+<li>Choose: &ldquo;Any changes are made&rdquo; or &ldquo;A user submits a form&rdquo;</li>
+<li>Choose: &ldquo;Email &mdash; right away&rdquo; or &ldquo;Email &mdash; daily digest&rdquo;</li>
+<li>Save</li>
+</ol>
+
+<div class="callout callout-warn"><strong>Limitations of built-in notifications:</strong>
+You can only choose &ldquo;any change&rdquo; (every edit triggers an email) or a daily digest. No way to filter by specific cells, columns, or values. If your sheet gets edited 50 times a day, you&rsquo;ll get 50 emails. And the email only says &ldquo;someone made a change&rdquo; &mdash; not what changed.</div>
+
+<h2 id="apps-script">Method 2: Custom Apps Script</h2>
+<p>For more control, write a custom Google Apps Script. This lets you monitor specific cells, columns, or value changes:</p>
+<ol>
+<li>Open your Google Sheet &rarr; <strong>Extensions &rarr; Apps Script</strong></li>
+<li>Write a function that checks the edit location and sends an email</li>
+<li>Set up an installable trigger (Triggers &rarr; Add Trigger &rarr; On edit)</li>
+</ol>
+<p>This works but has drawbacks. You need JavaScript knowledge. The simple <code>onEdit()</code> trigger can&rsquo;t send emails &mdash; you need an installable trigger. And if the script breaks, you won&rsquo;t know until you miss a critical notification.</p>
+
+<div class="callout callout-info"><strong>Simple vs. installable triggers:</strong>
+The <code>onEdit()</code> simple trigger runs automatically but can&rsquo;t call <code>MailApp</code>. You must create an installable trigger to send emails. This is a common gotcha that frustrates people new to Apps Script.</div>
+
+<h2 id="addon">Method 3: Add-on (no code)</h2>
+<p>The easiest approach is a Google Sheets add-on that handles notification logic for you. <a href="https://brightdesk.dev/notifications-for-google-sheets/">Notifications for Google Sheets</a> lets you set up rules like &ldquo;email me when column B changes to Done&rdquo; without writing any code.</p>
+<ol>
+<li>Install from the Google Workspace Marketplace</li>
+<li>Open the sidebar (Extensions &rarr; Notifications for Google Sheets)</li>
+<li>Create a rule: choose which column to watch, what condition to use, and who to email</li>
+<li>Save &mdash; notifications start immediately</li>
+</ol>
+
+<h2 id="compare">Which method should you use?</h2>
+<table class="comp-table">
+<thead><tr><th>Feature</th><th>Built-in</th><th>Apps Script</th><th>Add-on</th></tr></thead>
+<tbody>
+<tr><td>Setup time</td><td class="yes">30 seconds</td><td>15-30 min</td><td class="yes">1 minute</td></tr>
+<tr><td>Coding required</td><td class="yes">No</td><td class="no">Yes</td><td class="yes">No</td></tr>
+<tr><td>Filter by column</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+<tr><td>Filter by value</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+<tr><td>Custom email content</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+<tr><td>Multiple recipients</td><td class="no">Only you</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+<tr><td>Maintained for you</td><td class="yes">Yes</td><td class="no">You maintain</td><td class="yes">Yes</td></tr>
+</tbody></table>
+
+<h2 id="use-cases">Common use cases</h2>
+<h3>Task tracker</h3><p>Email the project manager when a task status changes to &ldquo;Blocked&rdquo; or &ldquo;Complete.&rdquo;</p>
+<h3>Inventory management</h3><p>Alert purchasing when stock drops below a threshold.</p>
+<h3>Form responses</h3><p>Route new form submissions to the right team member based on the response.</p>
+<h3>Approval workflows</h3><p>When a manager changes a column to &ldquo;Approved,&rdquo; email the requestor automatically.</p>
+<h3>Data entry monitoring</h3><p>Get notified whenever a new row is added for real-time quality control.</p>
+
+<h2 id="faq">FAQ</h2>
+<h3>Will I get an email for every single edit?</h3>
+<p>With built-in rules set to &ldquo;right away,&rdquo; yes. With an add-on, you set conditions so you only get notified for changes that matter.</p>
+<h3>Can I notify someone other than myself?</h3>
+<p>Built-in only notifies you. Apps Script and add-ons can send to any email address.</p>
+<h3>Do notifications work on mobile?</h3>
+<p>Yes &mdash; the emails arrive like any other email, so they show up as push notifications if you have Gmail notifications enabled.</p>
+
+<div class="cta-box">
+<h3>Never miss a spreadsheet change again</h3>
+<p>Notifications for Google Sheets sends you email alerts when your spreadsheet is edited. No coding required. Set up in under a minute.</p>
+<a href="https://brightdesk.dev/notifications-for-google-sheets/" class="cta-btn" target="_blank">Get Started Free</a>
+</div>
+</article>
+<footer><p class="footer-text">
+<a href="https://brightdesk.dev/notifications-for-google-sheets/">Notifications for Google Sheets</a> &middot;
+<a href="https://brightdesk.dev">BrightDesk</a><br>
+Google Sheets&trade; is a trademark of Google LLC. &copy; 2026 BrightDesk.
+</p></footer>
+</body></html>
