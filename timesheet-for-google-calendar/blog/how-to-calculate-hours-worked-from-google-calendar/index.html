@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Calculate Hours Worked from Google Calendar (2026)</title>
+    <meta name="description" content="Learn how to calculate hours worked from Google Calendar events. Manual formulas, rounding methods, and automatic calculation with a free add-on.">
+    <link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-calculate-hours-worked-from-google-calendar/">
+    <meta property="og:title" content="How to Calculate Hours Worked from Google Calendar (2026)">
+    <meta property="og:description" content="Learn how to calculate hours worked from Google Calendar events. Manual formulas, rounding methods, and automatic calculation with a free add-on.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-calculate-hours-worked-from-google-calendar/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --bg: #fafaf9; --surface: #ffffff; --text: #1c1917;
+        --text-2: #44403c; --text-3: #78716c; --border: #e7e5e4;
+        --accent: #2563eb; --accent-soft: #eff6ff;
+        --green: #16a34a; --green-soft: #f0fdf4;
+        --amber: #d97706; --amber-soft: #fffbeb;
+        --red-soft: #fef2f2;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 720px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem; }
+    .nav-links a { text-decoration: none; color: var(--text-3); font-size: 0.825rem; font-weight: 500; margin-left: 1.5rem; }
+    .nav-links a:hover { color: var(--text); }
+    article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .article-meta { font-size: 0.8rem; color: var(--text-3); margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; }
+    .article-meta .tag { background: var(--accent-soft); color: var(--accent); padding: 2px 10px; border-radius: 100px; font-weight: 600; font-size: 0.75rem; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--text); line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .subtitle { font-size: 1.1rem; color: var(--text-3); margin-bottom: 2rem; line-height: 1.7; }
+    h2 { font-size: 1.35rem; color: var(--text); font-weight: 700; margin: 2.5rem 0 0.75rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.05rem; color: var(--text); font-weight: 600; margin: 1.75rem 0 0.5rem; }
+    p { margin-bottom: 1.25rem; font-size: 1rem; }
+    a { color: var(--accent); }
+    ol, ul { margin: 0 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.5rem; font-size: 1rem; }
+    strong { color: var(--text); }
+    code { background: #f5f5f4; padding: 2px 6px; border-radius: 4px; font-size: 0.875rem; color: var(--text); }
+    .callout { border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.925rem; }
+    .callout-tip { background: var(--green-soft); border-left: 4px solid var(--green); }
+    .callout-warn { background: var(--amber-soft); border-left: 4px solid var(--amber); }
+    .callout-info { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+    .callout strong { display: block; margin-bottom: 0.375rem; }
+    .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .toc-title { font-size: 0.85rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+    .toc ol { margin: 0 0 0 1.25rem; }
+    .toc li { margin-bottom: 0.375rem; font-size: 0.9rem; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .cta-box { background: var(--surface); border: 2px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
+    .cta-box h3 { color: var(--accent); margin-top: 0; }
+    .cta-box p { font-size: 0.925rem; margin-bottom: 1rem; }
+    .cta-btn { display: inline-block; padding: 0.75rem 1.75rem; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .cta-btn:hover { background: #1d4ed8; color: #fff; }
+    .comp-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 1.5rem 0; font-size: 0.875rem; }
+    .comp-table th { background: #f5f5f4; padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .comp-table td { padding: 0.625rem 1rem; border-top: 1px solid #f5f5f4; }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; max-width: 720px; margin: 0 auto; }
+    .footer-text { font-size: 0.75rem; color: var(--text-3); line-height: 1.7; }
+    .footer-text a { color: var(--text-3); text-decoration: none; }
+    @media (max-width: 640px) { article { padding: 2rem 1rem 3rem; } }
+</style>
+    
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="nav-brand">Timesheet for Google Calendar</a>
+        <div class="nav-links">
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Home</a>
+            <a href="https://brightdesk.dev/timesheet-for-google-calendar/blog/">Blog</a>
+            <a href="https://brightdesk.dev">BrightDesk</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="article-meta">
+        <span class="tag">Guide</span>
+        <span>2026</span>
+        <span>&middot;</span>
+        <span>7 min read</span>
+    </div>
+
+    
+    <h1>How to Calculate Hours Worked from Google Calendar</h1>
+    <p class="subtitle">Your Google Calendar already knows when you started, when you stopped, and what you worked on. Here&rsquo;s how to turn that into hours worked &mdash; manually or automatically.</p>
+
+    <div class="toc">
+        <div class="toc-title">In this guide</div>
+        <ol>
+            <li><a href="#data">What data Google Calendar already has</a></li>
+            <li><a href="#manual">Calculate hours manually in a spreadsheet</a></li>
+            <li><a href="#rounding">How to round time for billing</a></li>
+            <li><a href="#auto">Calculate automatically with an add-on</a></li>
+            <li><a href="#edge">Edge cases that break manual calculations</a></li>
+            <li><a href="#weekly">Build a weekly hours summary</a></li>
+        </ol>
+    </div>
+
+    <h2 id="data">What data Google Calendar already has</h2>
+    <p>Every timed event in Google Calendar has four things a timesheet needs:</p>
+    <ul>
+        <li><strong>Date</strong> &mdash; When the work happened</li>
+        <li><strong>Start time</strong> &mdash; When you started</li>
+        <li><strong>End time</strong> &mdash; When you stopped</li>
+        <li><strong>Title</strong> &mdash; What the work was</li>
+    </ul>
+    <p>From start and end time, you can calculate duration. From the title (or event color), you can categorize by project. The only thing you need to add is the hourly rate, which is constant per client.</p>
+
+    <h2 id="manual">Calculate hours manually in a spreadsheet</h2>
+    <p>If you&rsquo;re doing this by hand, set up a Google Sheet with these columns:</p>
+    <ul>
+        <li>Column A: <strong>Date</strong> (e.g., 3/24/2026)</li>
+        <li>Column B: <strong>Start</strong> (e.g., 9:00 AM)</li>
+        <li>Column C: <strong>End</strong> (e.g., 10:30 AM)</li>
+        <li>Column D: <strong>Description</strong></li>
+        <li>Column E: <strong>Hours</strong> &mdash; formula: <code>=(C2-B2)*24</code></li>
+    </ul>
+    <p>The formula <code>=(C2-B2)*24</code> works because Google Sheets stores times as fractions of a day. Multiplying by 24 converts to hours. A 90-minute meeting (9:00 to 10:30) returns 1.5.</p>
+    <p>For a running total at the bottom, use <code>=SUM(E2:E100)</code>.</p>
+
+    <h2 id="rounding">How to round time for billing</h2>
+    <p>Most billing practices don&rsquo;t use exact times. The three standard rounding methods:</p>
+
+    <h3>Quarter-hour rounding (15 minutes)</h3>
+    <p>The most common method. 22 minutes rounds to 0.25 hours (15 min). 38 minutes rounds to 0.50 hours (30 min). Formula: <code>=CEILING(E2*4,1)/4</code></p>
+
+    <h3>Tenth-hour rounding (6 minutes)</h3>
+    <p>Common in legal billing. 8 minutes rounds to 0.2 hours (12 min). Formula: <code>=CEILING(E2*10,1)/10</code></p>
+
+    <h3>Exact time</h3>
+    <p>No rounding. A 47-minute meeting is billed as 0.783 hours. Less common but used in some contracts.</p>
+
+    <div class="callout callout-tip">
+        <strong>Always round up, not to the nearest increment.</strong>
+        Industry standard is to round up to the next billing increment. 16 minutes rounds to 30 minutes (0.50 hours), not to 15 minutes (0.25 hours). Use <code>CEILING</code>, not <code>ROUND</code>.
+    </div>
+
+    <h2 id="auto">Calculate automatically with an add-on</h2>
+    <p>If you don&rsquo;t want to type each event into a spreadsheet by hand, <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> reads your calendar events and calculates hours automatically.</p>
+    <p>In the Settings tab, choose your rounding preference (quarter-hour, tenth-hour, or exact). The add-on applies rounding to every event and calculates billing amounts per row and per project. The Summary tab gives you totals by project, ready for invoicing.</p>
+    <p>The biggest advantage over manual calculation: the add-on handles edge cases automatically. Events that span midnight, recurring events that need to be split into individual instances, overlapping events that could cause double-counting &mdash; all handled without manual intervention.</p>
+
+    <h2 id="edge">Edge cases that break manual calculations</h2>
+    <p>If you&rsquo;re calculating hours by hand, watch out for these:</p>
+
+    <h3>Events spanning midnight</h3>
+    <p>A late-night work session from 11:00 PM to 1:00 AM shows negative hours with <code>=(C2-B2)*24</code> because the end time is &ldquo;before&rdquo; the start time in the same-day formula. Fix: <code>=IF(C2>B2,(C2-B2)*24,(1-B2+C2)*24)</code></p>
+
+    <h3>Recurring events</h3>
+    <p>Your weekly team standup shows as one event in Calendar but represents 4-5 separate time entries per month. Manual extraction requires you to create a row for each occurrence.</p>
+
+    <h3>Declined meetings</h3>
+    <p>Events you declined still appear in your calendar. If you extract all events without filtering, you&rsquo;ll overcount your hours.</p>
+
+    <h3>All-day events</h3>
+    <p>Holidays, reminders, and milestones are all-day events with no start/end time. Including them in your hours calculation produces errors.</p>
+
+    <h2 id="weekly">Build a weekly hours summary</h2>
+    <p>For a quick weekly summary by project, add a <strong>Project</strong> column (Column F) and use a pivot table or <code>SUMIF</code>:</p>
+    <p><code>=SUMIF(F:F, "Client A", E:E)</code></p>
+    <p>This sums all hours where the project is &ldquo;Client A.&rdquo; Add one formula per project and you have a summary view.</p>
+    <p>Or, if you use the Timesheet for Google Calendar add-on, the Summary tab does this automatically &mdash; total hours and total billing per project, with a grand total at the bottom.</p>
+
+
+    
+    <div class="cta-box">
+        <h3>Ready to automate your timesheet?</h3>
+        <p>Timesheet for Google Calendar reads your events and generates formatted billing timesheets in Google Sheets&trade;. 7-day free trial, all features unlocked.</p>
+        <a href="https://workspace.google.com/marketplace/app/timesheet_for_google_calendar/638595833401" class="cta-btn" target="_blank">Start Free Trial</a>
+    </div>
+
+</article>
+
+<footer>
+    <p class="footer-text">
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> &middot;
+        <a href="https://brightdesk.dev/timesheet-for-google-calendar/privacy/">Privacy</a> &middot;
+        <a href="https://brightdesk.dev">BrightDesk</a><br>
+        Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. &copy; 2026 BrightDesk.
+    </p>
+</footer>
+
+</body>
+</html>
