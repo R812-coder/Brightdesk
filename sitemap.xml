@@ -3,42 +3,53 @@
 
   <!-- Homepage -->
   <url><loc>https://brightdesk.dev/</loc><priority>1.0</priority></url>
+  <url><loc>https://brightdesk.dev/support/</loc><priority>0.5</priority></url>
 
   <!-- Timesheet for Google Calendar -->
   <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/</loc><priority>0.9</priority></url>
-  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/privacy/</loc><priority>0.4</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/privacy/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/terms/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/checkout/</loc><priority>0.6</priority></url>
   <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/success/</loc><priority>0.3</priority></url>
 
+  <!-- Timesheet Blog Posts -->
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/</loc><priority>0.8</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-create-timesheet-from-google-calendar/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-track-billable-hours-in-google-calendar/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-export-google-calendar-events-to-google-sheets/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-calculate-hours-worked-from-google-calendar/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/google-calendar-time-tracking-for-freelancers/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-use-google-calendar-for-project-time-tracking/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/stop-paying-for-time-tracking/</loc><priority>0.8</priority></url>
+
   <!-- Sheet Health Check -->
   <url><loc>https://brightdesk.dev/sheet-health-check/</loc><priority>0.9</priority></url>
-  <url><loc>https://brightdesk.dev/sheet-health-check/privacy/</loc><priority>0.4</priority></url>
+  <url><loc>https://brightdesk.dev/sheet-health-check/privacy/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/sheet-health-check/terms/</loc><priority>0.3</priority></url>
 
   <!-- Notifications for Google Sheets -->
   <url><loc>https://brightdesk.dev/notifications-for-google-sheets/</loc><priority>0.9</priority></url>
-  <url><loc>https://brightdesk.dev/notifications-for-google-sheets/privacy/</loc><priority>0.4</priority></url>
+  <url><loc>https://brightdesk.dev/notifications-for-google-sheets/privacy/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/notifications-for-google-sheets/terms/</loc><priority>0.3</priority></url>
 
   <!-- Calendar Events for Google Forms -->
   <url><loc>https://brightdesk.dev/calendar-events-for-google-forms/</loc><priority>0.9</priority></url>
-  <url><loc>https://brightdesk.dev/calendar-events-for-google-forms/privacy/</loc><priority>0.4</priority></url>
+  <url><loc>https://brightdesk.dev/calendar-events-for-google-forms/privacy/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/calendar-events-for-google-forms/terms/</loc><priority>0.3</priority></url>
 
   <!-- Changelog for Google Sheets -->
   <url><loc>https://brightdesk.dev/changelog-for-google-sheets/</loc><priority>0.9</priority></url>
-  <url><loc>https://brightdesk.dev/changelog-for-google-sheets/privacy/</loc><priority>0.4</priority></url>
+  <url><loc>https://brightdesk.dev/changelog-for-google-sheets/privacy/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/changelog-for-google-sheets/terms/</loc><priority>0.3</priority></url>
 
   <!-- Sheet Approvals -->
   <url><loc>https://brightdesk.dev/sheet-approvals/</loc><priority>0.9</priority></url>
-  <url><loc>https://brightdesk.dev/sheet-approvals/privacy/</loc><priority>0.4</priority></url>
+  <url><loc>https://brightdesk.dev/sheet-approvals/privacy/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/sheet-approvals/terms/</loc><priority>0.3</priority></url>
 
   <!-- Attendance Tracker for Google Sheets -->
   <url><loc>https://brightdesk.dev/attendance-tracker-for-google-sheets/</loc><priority>0.9</priority></url>
-  <url><loc>https://brightdesk.dev/attendance-tracker-for-google-sheets/privacy/</loc><priority>0.4</priority></url>
+  <url><loc>https://brightdesk.dev/attendance-tracker-for-google-sheets/privacy/</loc><priority>0.3</priority></url>
   <url><loc>https://brightdesk.dev/attendance-tracker-for-google-sheets/terms/</loc><priority>0.3</priority></url>
 
 </urlset>
