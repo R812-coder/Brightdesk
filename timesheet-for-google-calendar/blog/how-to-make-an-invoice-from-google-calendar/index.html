@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>How to Make an Invoice from Google Calendar — Step by Step</title>
+<meta name="description" content="Turn Google Calendar events into a professional invoice. Step-by-step guide: timesheet generation, error review, invoice building, and 60-second workflow.">
+<link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-make-an-invoice-from-google-calendar/">
+<meta property="og:title" content="How to Make an Invoice from Google Calendar — Step by Step">
+<meta property="og:description" content="Turn Google Calendar events into a professional invoice. Step-by-step guide: timesheet generation, error review, invoice building, and 60-second workflow.">
+<meta property="og:type" content="article">
+<link rel="icon" href="https://brightdesk.dev/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://brightdesk.dev/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="https://brightdesk.dev/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+    :root{--bg:#fafaf9;--surface:#fff;--text:#1c1917;--text-2:#44403c;--text-3:#78716c;--border:#e7e5e4;--accent:#2563eb;--accent-soft:#eff6ff;--green:#16a34a;--green-soft:#f0fdf4;--amber:#d97706;--amber-soft:#fffbeb}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-2);line-height:1.8;-webkit-font-smoothing:antialiased}
+    nav{position:sticky;top:0;z-index:50;background:rgba(250,250,249,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:720px;margin:0 auto;padding:0.75rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+    .nav-brand{text-decoration:none;color:var(--text);font-weight:600;font-size:0.9rem}
+    .nav-links a{text-decoration:none;color:var(--text-3);font-size:0.825rem;font-weight:500;margin-left:1.5rem}
+    article{max-width:720px;margin:0 auto;padding:3rem 1.5rem 4rem}
+    .article-meta{font-size:0.8rem;color:var(--text-3);margin-bottom:1rem;display:flex;gap:1rem;align-items:center}
+    .article-meta .tag{background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:100px;font-weight:600;font-size:0.75rem}
+    h1{font-family:'DM Serif Display',serif;font-size:clamp(1.75rem,4vw,2.5rem);color:var(--text);line-height:1.25;margin-bottom:1rem}
+    .subtitle{font-size:1.1rem;color:var(--text-3);margin-bottom:2rem;line-height:1.7}
+    h2{font-size:1.35rem;color:var(--text);font-weight:700;margin:2.5rem 0 0.75rem}
+    h3{font-size:1.05rem;color:var(--text);font-weight:600;margin:1.75rem 0 0.5rem}
+    p{margin-bottom:1.25rem;font-size:1rem} a{color:var(--accent)}
+    ol,ul{margin:0 0 1.25rem 1.5rem} li{margin-bottom:0.5rem} strong{color:var(--text)}
+    code{background:#f5f5f4;padding:2px 6px;border-radius:4px;font-size:0.875rem}
+    .callout{border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;font-size:0.925rem}
+    .callout-tip{background:var(--green-soft);border-left:4px solid var(--green)}
+    .callout-warn{background:var(--amber-soft);border-left:4px solid var(--amber)}
+    .callout-info{background:var(--accent-soft);border-left:4px solid var(--accent)}
+    .callout strong{display:block;margin-bottom:0.375rem}
+    .toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+    .toc-title{font-size:0.85rem;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.75rem}
+    .toc ol{margin:0 0 0 1.25rem} .toc li{margin-bottom:0.375rem;font-size:0.9rem}
+    .toc a{text-decoration:none} .toc a:hover{text-decoration:underline}
+    .cta-box{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center}
+    .cta-box h3{color:var(--accent);margin-top:0} .cta-box p{font-size:0.925rem;margin-bottom:1rem}
+    .cta-btn{display:inline-block;padding:0.75rem 1.75rem;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem}
+    .comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.5rem 0;font-size:0.875rem}
+    .comp-table th{background:#f5f5f4;padding:0.75rem 1rem;text-align:left;font-weight:600}
+    .comp-table td{padding:0.625rem 1rem;border-top:1px solid #f5f5f4}
+    .yes{color:var(--green);font-weight:600} .no{color:var(--text-3)}
+    footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;max-width:720px;margin:0 auto}
+    .footer-text{font-size:0.75rem;color:var(--text-3);line-height:1.7}
+    .footer-text a{color:var(--text-3);text-decoration:none}
+    @media(max-width:640px){article{padding:2rem 1rem 3rem}}
+</style>
+</head><body>
+<nav><div class="nav-inner">
+<a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="nav-brand">Timesheet for Google Calendar</a>
+<div class="nav-links"><a href="https://brightdesk.dev/timesheet-for-google-calendar/">Home</a><a href="https://brightdesk.dev/timesheet-for-google-calendar/blog/">Blog</a><a href="https://brightdesk.dev">BrightDesk</a></div>
+</div></nav>
+<article>
+<div class="article-meta"><span class="tag">Guide</span><span>2026</span><span>&middot;</span><span>7 min read</span></div>
+
+<h1>How to Make an Invoice from Google Calendar</h1>
+<p class="subtitle">Your calendar already has the dates, hours, and project details. Here&rsquo;s the step-by-step process to turn those events into a professional invoice.</p>
+
+<div class="toc"><div class="toc-title">In this guide</div><ol>
+<li><a href="#flow">The calendar-to-invoice flow</a></li>
+<li><a href="#step1">Step 1: Generate your timesheet</a></li>
+<li><a href="#step2">Step 2: Review for errors</a></li>
+<li><a href="#step3">Step 3: Build the invoice</a></li>
+<li><a href="#template">Free invoice template</a></li>
+<li><a href="#tips">Tips for professional invoices</a></li>
+<li><a href="#automate">Automate the entire process</a></li>
+</ol></div>
+
+<h2 id="flow">The calendar-to-invoice flow</h2>
+<p>Most freelancers treat calendar management and invoicing as two separate activities. But they&rsquo;re the same data in different formats. Your calendar event &ldquo;Acme Corp &mdash; Design Review, 10:00-11:30&rdquo; is the same information as the invoice line item &ldquo;Design Review: 1.5 hours at $150 = $225.&rdquo;</p>
+<p>The flow is simple: Calendar events &rarr; Timesheet (hours by project) &rarr; Invoice (hours &times; rate = amount). Let&rsquo;s walk through each step.</p>
+
+<h2 id="step1">Step 1: Generate your timesheet</h2>
+<p>You need a list of events with dates, durations, and project categories. Two options:</p>
+<h3>Manual</h3>
+<p>Open your calendar and spreadsheet side by side. For each event in the billing period, record the date, hours, and description. This takes 20-30 minutes for a typical month.</p>
+<h3>Automated</h3>
+<p>Use <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> to generate the timesheet in one click. It reads your events, categorizes by color, calculates hours with rounding, and outputs a formatted spreadsheet with a Summary tab showing totals per project.</p>
+
+<h2 id="step2">Step 2: Review for errors</h2>
+<p>Before building your invoice, check for:</p>
+<ul>
+<li><strong>Uncategorized events</strong> &mdash; Billable work you forgot to color or categorize</li>
+<li><strong>Overlapping events</strong> &mdash; Two events at the same time could mean double-billing</li>
+<li><strong>Suspiciously short events</strong> &mdash; A 3-minute event is probably not billable</li>
+<li><strong>Missing days</strong> &mdash; Did you work on Tuesday but have no events? Add them before invoicing</li>
+</ul>
+<p>If you use the add-on, the Review tab flags all of these automatically. If you&rsquo;re working manually, scan through your timesheet for anything that looks off.</p>
+
+<h2 id="step3">Step 3: Build the invoice</h2>
+<p>Take the per-project totals from your timesheet and plug them into your invoice template:</p>
+<ul>
+<li><strong>Line items:</strong> Each project gets a row with description, hours, rate, and amount</li>
+<li><strong>Supporting detail:</strong> Optionally attach the full timesheet as a PDF for clients who want to see individual entries</li>
+<li><strong>Total:</strong> Sum of all line items</li>
+</ul>
+
+<h3>Example invoice line items</h3>
+<table class="comp-table">
+<thead><tr><th>Description</th><th>Hours</th><th>Rate</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Website Redesign (March 2026)</td><td>24.5</td><td>$150</td><td>$3,675.00</td></tr>
+<tr><td>Brand Identity Consulting</td><td>8.0</td><td>$125</td><td>$1,000.00</td></tr>
+<tr><td>Dashboard Development</td><td>16.0</td><td>$175</td><td>$2,800.00</td></tr>
+<tr><td colspan="3" style="text-align:right"><strong>Total</strong></td><td><strong>$7,475.00</strong></td></tr>
+</tbody></table>
+
+<h2 id="template">Free invoice template</h2>
+<p>If you don&rsquo;t have an invoice template, create one in Google Docs or Google Sheets with these sections:</p>
+<ol>
+<li><strong>Header:</strong> Your business name, address, email, logo</li>
+<li><strong>Client info:</strong> Client name, address, contact</li>
+<li><strong>Invoice details:</strong> Invoice number, date, due date, payment terms</li>
+<li><strong>Line items:</strong> Description, hours, rate, amount (pulled from your timesheet summary)</li>
+<li><strong>Total:</strong> Sum with any applicable taxes</li>
+<li><strong>Payment instructions:</strong> Bank details, PayPal, Stripe, etc.</li>
+</ol>
+<p>Save it as a template and duplicate it each billing period. The only part that changes each month is the line items &mdash; which come directly from your timesheet.</p>
+
+<h2 id="tips">Tips for professional invoices</h2>
+<h3>Use consistent invoice numbers</h3>
+<p>INV-2026-001, INV-2026-002, etc. Clients and accountants need these for record keeping.</p>
+<h3>Include the billing period</h3>
+<p>&ldquo;Services rendered: March 1-31, 2026.&rdquo; This matches the date range in your timesheet.</p>
+<h3>Attach the detailed timesheet</h3>
+<p>Some clients want to see exactly which meetings and work sessions they&rsquo;re paying for. Export your Timesheet tab as a PDF and attach it. This builds trust and reduces pushback on hours.</p>
+<h3>Set clear payment terms</h3>
+<p>&ldquo;Net 30&rdquo; or &ldquo;Due within 14 days.&rdquo; Include late payment terms if applicable.</p>
+<h3>Round professionally</h3>
+<p>Bill in quarter-hour (0.25) increments, not to the minute. &ldquo;24.50 hours&rdquo; reads cleaner than &ldquo;24.4167 hours.&rdquo;</p>
+
+<h2 id="automate">Automate the entire process</h2>
+<p>Here&rsquo;s the 60-second billing workflow once your system is set up:</p>
+<ol>
+<li>Open your timesheet spreadsheet</li>
+<li>Extensions &rarr; Timesheet for Google Calendar &rarr; Refresh Timesheet (one click)</li>
+<li>Check the Review tab for any flagged issues</li>
+<li>Open the Summary tab &mdash; copy project totals into your invoice template</li>
+<li>Send the invoice</li>
+</ol>
+<p>Total time: under 60 seconds for steps 1-4. The entire calendar-to-invoice pipeline, from raw events to sent invoice, takes less time than filling out a single Harvest time entry.</p>
+
+<div class="cta-box">
+<h3>Turn your calendar into a billing timesheet</h3>
+<p>Timesheet for Google Calendar reads your events and generates formatted timesheets in Google Sheets&trade;. 7-day free trial, all features unlocked.</p>
+<a href="https://workspace.google.com/marketplace/app/timesheet_for_google_calendar/638595833401" class="cta-btn" target="_blank">Start Free Trial</a>
+</div>
+</article>
+<footer><p class="footer-text">
+<a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> &middot;
+<a href="https://brightdesk.dev">BrightDesk</a><br>
+Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. &copy; 2026 BrightDesk.
+</p></footer>
+</body></html>
