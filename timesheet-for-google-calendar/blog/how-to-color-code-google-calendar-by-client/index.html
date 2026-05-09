@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>How to Color Code Google Calendar by Client (Complete Guide)</title>
+<meta name="description" content="Color code Google Calendar events by client for billing. All 11 colors explained, system templates for 2-6 clients, and how to turn colors into a timesheet.">
+<link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-color-code-google-calendar-by-client/">
+<meta property="og:title" content="How to Color Code Google Calendar by Client (Complete Guide)">
+<meta property="og:description" content="Color code Google Calendar events by client for billing. All 11 colors explained, system templates for 2-6 clients, and how to turn colors into a timesheet.">
+<meta property="og:type" content="article">
+<link rel="icon" href="https://brightdesk.dev/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://brightdesk.dev/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="https://brightdesk.dev/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+    :root{--bg:#fafaf9;--surface:#fff;--text:#1c1917;--text-2:#44403c;--text-3:#78716c;--border:#e7e5e4;--accent:#2563eb;--accent-soft:#eff6ff;--green:#16a34a;--green-soft:#f0fdf4;--amber:#d97706;--amber-soft:#fffbeb}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-2);line-height:1.8;-webkit-font-smoothing:antialiased}
+    nav{position:sticky;top:0;z-index:50;background:rgba(250,250,249,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:720px;margin:0 auto;padding:0.75rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+    .nav-brand{text-decoration:none;color:var(--text);font-weight:600;font-size:0.9rem}
+    .nav-links a{text-decoration:none;color:var(--text-3);font-size:0.825rem;font-weight:500;margin-left:1.5rem}
+    article{max-width:720px;margin:0 auto;padding:3rem 1.5rem 4rem}
+    .article-meta{font-size:0.8rem;color:var(--text-3);margin-bottom:1rem;display:flex;gap:1rem;align-items:center}
+    .article-meta .tag{background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:100px;font-weight:600;font-size:0.75rem}
+    h1{font-family:'DM Serif Display',serif;font-size:clamp(1.75rem,4vw,2.5rem);color:var(--text);line-height:1.25;margin-bottom:1rem}
+    .subtitle{font-size:1.1rem;color:var(--text-3);margin-bottom:2rem;line-height:1.7}
+    h2{font-size:1.35rem;color:var(--text);font-weight:700;margin:2.5rem 0 0.75rem}
+    h3{font-size:1.05rem;color:var(--text);font-weight:600;margin:1.75rem 0 0.5rem}
+    p{margin-bottom:1.25rem;font-size:1rem} a{color:var(--accent)}
+    ol,ul{margin:0 0 1.25rem 1.5rem} li{margin-bottom:0.5rem} strong{color:var(--text)}
+    code{background:#f5f5f4;padding:2px 6px;border-radius:4px;font-size:0.875rem}
+    .callout{border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;font-size:0.925rem}
+    .callout-tip{background:var(--green-soft);border-left:4px solid var(--green)}
+    .callout-warn{background:var(--amber-soft);border-left:4px solid var(--amber)}
+    .callout-info{background:var(--accent-soft);border-left:4px solid var(--accent)}
+    .callout strong{display:block;margin-bottom:0.375rem}
+    .toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+    .toc-title{font-size:0.85rem;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.75rem}
+    .toc ol{margin:0 0 0 1.25rem} .toc li{margin-bottom:0.375rem;font-size:0.9rem}
+    .toc a{text-decoration:none} .toc a:hover{text-decoration:underline}
+    .cta-box{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center}
+    .cta-box h3{color:var(--accent);margin-top:0} .cta-box p{font-size:0.925rem;margin-bottom:1rem}
+    .cta-btn{display:inline-block;padding:0.75rem 1.75rem;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem}
+    .comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.5rem 0;font-size:0.875rem}
+    .comp-table th{background:#f5f5f4;padding:0.75rem 1rem;text-align:left;font-weight:600}
+    .comp-table td{padding:0.625rem 1rem;border-top:1px solid #f5f5f4}
+    .yes{color:var(--green);font-weight:600} .no{color:var(--text-3)}
+    footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;max-width:720px;margin:0 auto}
+    .footer-text{font-size:0.75rem;color:var(--text-3);line-height:1.7}
+    .footer-text a{color:var(--text-3);text-decoration:none}
+    @media(max-width:640px){article{padding:2rem 1rem 3rem}}
+</style>
+</head><body>
+<nav><div class="nav-inner">
+<a href="https://brightdesk.dev/timesheet-for-google-calendar/" class="nav-brand">Timesheet for Google Calendar</a>
+<div class="nav-links"><a href="https://brightdesk.dev/timesheet-for-google-calendar/">Home</a><a href="https://brightdesk.dev/timesheet-for-google-calendar/blog/">Blog</a><a href="https://brightdesk.dev">BrightDesk</a></div>
+</div></nav>
+<article>
+<div class="article-meta"><span class="tag">Guide</span><span>2026</span><span>&middot;</span><span>7 min read</span></div>
+
+<h1>How to Color Code Google Calendar by Client</h1>
+<p class="subtitle">The single best habit for freelancers who bill hourly. Color coding takes one extra click per event and saves hours of billing confusion every month.</p>
+
+<div class="toc"><div class="toc-title">In this guide</div><ol>
+<li><a href="#why">Why color coding changes everything</a></li>
+<li><a href="#how">How to assign colors to events</a></li>
+<li><a href="#system">Build your color system</a></li>
+<li><a href="#11-colors">All 11 Google Calendar colors</a></li>
+<li><a href="#more">What if I have more than 11 clients?</a></li>
+<li><a href="#billing">Turn colors into a billing timesheet</a></li>
+<li><a href="#habits">4 habits to make it stick</a></li>
+</ol></div>
+
+<h2 id="why">Why color coding changes everything</h2>
+<p>Open your Google Calendar right now. If all your events are the same default blue, you can&rsquo;t tell at a glance how your time is distributed across clients. Is Client A getting more hours than Client B? Did you actually work on that proposal this week? How much of your time is non-billable?</p>
+<p>Color coding answers all of these questions instantly. One glance at a color-coded week tells you exactly where your time went &mdash; no spreadsheet required. And when it is time to create a timesheet, those colors become automatic project categories.</p>
+
+<h2 id="how">How to assign colors to events</h2>
+<p>There are two ways to color an event in Google Calendar:</p>
+
+<h3>When creating a new event</h3>
+<ol>
+<li>Click on a time slot to create a new event</li>
+<li>Click <strong>More options</strong> (or the pencil icon to expand the event editor)</li>
+<li>Find the colored circle next to your calendar name (usually near the bottom)</li>
+<li>Click it to open the color palette &mdash; 11 colors plus &ldquo;Calendar color&rdquo; (default)</li>
+<li>Pick your client&rsquo;s color</li>
+<li>Save the event</li>
+</ol>
+
+<h3>For an existing event</h3>
+<ol>
+<li>Click the event in your calendar</li>
+<li>Click the pencil icon to edit</li>
+<li>Find the color selector and change it</li>
+<li>Save</li>
+</ol>
+
+<div class="callout callout-tip"><strong>Keyboard shortcut:</strong>
+In the event editor, the color picker is a single click. It takes less than 2 seconds. That&rsquo;s the total extra effort per event. Over a week of 20 events, that&rsquo;s under a minute of work that saves 20+ minutes of billing reconstruction later.</div>
+
+<h2 id="system">Build your color system</h2>
+<p>The best color system is one you can remember without checking a reference. Here&rsquo;s a template that works for most freelancers:</p>
+
+<h3>For 2-3 clients</h3>
+<ul>
+<li><strong>Tomato (red)</strong> &mdash; Primary client (most hours)</li>
+<li><strong>Basil (green)</strong> &mdash; Secondary client</li>
+<li><strong>Peacock (blue)</strong> &mdash; Third client</li>
+<li><strong>No color (default)</strong> &mdash; Internal / non-billable</li>
+</ul>
+
+<h3>For 4-6 clients</h3>
+<ul>
+<li><strong>Tomato (red)</strong> &mdash; Client A</li>
+<li><strong>Basil (green)</strong> &mdash; Client B</li>
+<li><strong>Peacock (blue)</strong> &mdash; Client C</li>
+<li><strong>Banana (yellow)</strong> &mdash; Client D</li>
+<li><strong>Tangerine (orange)</strong> &mdash; Client E</li>
+<li><strong>Grape (purple)</strong> &mdash; Client F</li>
+<li><strong>Graphite (gray)</strong> &mdash; Internal / admin</li>
+</ul>
+
+<h3>By work type (alternative approach)</h3>
+<ul>
+<li><strong>Tomato</strong> &mdash; Client meetings</li>
+<li><strong>Basil</strong> &mdash; Deep work / deliverables</li>
+<li><strong>Peacock</strong> &mdash; Admin / invoicing</li>
+<li><strong>Banana</strong> &mdash; Learning / professional development</li>
+<li><strong>Graphite</strong> &mdash; Personal / breaks</li>
+</ul>
+
+<div class="callout callout-warn"><strong>Pick one system and stick with it.</strong>
+Don&rsquo;t switch which color means which client mid-project. Consistency is what makes color coding useful for billing. Write your system on a sticky note until it becomes muscle memory.</div>
+
+<h2 id="11-colors">All 11 Google Calendar colors</h2>
+<p>Google Calendar offers these 11 event colors, plus the default calendar color:</p>
+<table class="comp-table">
+<thead><tr><th>Color name</th><th>Appearance</th><th>Suggested use</th></tr></thead>
+<tbody>
+<tr><td><strong>Tomato</strong></td><td>Red</td><td>High-value or primary client</td></tr>
+<tr><td><strong>Flamingo</strong></td><td>Pink</td><td>Secondary client or personal</td></tr>
+<tr><td><strong>Tangerine</strong></td><td>Orange</td><td>Client or urgent tasks</td></tr>
+<tr><td><strong>Banana</strong></td><td>Yellow</td><td>Client or caution/review items</td></tr>
+<tr><td><strong>Sage</strong></td><td>Light green</td><td>Client or low-priority</td></tr>
+<tr><td><strong>Basil</strong></td><td>Dark green</td><td>Client or completed/approved</td></tr>
+<tr><td><strong>Peacock</strong></td><td>Light blue</td><td>Client or meetings</td></tr>
+<tr><td><strong>Blueberry</strong></td><td>Dark blue</td><td>Client or deep work</td></tr>
+<tr><td><strong>Lavender</strong></td><td>Light purple</td><td>Client or creative work</td></tr>
+<tr><td><strong>Grape</strong></td><td>Dark purple</td><td>Client or strategy</td></tr>
+<tr><td><strong>Graphite</strong></td><td>Gray</td><td>Internal / non-billable / admin</td></tr>
+</tbody></table>
+
+<h2 id="more">What if I have more than 11 clients?</h2>
+<p>11 colors is enough for most freelancers, but if you work with more clients simultaneously, use <strong>keyword rules</strong> as a supplement. Color your top 5-6 active clients. For the rest, include the client name in the event title and set up keyword matching.</p>
+<p>For example, if you don&rsquo;t have a color for Client G, name events &ldquo;ClientG &mdash; Website Review&rdquo; and set a keyword rule: title contains &ldquo;ClientG&rdquo; &rarr; Client G at $100/hr. The keyword rule catches these events even without a color.</p>
+
+<h2 id="billing">Turn colors into a billing timesheet</h2>
+<p>Color coding isn&rsquo;t just visual organization &mdash; it&rsquo;s the foundation of automated billing. With <a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a>, each color maps to a client name and hourly rate. When you generate a timesheet, every red event automatically becomes &ldquo;Client A at $150/hr&rdquo; in your spreadsheet.</p>
+<p>One-time setup: assign each color to a client and rate in the Mappings tab. After that, every billing cycle is a single click &mdash; the add-on reads your color-coded events and builds the timesheet automatically.</p>
+
+<h2 id="habits">4 habits to make it stick</h2>
+<h3>1. Color the event when you create it</h3>
+<p>Don&rsquo;t batch-color at the end of the week. By then you won&rsquo;t remember which events were for which client. Color as you go.</p>
+<h3>2. Add events for unscheduled work</h3>
+<p>A 15-minute client phone call doesn&rsquo;t appear in your calendar unless you add it. Make a quick event with the right color immediately after the call ends.</p>
+<h3>3. Use &ldquo;no color&rdquo; intentionally</h3>
+<p>Don&rsquo;t just forget to color events. Make &ldquo;no color&rdquo; mean something: non-billable / internal. This way, any uncolored event is intentionally non-billable, and your timesheet correctly shows it as $0.</p>
+<h3>4. Review your colors on Friday</h3>
+<p>Spend 2 minutes at the end of each week scanning your calendar for events you forgot to color. Fix them while you still remember what they were for.</p>
+
+<div class="cta-box">
+<h3>Turn your calendar into a billing timesheet</h3>
+<p>Timesheet for Google Calendar reads your events and generates formatted timesheets in Google Sheets&trade;. 7-day free trial, all features unlocked.</p>
+<a href="https://workspace.google.com/marketplace/app/timesheet_for_google_calendar/638595833401" class="cta-btn" target="_blank">Start Free Trial</a>
+</div>
+</article>
+<footer><p class="footer-text">
+<a href="https://brightdesk.dev/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> &middot;
+<a href="https://brightdesk.dev">BrightDesk</a><br>
+Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. &copy; 2026 BrightDesk.
+</p></footer>
+</body></html>
