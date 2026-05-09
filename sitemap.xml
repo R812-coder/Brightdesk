@@ -61,4 +61,11 @@
   <url><loc>https://brightdesk.dev/notifications-for-google-sheets/blog/how-to-set-up-alerts-in-google-sheets/</loc><priority>0.9</priority></url>
   <url><loc>https://brightdesk.dev/notifications-for-google-sheets/blog/google-sheets-notification-when-cell-changes/</loc><priority>0.9</priority></url>
 
+
+  <!-- Timesheet Blog Posts (batch 2) -->
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-color-code-google-calendar-by-client/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-track-freelance-hours-free/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/how-to-make-an-invoice-from-google-calendar/</loc><priority>0.9</priority></url>
+  <url><loc>https://brightdesk.dev/timesheet-for-google-calendar/blog/best-way-to-track-billable-hours-as-a-freelancer/</loc><priority>0.9</priority></url>
+
 </urlset>
