@@ -98,6 +98,11 @@
   .plan li{padding:6px 0 6px 26px;position:relative;font-size:14.5px}
   .plan li:before{content:"";position:absolute;left:0;top:12px;width:14px;height:8px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
   .plan .btn{width:100%;text-align:center}
+  .billing-toggle{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:6px 0 14px}
+  .billing-toggle button{font-family:inherit;font-size:13px;padding:7px 16px;border:none;background:#fff;color:var(--muted);cursor:pointer}
+  .billing-toggle button.active{background:var(--blue);color:#fff;font-weight:500}
+  .price-note{color:var(--ok);font-size:13px;font-weight:500;margin:-2px 0 4px;min-height:18px}
+  .buy-sub{text-align:center;color:var(--muted);font-size:12px;margin-top:8px}
   @media(max-width:640px){.plans{grid-template-columns:1fr}}
 
   /* FAQ */
@@ -123,7 +128,7 @@
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
-      <a class="btn" href="https://brightdesk.dev/fill-in-the-blanks/#how" target="_blank" rel="noopener">Add to Google Docs</a>
+      <a class="btn" href="https://workspace.google.com/marketplace" target="_blank" rel="noopener">Add to Google Docs</a>
     </nav>
   </div>
 </header>
@@ -135,7 +140,7 @@
       <h1>Turn any passage into a fill-in-the-blank worksheet.</h1>
       <p class="lead">Highlight the words you want to remove, click once, and get a clean cloze worksheet with a shuffled word bank — right inside Google Docs™.</p>
       <div class="hero-cta">
-        <a class="btn" href="https://brightdesk.dev/fill-in-the-blanks/#how" target="_blank" rel="noopener">Add to Google Docs — free</a>
+        <a class="btn" href="https://workspace.google.com/marketplace" target="_blank" rel="noopener">Add to Google Docs — free</a>
         <a class="btn ghost" href="#how">See how it works</a>
       </div>
       <p class="trust">Free 7-day trial of every feature · No credit card to start · Works on any device</p>
@@ -215,12 +220,20 @@
             <li>Automatic word bank</li>
             <li>Clear-all-highlights tool</li>
           </ul>
-          <a class="btn ghost" href="https://brightdesk.dev/fill-in-the-blanks/#how" target="_blank" rel="noopener">Add to Google Docs</a>
+          <a class="btn ghost" href="https://workspace.google.com/marketplace" target="_blank" rel="noopener">Add to Google Docs</a>
         </div>
         <div class="plan pro">
           <span class="tag">Most popular</span>
           <h3>Pro</h3>
-          <div class="price">$49<span> / year</span></div>
+
+          <div class="billing-toggle" role="group" aria-label="Choose billing period">
+            <button id="tgYear" class="active" type="button">Yearly</button>
+            <button id="tgMonth" type="button">Monthly</button>
+          </div>
+
+          <div class="price" id="priceMain">$49<span> / year</span></div>
+          <div class="price-note" id="priceNote">Just $4.08/month, billed annually — save 18%</div>
+
           <ul>
             <li>Unlimited blanks</li>
             <li>First-letter hints &amp; numbered blanks</li>
@@ -229,7 +242,8 @@
             <li>Automatic answer key</li>
             <li>One license, all your devices</li>
           </ul>
-          <a class="btn" id="buyLink" href="#" target="_blank" rel="noopener">Start 7-day free trial</a>
+          <a class="btn" id="buyLink" href="#" target="_blank" rel="noopener">Get Pro — 7-day free trial</a>
+          <p class="buy-sub">No charge for 7 days. Cancel anytime.</p>
         </div>
       </div>
     </div>
@@ -251,9 +265,9 @@
   <div class="wrap foot">
     <div>© BrightDesk · Fill in the Blanks for Google Docs™</div>
     <div>
-      <a href="privacy/index.html">Privacy</a>
-      <a href="terms/index.html">Terms</a>
-      <a href="manage/index.html">Manage license</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="manage.html">Manage license</a>
       <a href="mailto:support-fillintheblanks@googlegroups.com">Support</a>
     </div>
   </div>
@@ -261,9 +275,33 @@
 </footer>
 
 <script>
-  // Replace with your live Stripe Payment Link.
-  var STRIPE_LINK = "https://buy.stripe.com/REPLACE_WITH_YOUR_LINK";
-  document.getElementById('buyLink').href = STRIPE_LINK;
+  // ===== Stripe Payment Links — replace both with your live links =====
+  // Create TWO Payment Links in Stripe (one per price) with a 7-day trial,
+  // then paste them here. Both should redirect to success.html after payment.
+  var STRIPE_LINK_YEARLY  = "https://buy.stripe.com/bJe00i0EXdUjcoAgaf77O05";
+  var STRIPE_LINK_MONTHLY = "https://buy.stripe.com/6oU7sK0EX9E3ags9LR77O06";
+
+  var buyLink   = document.getElementById('buyLink');
+  var priceMain = document.getElementById('priceMain');
+  var priceNote = document.getElementById('priceNote');
+  var tgYear    = document.getElementById('tgYear');
+  var tgMonth   = document.getElementById('tgMonth');
+
+  function setYearly(){
+    tgYear.classList.add('active'); tgMonth.classList.remove('active');
+    priceMain.innerHTML = '$49<span> / year</span>';
+    priceNote.textContent = 'Just $4.08/month, billed annually — save 18%';
+    buyLink.href = STRIPE_LINK_YEARLY;
+  }
+  function setMonthly(){
+    tgMonth.classList.add('active'); tgYear.classList.remove('active');
+    priceMain.innerHTML = '$4.99<span> / month</span>';
+    priceNote.textContent = 'Billed monthly. Switch to yearly anytime.';
+    buyLink.href = STRIPE_LINK_MONTHLY;
+  }
+  tgYear.onclick = setYearly;
+  tgMonth.onclick = setMonthly;
+  setYearly(); // default
 
   // Signature demo toggle: highlighted <-> worksheet.
   var tHi = document.getElementById('tHi'), tBl = document.getElementById('tBl');
