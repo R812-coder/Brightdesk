@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fill in the Blanks for Google Docs™ — cloze &amp; gap-fill worksheet maker</title>
+<meta name="description" content="Create fill in the blank worksheets from any text in Google Docs™. Blank out words in one click and add a word bank and answer key. A cloze test and gap fill worksheet generator for teachers.">
+<link rel="canonical" href="https://brightdesk.dev/fill-in-the-blanks/">
+<link rel="icon" type="image/png" href="icon_48.png">
+<meta property="og:title" content="Fill in the Blanks for Google Docs™">
+<meta property="og:description" content="Turn any passage into a fill-in-the-blank worksheet with a word bank and answer key — in seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brightdesk.dev/fill-in-the-blanks/">
+<style>
+  :root{
+    --blue:#1a73e8; --blue-dark:#1765cc; --ink:#202124; --muted:#5f6368;
+    --line:#dadce0; --wash:#f8f9fa; --chip:#e8f0fe; --chip-ink:#174ea6; --ok:#188038;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Google Sans',Roboto,-apple-system,Arial,sans-serif;color:var(--ink);line-height:1.6;background:#fff;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.2;letter-spacing:-0.02em}
+
+  /* Header */
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);z-index:10}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:500;color:var(--ink)}
+  .brand img{width:28px;height:28px;border-radius:7px}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:14px}
+  .btn{display:inline-block;background:var(--blue);color:#fff;padding:10px 18px;border-radius:8px;font-weight:500;font-size:14px}
+  .btn:hover{background:var(--blue-dark);text-decoration:none}
+  .btn.ghost{background:#fff;color:var(--blue);border:1px solid var(--line)}
+  .btn.ghost:hover{background:var(--wash)}
+  @media(max-width:640px){.nav-links a:not(.btn){display:none}}
+
+  /* Hero */
+  .hero{padding:72px 0 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .eyebrow{color:var(--blue);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+  .hero h1{font-size:44px;margin-bottom:18px}
+  .hero p.lead{font-size:18px;color:var(--muted);margin-bottom:26px;max-width:34ch}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .trust{margin-top:16px;color:var(--muted);font-size:13px}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:48px}.hero h1{font-size:34px}}
+
+  /* Signature: the live transform card */
+  .demo{border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px rgba(32,33,36,.08);overflow:hidden;background:#fff}
+  .demo-bar{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--wash)}
+  .dot{width:11px;height:11px;border-radius:50%;background:#dadce0}
+  .demo-body{padding:22px 24px;font-size:15.5px}
+  .demo-body p{margin-bottom:14px}
+  mark.hl{background:#fff3bf;border-radius:3px;padding:0 2px}
+  .blank{color:var(--blue);border-bottom:2px solid var(--blue);padding:0 22px}
+  .bank{margin-top:8px;padding-top:14px;border-top:1px dashed var(--line)}
+  .bank strong{display:block;margin-bottom:6px;font-size:13px}
+  .bank .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .bank .chip{background:var(--chip);color:var(--chip-ink);border-radius:14px;padding:3px 12px;font-size:13px}
+  .toggle{display:flex;gap:8px;padding:12px 24px;border-top:1px solid var(--line);align-items:center;font-size:13px;color:var(--muted)}
+  .toggle button{font-family:inherit;font-size:13px;border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:16px;padding:5px 14px;cursor:pointer}
+  .toggle button.active{background:var(--chip);border-color:var(--chip)}
+
+  /* Sections */
+  section.band{padding:64px 0}
+  .band.alt{background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .section-head{text-align:center;max-width:40ch;margin:0 auto 40px}
+  .section-head h2{font-size:30px;margin-bottom:12px}
+  .section-head p{color:var(--muted)}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .step{position:relative;padding-left:6px}
+  .step .n{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;margin-bottom:14px}
+  .step h3{font-size:18px;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:15px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+
+  /* Features */
+  .feat{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff}
+  .card h3{font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .card p{color:var(--muted);font-size:14.5px}
+  .tick{color:var(--ok);font-weight:700}
+  @media(max-width:760px){.feat{grid-template-columns:1fr}}
+
+  /* Pricing */
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:760px;margin:0 auto}
+  .plan{border:1px solid var(--line);border-radius:16px;padding:28px}
+  .plan.pro{border:2px solid var(--blue);position:relative}
+  .plan.pro .tag{position:absolute;top:-12px;left:28px;background:var(--blue);color:#fff;font-size:12px;font-weight:600;padding:3px 10px;border-radius:10px}
+  .plan h3{font-size:18px;margin-bottom:4px}
+  .price{font-size:38px;font-weight:600;letter-spacing:-.02em;margin:8px 0 4px}
+  .price span{font-size:15px;font-weight:400;color:var(--muted)}
+  .plan ul{list-style:none;margin:18px 0 22px}
+  .plan li{padding:6px 0 6px 26px;position:relative;font-size:14.5px}
+  .plan li:before{content:"";position:absolute;left:0;top:12px;width:14px;height:8px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
+  .plan .btn{width:100%;text-align:center}
+  @media(max-width:640px){.plans{grid-template-columns:1fr}}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto}
+  details{border-bottom:1px solid var(--line);padding:18px 0}
+  summary{font-weight:500;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--muted);font-size:20px}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--muted);margin-top:10px;font-size:15px}
+
+  footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:14px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .foot a{color:var(--muted);margin-right:18px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="icon_48.png" alt="">BrightDesk</a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a class="btn" href="https://workspace.google.com/marketplace" target="_blank" rel="noopener">Add to Google Docs</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <div>
+      <div class="eyebrow">For teachers, tutors &amp; ESL instructors</div>
+      <h1>Turn any passage into a fill-in-the-blank worksheet.</h1>
+      <p class="lead">Highlight the words you want to remove, click once, and get a clean cloze worksheet with a shuffled word bank — right inside Google Docs™.</p>
+      <div class="hero-cta">
+        <a class="btn" href="https://workspace.google.com/marketplace" target="_blank" rel="noopener">Add to Google Docs — free</a>
+        <a class="btn ghost" href="#how">See how it works</a>
+      </div>
+      <p class="trust">Free 7-day trial of every feature · No credit card to start · Works on any device</p>
+    </div>
+
+    <!-- Signature element: a live before/after transform -->
+    <div class="demo" aria-hidden="true">
+      <div class="demo-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="demo-body">
+        <p id="demoText">
+          The process by which plants make food is called
+          <mark class="hl">photosynthesis</mark>. It happens in the
+          <mark class="hl">chloroplast</mark> and needs sunlight, water, and
+          <mark class="hl">carbon dioxide</mark>.
+        </p>
+        <div class="bank" id="demoBank" hidden>
+          <strong>Word Bank</strong>
+          <div class="chips">
+            <span class="chip">carbon dioxide</span>
+            <span class="chip">photosynthesis</span>
+            <span class="chip">chloroplast</span>
+          </div>
+        </div>
+      </div>
+      <div class="toggle">
+        <span>Preview:</span>
+        <button id="tHi" class="active">Highlighted</button>
+        <button id="tBl">Worksheet</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Three steps to a worksheet</h2>
+        <p>No setup, no learning curve. If you can highlight text, you can use it.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Highlight your words</h3><p>Use the highlighter tool in Google Docs™ to mark the words you want to blank out. Any color works.</p></div>
+        <div class="step"><div class="n">2</div><h3>Scan the document</h3><p>Open the sidebar and click Scan. Every highlighted word is found — across pages, tables, and lists.</p></div>
+        <div class="step"><div class="n">3</div><h3>Create the worksheet</h3><p>Pick your options and click Create. Blanks and a shuffled word bank appear instantly. Nothing is locked.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Built for real classrooms</h2>
+        <p>The details that make a worksheet actually usable — not just blanks on a page.</p>
+      </div>
+      <div class="feat">
+        <div class="card"><h3><span class="tick">✓</span> Reliable on long documents</h3><p>Blanks every highlighted word, even across many pages, inside tables, and in bulleted lists.</p></div>
+        <div class="card"><h3><span class="tick">✓</span> Automatic word bank</h3><p>A randomized bank is added at the end so students have the answers to choose from.</p></div>
+        <div class="card"><h3><span class="tick">✓</span> First-letter hints</h3><p>Scaffold struggling students with a leading letter: <em>p_________</em>.</p></div>
+        <div class="card"><h3><span class="tick">✓</span> Numbered blanks</h3><p>Number each blank and match it to a numbered word bank for tidy grading.</p></div>
+        <div class="card"><h3><span class="tick">✓</span> No accidental hints</h3><p>Uniform blank lengths and a lowercase word bank so length and capitals never give the answer away.</p></div>
+        <div class="card"><h3><span class="tick">✓</span> Answer key</h3><p>Generate a numbered answer key on its own page, ready to print.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Simple pricing</h2>
+        <p>Every feature is free for 7 days. Keep the essentials free forever, or unlock everything for less than a coffee a month.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Free</h3>
+          <div class="price">$0</div>
+          <ul>
+            <li>Up to 5 blanks per worksheet</li>
+            <li>Classic blanks</li>
+            <li>Automatic word bank</li>
+            <li>Clear-all-highlights tool</li>
+          </ul>
+          <a class="btn ghost" href="https://workspace.google.com/marketplace" target="_blank" rel="noopener">Add to Google Docs</a>
+        </div>
+        <div class="plan pro">
+          <span class="tag">Most popular</span>
+          <h3>Pro</h3>
+          <div class="price">$49<span> / year</span></div>
+          <ul>
+            <li>Unlimited blanks</li>
+            <li>First-letter hints &amp; numbered blanks</li>
+            <li>Uniform blank length</li>
+            <li>Lowercase word bank</li>
+            <li>Automatic answer key</li>
+            <li>One license, all your devices</li>
+          </ul>
+          <a class="btn" id="buyLink" href="#" target="_blank" rel="noopener">Start 7-day free trial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap faq">
+      <div class="section-head"><h2>Questions</h2></div>
+      <details><summary>How do I mark the words to blank out?</summary><p>Highlight whole words in your document with the highlighter tool in the Google Docs™ toolbar — any color. Then open the add-on sidebar and click Scan document. You can also switch to Word list mode and blank every occurrence of a word you type.</p></details>
+      <details><summary>Does it work on long documents and tables?</summary><p>Yes. The add-on scans the entire document, including multiple pages, tables, and bulleted or numbered lists, and blanks every highlighted word it finds.</p></details>
+      <details><summary>Is my document private?</summary><p>Yes. The add-on only reads and edits the document you have open, and only when you click a button. It never sends your document anywhere. See our <a href="privacy.html">privacy policy</a>.</p></details>
+      <details><summary>What happens after the free trial?</summary><p>You keep a free plan that creates worksheets with up to 5 blanks and a word bank. Upgrade to Pro any time for unlimited blanks, hints, numbered blanks, uniform lengths, and answer keys.</p></details>
+      <details><summary>Can I get a refund?</summary><p>Yes — if Pro isn't right for you, email us within 30 days for a full refund. See <a href="terms.html">terms</a>.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© BrightDesk · Fill in the Blanks for Google Docs™</div>
+    <div>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="manage.html">Manage license</a>
+      <a href="mailto:support-fillintheblanks@googlegroups.com">Support</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:14px;font-size:12px;color:#9aa0a6">Google Docs™ is a trademark of Google LLC. BrightDesk is not affiliated with or endorsed by Google.</div>
+</footer>
+
+<script>
+  // Replace with your live Stripe Payment Link.
+  var STRIPE_LINK = "https://buy.stripe.com/REPLACE_WITH_YOUR_LINK";
+  document.getElementById('buyLink').href = STRIPE_LINK;
+
+  // Signature demo toggle: highlighted <-> worksheet.
+  var tHi = document.getElementById('tHi'), tBl = document.getElementById('tBl');
+  var text = document.getElementById('demoText'), bank = document.getElementById('demoBank');
+  var highlighted = text.innerHTML;
+  var blanked = 'The process by which plants make food is called <span class="blank"></span>. '
+    + 'It happens in the <span class="blank"></span> and needs sunlight, water, and <span class="blank"></span>.';
+  function show(mode){
+    if(mode==='blank'){ text.innerHTML=blanked; bank.hidden=false; tBl.classList.add('active'); tHi.classList.remove('active'); }
+    else { text.innerHTML=highlighted; bank.hidden=true; tHi.classList.add('active'); tBl.classList.remove('active'); }
+  }
+  tHi.onclick=function(){show('hi')}; tBl.onclick=function(){show('blank')};
+  // Auto-demo once on load.
+  setTimeout(function(){show('blank')}, 1400);
+</script>
+</body>
+</html>
