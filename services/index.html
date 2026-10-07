@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Google Workspace Automation &amp; Apps Script | BrightDesk</title>
+    <meta name="description" content="Custom Google Workspace automation: Apps Script builds, Sheets and Calendar workflows, personalized email sends, and free email deliverability audits. Remote, $55/hr.">
+    <link rel="canonical" href="https://brightdesk.dev/services/">
+
+    <meta property="og:title" content="Services — Google Workspace Automation | BrightDesk">
+    <meta property="og:description" content="Custom Apps Script builds, Workspace automation, and free email deliverability audits.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://brightdesk.dev/services/">
+
+    <link rel="icon" href="https://brightdesk.dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://brightdesk.dev/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="https://brightdesk.dev/favicon-180.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #fafaf9; --surface: #ffffff; --text: #1c1917;
+            --text-2: #44403c; --text-3: #78716c; --border: #e7e5e4;
+            --accent: #2563eb; --accent-soft: #eff6ff; --accent-hover: #1d4ed8;
+            --green: #16a34a; --green-soft: #f0fdf4;
+            --amber: #d97706; --amber-soft: #fffbeb;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+        nav { position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 860px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); font-weight: 700; font-size: 0.95rem; }
+        .nav-links a { text-decoration: none; color: var(--text-3); font-size: 0.825rem; font-weight: 500; margin-left: 1.5rem; }
+        .nav-links a:hover { color: var(--text); }
+
+        .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* HERO */
+        .hero { padding: 4rem 0 2.5rem; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: var(--text); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .hero p { font-size: 1.1rem; color: var(--text-3); max-width: 620px; margin-bottom: 1.75rem; }
+        .hero-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+        .badge { background: var(--surface); border: 1px solid var(--border); color: var(--text-2); padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.75rem; background: var(--accent); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.15s; }
+        .btn:hover { background: var(--accent-hover); }
+        .btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--border); }
+        .btn-ghost:hover { background: var(--surface); color: var(--accent); border-color: var(--accent); }
+
+        /* SECTIONS */
+        section { padding: 3rem 0; }
+        .label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.6rem; }
+        h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; color: var(--text); letter-spacing: -0.015em; margin-bottom: 0.75rem; }
+        .section-sub { color: var(--text-3); max-width: 600px; margin-bottom: 2rem; }
+
+        /* SERVICE CARDS */
+        .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+        .svc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; }
+        .svc h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+        .svc p { font-size: 0.9rem; color: var(--text-3); margin-bottom: 0.75rem; }
+        .svc ul { margin: 0 0 0 1.1rem; }
+        .svc li { font-size: 0.85rem; color: var(--text-2); margin-bottom: 0.3rem; }
+        .svc .price { font-size: 0.8rem; color: var(--text-3); margin-top: 0.9rem; padding-top: 0.75rem; border-top: 1px solid #f5f5f4; }
+        .svc .price strong { color: var(--text); }
+
+        /* AUDIT CALLOUT */
+        .audit { background: linear-gradient(135deg, var(--green-soft), #ecfdf5); border: 1px solid #bbf7d0; border-radius: 14px; padding: 2rem; }
+        .audit .free-tag { display: inline-block; background: var(--green); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 100px; margin-bottom: 0.9rem; }
+        .audit h2 { margin-bottom: 0.6rem; }
+        .audit p { color: var(--text-2); font-size: 0.95rem; margin-bottom: 1.25rem; max-width: 620px; }
+        .audit-checks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem 1.5rem; margin-bottom: 1.5rem; }
+        .audit-check { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.875rem; color: var(--text-2); }
+        .audit-check svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; margin-top: 4px; }
+
+        /* CASE STUDY */
+        .case { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; }
+        .case h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+        .case .case-meta { font-size: 0.8rem; color: var(--text-3); margin-bottom: 1rem; }
+        .case p { font-size: 0.925rem; margin-bottom: 0.9rem; }
+        .case-stats { display: flex; gap: 2rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid #f5f5f4; }
+        .case-stat .num { font-size: 1.35rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+        .case-stat .lbl { font-size: 0.75rem; color: var(--text-3); }
+
+        /* PROCESS */
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .step { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+        .step .n { width: 26px; height: 26px; background: var(--accent-soft); color: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.65rem; }
+        .step h4 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+        .step p { font-size: 0.82rem; color: var(--text-3); line-height: 1.55; }
+
+        /* FORM */
+        .form-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
+        .field { margin-bottom: 1.1rem; }
+        .field label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
+        .field input, .field select, .field textarea {
+            width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 0.65rem 0.8rem;
+            font-size: 0.92rem; font-family: inherit; background: var(--bg); color: var(--text); transition: border-color 0.15s;
+        }
+        .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.08); background: #fff; }
+        .field textarea { min-height: 120px; resize: vertical; }
+        .field .hint { font-size: 0.75rem; color: var(--text-3); margin-top: 0.3rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        button.submit { width: 100%; padding: 0.85rem; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.15s; }
+        button.submit:hover { background: var(--accent-hover); }
+        .form-alt { text-align: center; font-size: 0.85rem; color: var(--text-3); margin-top: 1rem; }
+        .form-alt a { color: var(--accent); }
+
+        /* TRUST STRIP */
+        .trust { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; padding: 2rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 1rem 0; }
+        .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-2); font-weight: 500; }
+        .trust-item svg { width: 17px; height: 17px; color: var(--green); }
+
+        footer { padding: 2.5rem 1.5rem; text-align: center; border-top: 1px solid var(--border); margin-top: 2rem; }
+        .foot-links { display: flex; justify-content: center; gap: 1.75rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+        .foot-links a { color: var(--text-3); text-decoration: none; font-size: 0.825rem; font-weight: 500; }
+        .foot-links a:hover { color: var(--text); }
+        .foot-note { font-size: 0.72rem; color: var(--text-3); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+        @media (max-width: 760px) {
+            .svc-grid, .audit-checks, .form-row { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            .hero { padding: 2.5rem 0 1.5rem; }
+            section { padding: 2rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://brightdesk.dev" class="nav-brand">BrightDesk</a>
+        <div class="nav-links">
+            <a href="https://brightdesk.dev">Add-ons</a>
+            <a href="#audit">Free Audit</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="wrap">
+    <div class="hero">
+        <h1>Need something custom built?</h1>
+        <p>I build Google Workspace automation — the kind of thing you're currently doing by hand in a spreadsheet. If one of my add-ons got you most of the way there but not all the way, this is where the rest gets built.</p>
+        <div class="hero-badges">
+            <span class="badge">Apps Script</span>
+            <span class="badge">Google Sheets</span>
+            <span class="badge">Google Calendar</span>
+            <span class="badge">Gmail &amp; Workspace</span>
+            <span class="badge">Google Forms</span>
+        </div>
+        <a href="#contact" class="btn">Tell me what you need
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="wrap">
+    <div class="trust">
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Published Workspace Marketplace developer
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Google OAuth verified apps
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Remote, New Jersey based
+        </div>
+    </div>
+</div>
+
+<!-- WHAT I DO -->
+<section class="wrap" id="services">
+    <div class="label">What I build</div>
+    <h2>Manual work, automated</h2>
+    <p class="section-sub">Most of this starts the same way: someone is spending two hours a week copying data between tabs, or sending the same email a hundred times with small changes. That's a script.</p>
+
+    <div class="svc-grid">
+        <div class="svc">
+            <h3>Custom Apps Script automation</h3>
+            <p>A script built into your own Sheet, Doc, or Form. No new software to learn, no subscription to a tool you'll use twice.</p>
+            <ul>
+                <li>Pull data between Sheets, Calendar, Gmail, Drive, Forms</li>
+                <li>Scheduled jobs that run while you sleep</li>
+                <li>Custom menus and sidebars for your team</li>
+                <li>Approval flows, notifications, audit logs</li>
+            </ul>
+            <div class="price"><strong>$55/hr</strong> &middot; or fixed price once scope is clear</div>
+        </div>
+
+        <div class="svc">
+            <h3>Personalized email sends</h3>
+            <p>Mail merge that does what mail merge tools can't — per-recipient attachments, inline images, conditional content.</p>
+            <ul>
+                <li>Unique PDF or image attached per recipient</li>
+                <li>Inline images embedded in the body, not linked</li>
+                <li>Resumable batches that survive execution limits</li>
+                <li>Send ledger in your sheet so nothing double-sends</li>
+            </ul>
+            <div class="price"><strong>$55/hr</strong> &middot; typical send: 1&ndash;2 days end to end</div>
+        </div>
+
+        <div class="svc">
+            <h3>Private add-ons for your team</h3>
+            <p>Same thing I publish to the Marketplace, built for one organization and never listed publicly.</p>
+            <ul>
+                <li>Domain-wide install for your Workspace</li>
+                <li>Built against your actual process, not a generic one</li>
+                <li>Sidebar UI your team will actually use</li>
+                <li>I handle the OAuth verification paperwork</li>
+            </ul>
+            <div class="price"><strong>$55/hr</strong> &middot; scoped per project</div>
+        </div>
+
+        <div class="svc">
+            <h3>Fixing what's already there</h3>
+            <p>Inherited a spreadsheet held together with tape? A script someone built and left? That's fine.</p>
+            <ul>
+                <li>Debugging and rescuing existing Apps Script</li>
+                <li>Spreadsheets that have gotten slow or fragile</li>
+                <li>Broken formulas, circular references, orphan ranges</li>
+                <li>Documentation so the next person isn't stuck</li>
+            </ul>
+            <div class="price"><strong>$55/hr</strong> &middot; often a single afternoon</div>
+        </div>
+    </div>
+</section>
+
+<!-- FREE AUDIT -->
+<section class="wrap" id="audit">
+    <div class="audit">
+        <span class="free-tag">Free &middot; No strings</span>
+        <h2>Email deliverability &amp; DNS audit</h2>
+        <p>If your email is landing in spam — or you've never checked — I'll run a full authentication audit on your domain and send you the results. It takes me about fifteen minutes and costs you nothing. Plenty of businesses find out their domain has been unprotected for years.</p>
+
+        <div class="audit-checks">
+            <div class="audit-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>SPF</strong> — is your sending server actually authorized?</span>
+            </div>
+            <div class="audit-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>DKIM</strong> — are your messages cryptographically signed?</span>
+            </div>
+            <div class="audit-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>DMARC</strong> — can anyone spoof your domain?</span>
+            </div>
+            <div class="audit-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Domain expiry</strong> — when does your registration lapse?</span>
+            </div>
+            <div class="audit-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>SSL certificate</strong> — expiry and chain validity</span>
+            </div>
+            <div class="audit-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Google Business listing</strong> — claimed and consistent?</span>
+            </div>
+        </div>
+
+        <a href="#contact" class="btn">Request the free audit
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- CASE STUDY -->
+<section class="wrap">
+    <div class="label">Recent work</div>
+    <h2>What this looks like in practice</h2>
+    <p class="section-sub">One example, start to finish.</p>
+
+    <div class="case">
+        <h3>103 personalized assessment reports, sent in one run</h3>
+        <div class="case-meta">Center for Radical Calling &middot; Google Apps Script</div>
+        <p>The client needed to send individual assessment reports to 103 people. Each email had to carry that person's own radar chart embedded in the body and the correct archetype PDF attached — five possible PDFs, matched per recipient. The original plan was a third-party mail merge tool, which couldn't do per-recipient attachments.</p>
+        <p>I built it as a script inside their own spreadsheet instead. Filenames were parsed and cross-referenced against emails, data was validated before a single message went out, and the send ran in resumable batches so Apps Script's six-minute execution limit couldn't strand it halfway. Every send was written back to the sheet only after it succeeded, so a re-run could never double-send. One recipient had taken the assessment twice and needed two separate emails with two different charts — handled with a per-row override.</p>
+        <p>The client ran the final send himself from his own account, with a verification step that checked every message against his Sent folder afterward.</p>
+        <div class="case-stats">
+            <div class="case-stat"><div class="num">103</div><div class="lbl">personalized sends</div></div>
+            <div class="case-stat"><div class="num">100%</div><div class="lbl">verified delivered</div></div>
+            <div class="case-stat"><div class="num">0</div><div class="lbl">duplicates sent</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section class="wrap">
+    <div class="label">How it works</div>
+    <h2>No calls unless you want one</h2>
+    <p class="section-sub">I work remotely and asynchronously. Most projects never need a meeting.</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="n">1</div>
+            <h4>You describe it</h4>
+            <p>Fill in the form below. Rough is fine — "we do this by hand every Friday" is enough to start.</p>
+        </div>
+        <div class="step">
+            <div class="n">2</div>
+            <h4>I scope it</h4>
+            <p>Within a day you get back a plan, an hour estimate, and whether it's even worth automating.</p>
+        </div>
+        <div class="step">
+            <div class="n">3</div>
+            <h4>I build it</h4>
+            <p>In your own Sheet or Workspace. You see progress as it happens, not at the end.</p>
+        </div>
+        <div class="step">
+            <div class="n">4</div>
+            <h4>You own it</h4>
+            <p>The script lives in your account. No subscription to me, no vendor lock-in.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="wrap" id="contact">
+    <div class="label">Get in touch</div>
+    <h2>Tell me what you're doing manually</h2>
+    <p class="section-sub">I read every message myself and reply within one business day.</p>
+
+    <div class="form-wrap">
+        <!-- REPLACE xyzabcd WITH YOUR FORMSPREE FORM ID -->
+        <form action="https://formspree.io/f/xnpjpvvo" method="POST">
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="company">Company or organization</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="field">
+                    <label for="topic">What do you need?</label>
+                    <select id="topic" name="topic">
+                        <option value="Custom automation">Custom automation / Apps Script</option>
+                        <option value="Free deliverability audit">Free deliverability audit</option>
+                        <option value="Personalized email send">Personalized email send</option>
+                        <option value="Private add-on">Private add-on for my team</option>
+                        <option value="Fix existing">Fix something that's broken</option>
+                        <option value="Not sure">Not sure yet</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="domain">Your domain <span style="font-weight:400;color:#78716c;">(required for the free audit)</span></label>
+                <input type="text" id="domain" name="domain" placeholder="example.com">
+            </div>
+
+            <div class="field">
+                <label for="message">What are you doing manually right now?</label>
+                <textarea id="message" name="message" required placeholder="Every Friday I copy our shipping data from three tabs into a summary sheet and email it to four people. Takes about an hour."></textarea>
+                <div class="hint">The more specific, the better the estimate I can give you.</div>
+            </div>
+
+            <!-- Spam honeypot — bots fill this, humans never see it -->
+            <input type="text" name="_gotcha" style="display:none">
+
+            <button type="submit" class="submit">Send message</button>
+        </form>
+
+        <p class="form-alt">Or email directly: <a href="mailto:rayanbuilds.dev@gmail.com">rayanbuilds.dev@gmail.com</a></p>
+    </div>
+</section>
+
+<footer>
+    <div class="foot-links">
+        <a href="https://brightdesk.dev">Add-ons</a>
+        <a href="#services">Services</a>
+        <a href="#audit">Free Audit</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <p class="foot-note">
+        BrightDesk &middot; Google Workspace automation, built remotely from New Jersey.<br>
+        Google Workspace&trade;, Google Sheets&trade;, Google Calendar&trade;, and Google Forms&trade; are trademarks of Google LLC. BrightDesk is an independent developer and is not affiliated with or endorsed by Google. &copy; 2026 BrightDesk.
+    </p>
+</footer>
+
+</body>
+</html>
