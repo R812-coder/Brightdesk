@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy: Form to Calendar Bookings | BrightDesk</title>
+<meta name="description" content="How Form to Calendar Bookings for Google Forms accesses, uses, stores and shares Google user data.">
+<link rel="canonical" href="https://brightdesk.dev/form-to-calendar/privacy/">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="../"><img src="../assets/icon-128.png" alt="">Form to Calendar Bookings</a>
+  <nav><a class="hide-sm" href="../">Overview</a><a class="hide-sm" href="../terms/">Terms</a><a href="/support">Support</a></nav>
+</div></header>
+<main class="doc">
+  <h1>Privacy Policy</h1>
+  <p class="meta">Form to Calendar Bookings for Google Forms&trade; &middot; Effective 29 October 2026</p>
+
+  <div class="note"><b>In short:</b> the add-on runs inside your own Google account. It reads the current form and writes events to the calendars you choose. BrightDesk runs no servers for it and never receives your form responses or calendar data.</div>
+
+  <h2>Who we are</h2>
+  <p>Form to Calendar Bookings ("the add-on") is made by BrightDesk (<a href="https://brightdesk.dev">brightdesk.dev</a>). Contact us at <a href="https://brightdesk.dev/support">brightdesk.dev/support</a>.</p>
+
+  <h2>What the add-on accesses, and why</h2>
+  <p>When you install the add-on, Google asks you to allow the permissions below. The add-on uses each one only for the purpose shown.</p>
+  <table>
+    <tr><th>Permission</th><th>What it is used for</th></tr>
+    <tr><td>View and manage forms in which this application has been installed<br><code>forms.currentonly</code></td><td>Reads the questions and responses of the form you opened the add-on in, so each response can become an event. Adds booking questions or turns on "Include year" when you ask it to. If you use bookable time slots, it rewrites the choices of the one question you pick. It cannot open any other form.</td></tr>
+    <tr><td>View and edit events on all your calendars<br><code>calendar.events</code></td><td>Creates the event for each response, re-reads it to check it was created at the right time, updates it when a response is edited, and checks the chosen calendar for overlapping events before booking (conflict check and time slots). It only works with the calendars you select in setup.</td></tr>
+    <tr><td>See the list of Google calendars you're subscribed to<br><code>calendar.calendarlist.readonly</code></td><td>Shows the calendars you can add events to, with each one's time zone, so you can pick one and so times are booked in that calendar's own zone.</td></tr>
+    <tr><td>Allow this application to run when you are not present<br><code>script.scriptapp</code></td><td>Creates one form-submit trigger so each new response is handled automatically, even when the form is closed.</td></tr>
+    <tr><td>Send email as you<br><code>script.send_mail</code></td><td>Sends emails you turn on: alerts to you when an event can't be added, approval notices to approvers, and confirmation or decline emails to the person who responded. Emails go from your own account and only to those people.</td></tr>
+    <tr><td>Display and run third-party web content in prompts and sidebars<br><code>script.container.ui</code></td><td>Shows the add-on's sidebar and dialogs inside Google Forms.</td></tr>
+    <tr><td>See your primary Google Account email address<br><code>userinfo.email</code></td><td>Checks your licence key against your email address, shows "Running as" so editors know whose account the add-on runs from, and lets you add yourself as a guest.</td></tr>
+  </table>
+
+  <h2>Where your data is stored</h2>
+  <ul>
+    <li><b>Your setup, activity log, waiting requests and retry list</b> are stored with the form, in Google's Apps Script storage for this add-on. The activity log keeps the last 200 actions (time, respondent name or email, event date, calendar, result).</li>
+    <li><b>Your licence key and plan</b> are stored in your Google account's add-on storage.</li>
+    <li><b>Events</b> are created on your calendars and belong to you like any other event.</li>
+    <li>The add-on makes no requests to BrightDesk or any other outside service. Licence keys are checked inside the add-on.</li>
+  </ul>
+
+  <h2>What we receive</h2>
+  <p>BrightDesk does not receive, copy or store your form responses, your calendar data or your emails. The add-on sends no analytics.</p>
+  <p>If you buy a plan, payment is handled by Stripe. We receive your name, email address, the plan bought and payment status so we can email your licence key and handle billing questions. We never see your full card number. See <a href="https://stripe.com/privacy">Stripe's privacy policy</a>.</p>
+  <p>If you contact support, we receive what you send us and use it only to answer you.</p>
+
+  <h2>Sharing</h2>
+  <p>We do not sell, rent or share Google user data with anyone. We do not use it for advertising, and we do not use it to train AI or machine-learning models. Nobody at BrightDesk can read your Google user data, because it never leaves your Google account.</p>
+  <p><b>Form to Calendar Bookings' use and transfer of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</b></p>
+
+  <h2>Who can see what inside your form</h2>
+  <p>Anyone who can edit the form can open the add-on and see its setup, activity log and waiting requests. Events are created with the calendar access of the person who turned the add-on on, shown on the dashboard as "Running as".</p>
+
+  <h2>Keeping and deleting data</h2>
+  <ul>
+    <li>Delete everything the add-on stored in a form: open the form, then Extensions, Form to Calendar Bookings, Open, and choose <b>Delete this form's add-on data</b>. This also turns it off for that form.</li>
+    <li>Remove the add-on and its access from your account at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, and uninstall it from the Google Workspace Marketplace (gear icon, Manage apps).</li>
+    <li>Deleting the form also deletes everything the add-on stored with it.</li>
+    <li>Events already created stay on your calendars until you delete them.</li>
+    <li>Purchase records are kept as long as tax and accounting rules require.</li>
+  </ul>
+
+  <h2>Security</h2>
+  <p>Your data is processed and stored by Google's infrastructure under your account. The add-on uses the narrowest permissions that let it work, and it can only open the form it is installed in.</p>
+
+  <h2>Children</h2>
+  <p>The add-on is meant for organizations and adults managing bookings. It is not directed to children under 13.</p>
+
+  <h2>Changes</h2>
+  <p>If we change this policy we will update the date above and, for important changes, say so in the add-on. Using the add-on after a change means you accept the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>Questions or requests about your data: <a href="https://brightdesk.dev/support">brightdesk.dev/support</a>.</p>
+</main>
+<footer><div class="wrap">
+  <div>&copy; 2026 BrightDesk &middot; <a href="../">Form to Calendar Bookings</a> &middot; <a href="../terms/">Terms</a> &middot; <a href="/support">Support</a></div>
+  <div>Google Forms&trade; and Google Calendar&trade; are trademarks of Google LLC.</div>
+</div></footer>
+</body>
+</html>
