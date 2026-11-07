@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sync Google Sheets to Google Calendar: Schedule to Calendar Sync | BrightDesk</title>
+<meta name="description" content="Sync Google Sheets to Google Calendar. Each row becomes an event that updates when the row changes, with no duplicates and the right time zone. Free plan, Pro from $49 a year.">
+<link rel="canonical" href="https://brightdesk.dev/schedule-to-calendar/">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="Schedule to Calendar Sync for Google Sheets™">
+<meta property="og:description" content="Each row of your sheet becomes a Google Calendar event, and stays in step with the row. No duplicates, right time zone.">
+<meta property="og:image" content="https://brightdesk.dev/schedule-to-calendar/assets/og-image.png">
+<meta property="og:url" content="https://brightdesk.dev/schedule-to-calendar/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Schedule to Calendar Sync for Google Sheets","applicationCategory":"BusinessApplication","operatingSystem":"Web (Google Workspace)","url":"https://brightdesk.dev/schedule-to-calendar/","image":"https://brightdesk.dev/schedule-to-calendar/assets/icon-512.png","publisher":{"@type":"Organization","name":"BrightDesk","url":"https://brightdesk.dev"},"offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"49","priceCurrency":"USD","name":"Pro, yearly"},{"@type":"Offer","price":"12","priceCurrency":"USD","name":"Pro, monthly"},{"@type":"Offer","price":"499","priceCurrency":"USD","name":"Organization, yearly"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does it change events I already have?","acceptedAnswer":{"@type":"Answer","text":"No. It creates its own events and never changes or removes events it didn't create."}},
+{"@type":"Question","name":"What if I sort the sheet?","acceptedAnswer":{"@type":"Answer","text":"Sort the whole sheet (Data, Sort sheet) and each row keeps its event."}},
+{"@type":"Question","name":"Can my team use it?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everyone who can edit the spreadsheet sees the same setup. Auto-sync runs for the person who turns it on."}},
+{"@type":"Question","name":"Is my data sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The add-on runs inside Google. BrightDesk never receives your sheet or calendar data."}}]}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/"><img src="assets/icon-128.png" alt="">BrightDesk</a>
+  <nav><a class="hide-sm" href="#how">How it works</a><a class="hide-sm" href="pricing/">Pricing</a><a class="hide-sm" href="help/">Help</a><a href="/support?addon=Schedule%20to%20Calendar%20Sync">Support</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="eyebrow">Schedule to Calendar Sync &middot; Google Sheets&trade; add-on</div>
+    <h1>Sync Google Sheets to Google Calendar</h1>
+    <p class="lead">Each row becomes an event, and stays in step with the row. No duplicates, right time zone.</p>
+    <div class="ctas">
+      <a class="btn primary" href="https://workspace.google.com/marketplace/search/Schedule%20to%20Calendar%20Sync">Install free from Google Workspace Marketplace</a>
+      <a class="btn" href="pricing/">See pricing</a>
+    </div>
+    <p class="small" style="margin-top:14px">Free plan forever. Pro from $49 a year.</p>
+  </div>
+  <div class="demo" role="img" aria-label="A row's start time changes from 10:00 to 11:00 in the sheet, and the same event moves to 11:00 in the calendar.">
+    <div>
+      <div class="lbl">Your sheet</div>
+      <div class="d-sheet">
+        <div class="d-row"><span>Title</span><span>Date</span><span>Start</span></div>
+        <div class="d-row"><span>Q1 kickoff</span><span>Jan 11</span><span>9:00</span></div>
+        <div class="d-row live"><span>New year reel</span><span>Jan 11</span><span class="d-t"><i class="old">10:00</i><i class="new">11:00</i></span></div>
+        <div class="d-row"><span>Planning guide</span><span>Jan 11</span><span>12:00</span></div>
+      </div>
+      <div class="d-stat"><i class="a">Synced 2027-01-08 14:03</i><i class="b">Synced 2027-01-08 14:05</i></div>
+    </div>
+    <div>
+      <div class="lbl">Your calendar, Mon 11</div>
+      <div class="d-cal">
+        <span class="h" style="top:20px">9 AM</span><span class="h" style="top:67px">10 AM</span><span class="h" style="top:114px">11 AM</span><span class="h" style="top:161px">12 PM</span>
+        <div class="d-ev a"><b>Q1 kickoff</b>9:00</div>
+        <div class="d-ev m"><b>New year reel</b><span class="d-t"><i class="old" style="left:0">10:00</i><i class="new" style="left:0;color:#fff">11:00, same event</i></span></div>
+        <div class="d-ev c"><b>Planning guide</b>12:00</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <div class="grid3">
+    <div class="card"><div class="icon-line"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg></div><h3>Times land at the right hour</h3><p>Dates and times from formulas work. If your spreadsheet and calendar are in different time zones, you choose which one your times mean.</p></div>
+    <div class="card"><div class="icon-line"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5.5A5.5 5.5 0 0 0 3.2 4.3"/><path d="M3 2v2.6h2.6"/><path d="M3 10.5a5.5 5.5 0 0 0 9.8 1.2"/><path d="M13 14v-2.6h-2.6"/></svg></div><h3>Re-run safely, no duplicates</h3><p>Each row is linked to its event. Edit the row and the same event updates. Run it again and nothing is copied.</p></div>
+    <div class="card"><div class="icon-line"><svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg></div><h3>Asks only for this spreadsheet and your events</h3><p>It never reads your other spreadsheets or changes your calendar settings or sharing. <a href="privacy/">What it accesses</a>.</p></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2>How it works</h2>
+  <p class="lead">Set it up once in about a minute. Nothing changes in your calendar until you preview and confirm.</p>
+  <div class="grid2" style="align-items:start">
+    <ol class="steps">
+      <li><b>Open the add-on.</b> In your spreadsheet: Extensions, Schedule to Calendar Sync, Open.</li>
+      <li><b>Match your columns.</b> Title, date, start, end, location and more, in any order. Most are matched for you.</li>
+      <li><b>Pick a calendar.</b> Any calendar you can add events to. If its time zone differs from the sheet's, you choose which one your times mean.</li>
+      <li><b>Preview, then sync.</b> See every event it will create, update or remove. A Sync status column then says Synced, or exactly what to fix.</li>
+    </ol>
+    <img class="shot" src="assets/screenshot-2-match-columns.png" width="1280" height="800" loading="lazy" alt="The setup sidebar matching the sheet's Title, Publish date, Start time and End time columns, with sample values.">
+  </div>
+  <div class="gallery" style="margin-top:28px">
+    <figure><img class="shot" src="assets/screenshot-3-preview.png" width="1280" height="800" loading="lazy" alt="The Preview dialog: 2 to create, 3 to update, 1 to remove, 2 need a look, with a row-by-row table."><figcaption>See every change before it happens.</figcaption></figure>
+    <figure><img class="shot" src="assets/screenshot-4-edit-a-row.png" width="1280" height="800" loading="lazy" alt="A row's start time changed from 13:00 to 14:00 and the same calendar event moved to 14:00."><figcaption>Edit a row. The same event updates.</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <h2>Built for any list of dates you keep in a sheet</h2>
+  <div class="uses" style="margin-top:20px">
+    <div class="card"><h3>Content calendar</h3><p>Posts, newsletters and videos, colored by channel.</p></div>
+    <div class="card"><h3>Class schedule</h3><p>Weekly classes that repeat until the term ends.</p></div>
+    <div class="card"><h3>Shift rota</h3><p>Overnight shifts end the next day, at the right hour.</p></div>
+    <div class="card"><h3>Project milestones</h3><p>All-day and multi-day deadlines from a project plan.</p></div>
+    <div class="card"><h3>Sports season</h3><p>Fixtures with locations, sent to each team's calendar.</p></div>
+    <div class="card"><h3>Room bookings</h3><p>Bookings with guests, invitations and Google Meet links.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>What it can access</h2>
+  <p class="lead">Google shows these permissions when you install. Each is used only as described.</p>
+  <div class="perm">
+    <div><b>This spreadsheet only</b>Reads your schedule rows and writes the Sync ID, Event link and Sync status columns. Never your other spreadsheets.</div>
+    <div><b>Calendar events</b>Creates, updates and removes the events that come from your rows. Never your calendar settings or sharing.</div>
+    <div><b>Your calendar list</b>So you can pick a calendar, and to read each calendar's time zone.</div>
+    <div><b>Your email address</b>To match a licence key to your account.</div>
+    <div><b>Run when you're not present</b>Only if you turn on auto-sync, so edits sync by themselves.</div>
+    <div><b>Send email as you</b>Only to you, at most once a day, if auto-sync fails or stops.</div>
+  </div>
+  <p class="small" style="margin-top:14px">Plus permission to show its sidebar and dialogs inside Google Sheets. Nothing is sent to BrightDesk. Full details in the <a href="privacy/">privacy policy</a>.</p>
+</div></section>
+
+<section class="alt" id="pricing"><div class="wrap">
+  <h2>Pricing</h2>
+  <p class="lead">The free plan has every date and time feature. Pro adds auto-sync and the extras teams need.</p>
+  <div class="grid3">
+    <div class="card plan">
+      <h3>Free</h3><div class="price">$0</div><p class="small">Forever</p>
+      <ul class="ticks"><li>One tab into one calendar</li><li>Sync now, preview, undo</li><li>Correct time zones and formula dates</li><li>All-day, overnight and multi-day events</li><li>Event link and sync status on every row</li></ul>
+    </div>
+    <div class="card plan featured">
+      <h3>Pro</h3><div class="price">$49 <small>/ year</small></div><p class="small">or $12 / month</p>
+      <ul class="ticks"><li>Auto-sync when the sheet changes</li><li>Rows to different calendars</li><li>Guests, invitations, Google Meet</li><li>Colors, repeats, reminders</li><li>Any number of tabs and spreadsheets</li></ul>
+    </div>
+    <div class="card plan">
+      <h3>Organization</h3><div class="price">$499 <small>/ year</small></div><p class="small">Everyone on one Google Workspace domain</p>
+      <ul class="ticks"><li>Pro for every account on your domain</li><li>One key for the whole team</li><li>Works with admin-wide installs</li></ul>
+    </div>
+  </div>
+  <p style="margin-top:20px"><a class="btn primary" href="pricing/">Compare plans</a></p>
+</div></section>
+
+<section><div class="wrap" style="max-width:820px">
+  <h2>Questions</h2>
+  <details><summary>Does it change events I already have?</summary><p>No. It creates its own events and never changes or removes events it didn't create, including ones you imported from a sheet before.</p></details>
+  <details><summary>What if I sort the sheet?</summary><p>Sort the whole sheet (Data, Sort sheet) and each row keeps its event. Copying a synced row is fine too: the copy gets its own event.</p></details>
+  <details><summary>Can my team use it?</summary><p>Yes. Everyone who can edit the spreadsheet sees the same setup. Auto-sync runs for the person who turns it on, and the sidebar says who that is.</p></details>
+  <details><summary>Do formulas work?</summary><p>Yes. A date like <code>=A2+7</code> is read by its result, the same as a typed date. Edits made by formulas sync when the spreadsheet opens (Pro) or when you press Sync now.</p></details>
+  <details><summary>What does it store?</summary><p>Your setup and a short sync history inside the spreadsheet's add-on storage, and three columns in your sheet. Nothing is sent to BrightDesk servers.</p></details>
+  <details><summary>Is my data sent anywhere?</summary><p>No. The add-on runs inside Google. BrightDesk never receives your sheet or calendar data. Read the <a href="privacy/">privacy policy</a>.</p></details>
+</div></section>
+
+<section class="alt"><div class="wrap" style="text-align:center">
+  <h2>Need something custom built?</h2>
+  <p class="lead">BrightDesk builds custom Google Workspace automations: syncs, approvals, reports and add-ons.</p>
+  <a class="btn primary" href="https://brightdesk.dev/services/">Talk to us</a>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div>&copy; 2026 BrightDesk &middot; <a href="privacy/">Privacy</a> &middot; <a href="terms/">Terms</a> &middot; <a href="help/">Help</a> &middot; <a href="/support?addon=Schedule%20to%20Calendar%20Sync">Support</a> &middot; <a href="https://brightdesk.dev/services/">Need something custom built?</a></div>
+  <div>Google Sheets&trade; and Google Calendar&trade; are trademarks of Google LLC. This add-on is not made or endorsed by Google.</div>
+</div></footer>
+</body>
+</html>

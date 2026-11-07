@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy: Schedule to Calendar Sync | BrightDesk</title>
+<meta name="description" content="How Schedule to Calendar Sync for Google Sheets accesses, uses, stores and shares Google user data.">
+<link rel="canonical" href="https://brightdesk.dev/schedule-to-calendar/privacy/">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="../"><img src="../assets/icon-128.png" alt="">Schedule to Calendar Sync</a>
+  <nav><a class="hide-sm" href="../">Overview</a><a class="hide-sm" href="../terms/">Terms</a><a href="/support?addon=Schedule%20to%20Calendar%20Sync">Support</a></nav>
+</div></header>
+<main class="doc">
+  <h1>Privacy Policy</h1>
+  <p class="meta">Schedule to Calendar Sync for Google Sheets&trade; &middot; Effective 6 November 2026</p>
+
+  <div class="note"><b>In short:</b> the add-on runs inside your own Google account. It reads the spreadsheet you open it in and creates events in the calendars you choose. BrightDesk runs no servers for it and never receives your spreadsheet or calendar data.</div>
+
+  <h2>Who we are</h2>
+  <p>Schedule to Calendar Sync ("the add-on") is made by BrightDesk (<a href="https://brightdesk.dev">brightdesk.dev</a>). Contact us at <a href="/support?addon=Schedule%20to%20Calendar%20Sync">brightdesk.dev/support</a>.</p>
+
+  <h2>What the add-on accesses, and why</h2>
+  <p>When you install the add-on, Google asks you to allow the permissions below. The add-on uses each one only for the purpose shown.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Permission</th><th>What it is used for</th></tr>
+    <tr><td>View and manage spreadsheets that this application has been installed in<br><code>spreadsheets.currentonly</code></td><td>Reads the header row and schedule rows of the tab you choose, in the spreadsheet you opened the add-on in, so each row can become an event. Adds three columns at the end of that tab (Sync ID, Event link and Sync status) and keeps them up to date. It cannot open any other spreadsheet.</td></tr>
+    <tr><td>View and edit events on all your calendars<br><code>calendar.events</code></td><td>Creates, updates, moves and removes the events that come from your rows, in the calendars you choose. It only works with events it created: it finds them by a hidden tag it adds to each one, and never reads, changes or removes any other event.</td></tr>
+    <tr><td>See the list of Google calendars you're subscribed to<br><code>calendar.calendarlist.readonly</code></td><td>Lists the calendars you can add events to, so you can pick one, and reads each calendar's time zone so times land at the right hour. It never changes calendar settings or sharing.</td></tr>
+    <tr><td>Allow this application to run when you are not present<br><code>script.scriptapp</code></td><td>Only if you turn on auto-sync (Pro): creates triggers so edits to the spreadsheet, deleted rows and opening the spreadsheet sync events without you pressing Sync now. Turning auto-sync off removes them.</td></tr>
+    <tr><td>Send email as you<br><code>script.send_mail</code></td><td>Only with auto-sync: emails you, at most once a day, if auto-sync fails or stops. Emails go from your account to your own address only.</td></tr>
+    <tr><td>Display and run third-party web content in prompts and sidebars inside Google applications<br><code>script.container.ui</code></td><td>Shows the add-on's sidebar, the Preview dialog and the Help dialog inside Google Sheets.</td></tr>
+    <tr><td>See your primary Google Account email address<br><code>userinfo.email</code></td><td>Checks your licence key against your email address, and shows other editors who turned auto-sync on.</td></tr>
+  </table></div>
+  <p>The add-on has no permission to call outside services, so it cannot send your data anywhere.</p>
+
+  <h2>Where your data is stored</h2>
+  <ul>
+    <li><b>In your spreadsheet:</b> the Sync ID, Event link and Sync status columns the add-on adds to your tab.</li>
+    <li><b>In the spreadsheet's add-on storage</b> (Google Apps Script document storage, kept with the spreadsheet): your setup (the tab, the header row, which column holds which field, the calendar you picked and its name, your settings and color rules, and the email address of the person who turned auto-sync on); for each synced row, its Sync ID, the calendar it went to and a fingerprint used to tell whether the row changed (not the row's contents); and a history of the last 100 syncs (time, who ran it, how many events were created, updated or removed, and the Sync IDs needed for Undo).</li>
+    <li><b>In your Google account's add-on storage:</b> your licence key, the ID of the spreadsheet using your free plan, and small markers so the review prompt and failure emails aren't repeated.</li>
+    <li><b>On each event it creates:</b> the details from your row, a link back to the spreadsheet, and hidden private properties holding the spreadsheet ID, the tab ID and the row's Sync ID, so the add-on can find and update its own events later. They are not shown in Google Calendar.</li>
+  </ul>
+
+  <h2>What we receive</h2>
+  <p>BrightDesk does not receive, copy or store your spreadsheet contents, your calendar data or your emails. The add-on sends no analytics.</p>
+  <p>When something goes wrong, the add-on writes a short technical error message (for example "mail failed: Service invoked too many times for one day") to Google Cloud Logging in BrightDesk's Google Cloud project, along with an anonymous "first sync" marker so we can count how many people finish setup. These lines contain no spreadsheet contents, event details or email addresses. Google keeps them for 30 days.</p>
+  <p>If you buy a plan, payment is handled by Stripe. We receive your name, email address, the Google account or domain you enter at checkout, the plan bought and payment status, so we can email your licence key and handle billing questions. We never see your full card number. See <a href="https://stripe.com/privacy">Stripe's privacy policy</a>.</p>
+  <p>If you contact support, we receive what you send us and use it only to answer you.</p>
+
+  <h2>Sharing</h2>
+  <p>We do not sell, rent or share Google user data with anyone. We do not use it for advertising, and we do not use it to develop, improve or train AI or machine-learning models. Nobody at BrightDesk can read your Google user data, because it never leaves your Google account.</p>
+  <p><b>Schedule to Calendar Sync's use and transfer of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</b></p>
+
+  <h2>Who can see what inside your spreadsheet</h2>
+  <p>Anyone who can edit the spreadsheet can open the add-on and see its setup and sync history, including the email address of whoever ran each sync and of whoever turned auto-sync on. Events are created with the calendar access of the person who syncs; with auto-sync, that is the person who turned it on.</p>
+
+  <h2>Keeping and deleting data</h2>
+  <ul>
+    <li><b>Remove the events:</b> in the add-on, Settings, type REMOVE and choose <b>Remove all events</b>. This deletes every event the spreadsheet created, in every calendar it used, and clears the stored per-row records.</li>
+    <li><b>Remove the columns:</b> delete the Sync ID, Event link and Sync status columns like any other column.</li>
+    <li><b>Remove your licence key:</b> in the add-on, Upgrade, <b>Remove the licence from this account</b>.</li>
+    <li><b>Remove the add-on:</b> in Google Sheets, Extensions, Add-ons, Manage add-ons, then the add-on's menu, Uninstall. You can also remove its access at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Turn auto-sync off first so its triggers are removed.</li>
+    <li>Your setup and sync history stay in the spreadsheet's add-on storage until the spreadsheet is deleted, so a reinstall picks up where you left off. Deleting the spreadsheet deletes them.</li>
+    <li>Events you don't remove stay on your calendars like any other event.</li>
+    <li>Purchase records are kept as long as tax and accounting rules require.</li>
+  </ul>
+
+  <h2>Security</h2>
+  <p>Your data is processed and stored by Google's infrastructure under your account. The add-on asks for the narrowest permissions that let it work: it can only open the spreadsheet it is used in, and it works only with events, not calendar settings or sharing.</p>
+
+  <h2>Children</h2>
+  <p>The add-on is meant for organizations and adults managing schedules. It is not directed to children under 13.</p>
+
+  <h2>Changes</h2>
+  <p>If we change this policy we will update the date above and, for important changes, say so in the add-on. Using the add-on after a change means you accept the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>Questions or requests about your data: <a href="/support?addon=Schedule%20to%20Calendar%20Sync">brightdesk.dev/support</a>.</p>
+</main>
+<footer><div class="wrap">
+  <div>&copy; 2026 BrightDesk &middot; <a href="../">Schedule to Calendar Sync</a> &middot; <a href="../terms/">Terms</a> &middot; <a href="../help/">Help</a> &middot; <a href="https://brightdesk.dev/services/">Need something custom built?</a></div>
+  <div>Google Sheets&trade; and Google Calendar&trade; are trademarks of Google LLC.</div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manage your licence: Schedule to Calendar Sync | BrightDesk</title>
+<meta name="description" content="Manage your Schedule to Calendar Sync plan: billing, invoices, cancelling, resending your licence key, and moving it to another Google account.">
+<link rel="canonical" href="https://brightdesk.dev/schedule-to-calendar/manage/">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  .resend{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .resend input{flex:1;min-width:220px;height:46px;border:1px solid var(--line);border-radius:8px;padding:0 12px;font:16px Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  .resend input:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="../"><img src="../assets/icon-128.png" alt="">Schedule to Calendar Sync</a>
+  <nav><a class="hide-sm" href="../">Overview</a><a class="hide-sm" href="../help/">Help</a><a href="/support?addon=Schedule%20to%20Calendar%20Sync">Support</a></nav>
+</div></header>
+<main class="doc">
+  <h1>Manage your licence</h1>
+  <p class="meta">Schedule to Calendar Sync Pro and Organization</p>
+
+  <div class="cards">
+    <div class="card">
+      <h2>Billing</h2>
+      <p>Update your card, download invoices, switch between monthly and yearly, or cancel. Sign in with the email you paid with; Stripe emails you a one-time code.</p>
+      <p><a class="btn primary" href="https://billing.stripe.com/p/login/REPLACE_WITH_YOUR_CUSTOMER_PORTAL_LINK">Open billing portal</a></p>
+    </div>
+
+    <div class="card">
+      <h2>Resend my key</h2>
+      <p>Enter the email you used at checkout. We'll send every active key for it.</p>
+      <form class="resend" id="resend" novalidate>
+        <label class="sr" for="em" style="position:absolute;left:-9999px">Email used at checkout</label>
+        <input type="email" id="em" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn primary" type="submit" id="go">Resend my key</button>
+      </form>
+      <p class="small" id="msg" role="status" aria-live="polite" style="margin-top:10px"></p>
+    </div>
+
+    <div class="card">
+      <h2>Use a different Google account</h2>
+      <p>Keys are tied to one Google account (Pro) or one Google Workspace domain (Organization). Write to us at <a href="/support?addon=Schedule%20to%20Calendar%20Sync&amp;category=Billing">brightdesk.dev/support</a> with your order reference and the new account, and we'll send a new key within one working day, at no cost.</p>
+    </div>
+
+    <div class="card">
+      <h2>Monthly plan</h2>
+      <p>Monthly keys last until your next payment plus 7 days. Each renewal emails a fresh key; paste it the same way (Upgrade, "Already have a key?", Activate). The sidebar shows a renewal notice in the last 7 days before a key ends.</p>
+    </div>
+
+    <div class="card">
+      <h2>When a key ends</h2>
+      <p>Nothing is deleted. Auto-sync stops and its owner gets one email; Pro columns stop applying; Sync now keeps working on the free plan. Paste a new key and Pro is back straight away.</p>
+    </div>
+
+    <div class="card">
+      <h2>Organization plan: give it to your team</h2>
+      <p>Share the one key with your team. Anyone signed in with an account on your domain can paste it in their own sidebar. A Google Workspace admin can install the add-on for everyone from the Admin console (Apps, Google Workspace Marketplace apps).</p>
+    </div>
+
+    <div class="card">
+      <h2>Cancelling and refunds</h2>
+      <p>Cancel any time in the billing portal. Pro stays on until the end of the period you paid for, then the add-on returns to the free plan. If it didn't work for you, contact us within 14 days of your first payment for a full refund, no questions. Full terms are on the <a href="../terms/">terms page</a>.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:28px" class="small">Anything else: <a href="/support?addon=Schedule%20to%20Calendar%20Sync">brightdesk.dev/support</a>. We usually reply within 24 hours.</p>
+</main>
+<footer><div class="wrap">
+  <div>&copy; 2026 BrightDesk &middot; <a href="../">Schedule to Calendar Sync</a> &middot; <a href="../privacy/">Privacy</a> &middot; <a href="../terms/">Terms</a> &middot; <a href="../help/">Help</a> &middot; <a href="https://brightdesk.dev/services/">Need something custom built?</a></div>
+  <div><a href="/support?addon=Schedule%20to%20Calendar%20Sync">Support</a></div>
+</div></footer>
+<script>
+  // Once web/api/resend-key.js is deployed on Vercel, put its full URL here, e.g.
+  // 'https://brightdesk-keys.vercel.app/api/resend-key'. While it is empty, the form opens the support form instead.
+  var RESEND_ENDPOINT = '';
+  (function () {
+    var f = document.getElementById('resend'), em = document.getElementById('em'), msg = document.getElementById('msg'), go = document.getElementById('go');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = em.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v)) { msg.textContent = 'Enter the email address you used at checkout.'; em.focus(); return; }
+      if (!RESEND_ENDPOINT) {
+        location.href = '/support?addon=Schedule%20to%20Calendar%20Sync&category=Billing&email=' + encodeURIComponent(v) + '&message=' + encodeURIComponent('Please resend my licence key.');
+        return;
+      }
+      go.disabled = true; msg.textContent = 'Sending';
+      fetch(RESEND_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: v }) })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { msg.textContent = j.message || 'If that email has a licence, we have sent it.'; })
+        .catch(function () { msg.textContent = 'If that email has a licence, we have sent it. Nothing after a few minutes? Write to us at brightdesk.dev/support.'; })
+        .then(function () { go.disabled = false; });
+    });
+  })();
+</script>
+</body>
+</html>

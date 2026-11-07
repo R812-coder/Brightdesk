@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help: Schedule to Calendar Sync for Google Sheets™ | BrightDesk</title>
+<meta name="description" content="How to sync Google Sheets to Google Calendar with Schedule to Calendar Sync: setup, column matching, dates and time zones, every Sync status message and its fix, auto-sync, removing events.">
+<link rel="canonical" href="https://brightdesk.dev/schedule-to-calendar/help/">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="../"><img src="../assets/icon-128.png" alt="">Schedule to Calendar Sync</a>
+  <nav><a class="hide-sm" href="../">Overview</a><a class="hide-sm" href="../pricing/">Pricing</a><a href="/support?addon=Schedule%20to%20Calendar%20Sync">Support</a></nav>
+</div></header>
+<main class="doc">
+  <h1>Help</h1>
+  <p class="meta">Schedule to Calendar Sync for Google Sheets&trade;. Each row of your schedule becomes a Google Calendar&trade; event and stays in step with the row.</p>
+  <ul class="toc">
+    <li><a href="#getting-started">Getting started</a></li>
+    <li><a href="#how-columns-are-matched">How columns are matched</a></li>
+    <li><a href="#dates-and-times">Dates and times</a></li>
+    <li><a href="#why-a-row-didn-t-sync">Why a row didn't sync</a></li>
+    <li><a href="#auto-sync-pro">Auto-sync (Pro)</a></li>
+    <li><a href="#sorting-and-moving-rows">Sorting and moving rows</a></li>
+    <li><a href="#copying-the-spreadsheet">Copying the spreadsheet</a></li>
+    <li><a href="#removing-events">Removing events</a></li>
+    <li><a href="#plans-and-licence-keys">Plans and licence keys</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+  </ul>
+  <img class="shot" src="../assets/screenshot-2-match-columns.png" width="1280" height="800" loading="lazy" alt="The setup sidebar matching spreadsheet columns to event fields." style="margin:16px 0 8px">
+
+<h2 id="getting-started">Getting started</h2>
+<ol>
+<li>Open the spreadsheet, then Extensions, Schedule to Calendar Sync, Open.</li>
+<li>Pick the tab that holds your schedule and check which row has the headers.</li>
+<li>Match your columns. Most are matched for you. Title and Start date are the only required ones.</li>
+<li>Pick a calendar. If the calendar and the spreadsheet use different time zones, choose which one your times are in.</li>
+<li>Press Preview to see every event that will be created, updated or removed, then Sync.</li>
+</ol>
+<p>After the first sync, three columns appear at the end of your sheet: Sync ID, Event link and Sync status. You can hide Sync ID, but don't edit it: it ties the row to its event.</p>
+
+<h2 id="how-columns-are-matched">How columns are matched</h2>
+<p>Columns are found by their header text, so their order doesn't matter and you can insert columns at any time. A header matches when it is one of these words, or contains one of them.</p>
+<div class="tablewrap"><table><thead><tr><th>Field</th><th>Header words</th><th>What it accepts</th></tr></thead><tbody>
+<tr><td>Title (required)</td><td>title, event, name, subject, summary, task, activity, session, class</td><td>Any text. A row without a title waits.</td></tr>
+<tr><td>Start date (required)</td><td>start date, date, start, day, when, from</td><td>A date cell, a date-time cell, a formula that returns a date, or text like 2026-11-06, 6/11/2026, Nov 6 2026</td></tr>
+<tr><td>Start time</td><td>start time, time, begins, from time</td><td>A time cell, or text like 9:00, 9am, 14:30. Blank means all day.</td></tr>
+<tr><td>End date</td><td>end date, end, until, to, finish</td><td>Like Start date. For all-day events the end date is included.</td></tr>
+<tr><td>End time</td><td>end time, to time, finish time, ends</td><td>Like Start time</td></tr>
+<tr><td>Duration</td><td>duration, length, minutes, mins, hours</td><td>90, 90 min, 1.5 h, 1h 30m, 1:30. A plain number is hours when the header says hours.</td></tr>
+<tr><td>All day</td><td>all day, allday</td><td>A checkbox, or yes, y, x, 1</td></tr>
+<tr><td>Location</td><td>location, where, venue, address, place, room</td><td>Text</td></tr>
+<tr><td>Description</td><td>description, notes, details, agenda, info</td><td>Text. Line breaks are kept.</td></tr>
+<tr><td>Guests (Pro)</td><td>guests, attendees, invitees, participants, emails</td><td>Emails separated by commas, semicolons, spaces or line breaks</td></tr>
+<tr><td>Calendar (Pro)</td><td>calendar</td><td>A calendar's name exactly as in Google Calendar, or its ID</td></tr>
+<tr><td>Color (Pro)</td><td>color, colour</td><td>Lavender, Sage, Grape, Flamingo, Banana, Tangerine, Peacock, Graphite, Blueberry, Basil, Tomato, a number 1 to 11, or a word from your color rules</td></tr>
+<tr><td>Status (Pro)</td><td>status, state</td><td>A word from the cancel list (cancelled, cancel, deleted and so on) removes the event</td></tr>
+<tr><td>Repeat (Pro)</td><td>repeat, repeats, recurrence, frequency</td><td>daily, weekdays, weekly, every 2 weeks, biweekly, monthly, yearly, or an RRULE: line</td></tr>
+<tr><td>Repeat until (Pro)</td><td>repeat until, until date, ends on</td><td>A date</td></tr>
+<tr><td>Reminder (Pro)</td><td>reminder, reminders, alert, notify</td><td>10, 30 min, 1 hour, 1 day. Up to 5, separated by commas.</td></tr>
+<tr><td>Google Meet (Pro)</td><td>meet, video, google meet, conference</td><td>A checkbox, or yes, y, x, 1</td></tr>
+<tr><td>Time zone (Pro)</td><td>time zone, timezone, tz</td><td>A zone name like Europe/London</td></tr>
+</tbody></table></div>
+<p>If one cell holds both the date and the time, match it to Start date only. If neither End nor Duration is matched, timed events last the default length (60 minutes unless you change it).</p>
+
+<h2 id="dates-and-times">Dates and times</h2>
+<ul>
+<li><b>Formulas work.</b> A cell like <code>=A2+7</code> is read by its result, the same as a typed date.</li>
+<li><b>Time zones.</b> By default your times are read in the calendar's time zone. If the spreadsheet uses a different zone, setup asks which one you mean. You can change it in Settings. With Pro, a Time zone column sets the zone row by row.</li>
+<li><b>Overnight.</b> An end time earlier than the start time, with no end date, ends the next day. 22:00 to 02:00 is a four-hour event.</li>
+<li><b>All-day events.</b> A row with no start time, or with All day ticked, is an all-day event. The end date in your sheet is the last day of the event, so 6 Nov to 8 Nov covers three days.</li>
+<li><b>Text dates.</b> 2026-11-06 always works. 6/11/2026 is read day first unless your spreadsheet's locale is United States, Canada or the Philippines. A part over 12 settles the order.</li>
+</ul>
+<p class="meta">The spreadsheet's time zone and locale are under File, Settings.</p>
+
+<h2 id="why-a-row-didn-t-sync">Why a row didn't sync</h2>
+<p>The Sync status column says what happened to each row. Fix the row and sync again.</p>
+<div class="tablewrap"><table><thead><tr><th>Sync status</th><th>What to do</th></tr></thead><tbody>
+<tr><td>Synced 2027-01-08 14:03</td><td>Nothing. The event was created or updated at that time.</td></tr>
+<tr><td>Waiting: add a title</td><td>The row has data but no title. Add one.</td></tr>
+<tr><td>Waiting: add a start date</td><td>Add a start date.</td></tr>
+<tr><td>Check: end is before start</td><td>Fix the end date or time so it comes after the start.</td></tr>
+<tr><td>Check: can't read the date "..."</td><td>Type the date as 2026-11-06, or format the cell as a date.</td></tr>
+<tr><td>Check: can't read the time "..."</td><td>Type the time as 9:00, 9am or 14:30.</td></tr>
+<tr><td>Check: can't read the duration "..."</td><td>Use 90, 90 min, 1.5 h or 1h 30m.</td></tr>
+<tr><td>Check: no calendar named "..."</td><td>Use the calendar's exact name from Google Calendar. You must be able to add events to it.</td></tr>
+<tr><td>Check: "..." isn't an email</td><td>That guest was skipped; the event still synced. Fix the address.</td></tr>
+<tr><td>Check: unknown color "..."</td><td>Use one of the 11 color names, or add a color rule in Settings.</td></tr>
+<tr><td>Check: unknown time zone "..."</td><td>Use a zone name like Europe/London or America/New_York.</td></tr>
+<tr><td>Check: can't read the repeat "..."</td><td>Use daily, weekdays, weekly, every 2 weeks, monthly or yearly.</td></tr>
+<tr><td>Removed (status ...)</td><td>The Status column says cancel, so the event was removed. Clear the status to bring it back.</td></tr>
+<tr><td>Removed (row deleted)</td><td>The row was deleted and Settings says to remove its event.</td></tr>
+<tr><td>Not synced yet: Google Calendar was busy. Will retry.</td><td>Google limited how fast events can be added. Sync again in a minute.</td></tr>
+<tr><td>Not synced: no permission on that calendar</td><td>Ask the calendar's owner for "Make changes to events", or pick another calendar.</td></tr>
+<tr><td>Pro feature: ...</td><td>A Pro column has a value but you're on the Free plan. The rest of the event synced.</td></tr>
+<tr><td>Limit: 5,000 synced rows per spreadsheet</td><td>Move older rows to a new spreadsheet.</td></tr>
+</tbody></table></div>
+<p>If the sidebar says a column is gone, a matched header was renamed or deleted. Open Edit setup and match it again.</p>
+
+<h2 id="auto-sync-pro">Auto-sync (Pro)</h2>
+<ul>
+<li>Turn it on from the sidebar's Home screen. After that, editing a row updates its event within seconds.</li>
+<li>Edits made by people trigger it. Changes made by formulas, imports or other add-ons don't, because Google Sheets doesn't report them. Keep "Also sync when the spreadsheet opens" on to catch those.</li>
+<li>Auto-sync runs as the person who turned it on, using their Pro licence. Only they can turn it off. If their licence ends, auto-sync stops and they get one email.</li>
+<li>If something fails during auto-sync, the person who turned it on gets at most one email a day.</li>
+</ul>
+
+<h2 id="sorting-and-moving-rows">Sorting and moving rows</h2>
+<p>Sort the whole sheet (Data, Sort sheet) so each row's Sync ID moves with it. Sorting only some columns separates rows from their Sync ID: their events are then relabelled on the next sync, never lost or duplicated, but it's best avoided.</p>
+<p>Copying a synced row is fine: the copy gets its own Sync ID and its own event.</p>
+
+<h2 id="copying-the-spreadsheet">Copying the spreadsheet</h2>
+<p>A copy of the spreadsheet creates its own events. It never changes or removes the original's events. Open the copy, set it up, and sync.</p>
+
+<h2 id="removing-events">Removing events</h2>
+<ul>
+<li><b>Undo last sync</b> (Settings) removes the events the last Sync now created.</li>
+<li><b>Remove all events this sheet created</b> (Settings) removes every event this spreadsheet made, in every calendar it used. Type REMOVE to confirm.</li>
+<li><b>Status column</b> (Pro): set Status to Cancelled to remove one event; clear it to bring the event back.</li>
+<li><b>Deleted rows</b> (Pro): in Settings, choose "Remove its event". If a sync would remove more than 10 events, or more than a fifth of a tab's events at once, nothing is removed until you confirm in the sidebar.</li>
+</ul>
+<p>The add-on never changes events it didn't create.</p>
+
+<h2 id="plans-and-licence-keys">Plans and licence keys</h2>
+<p><b>Free:</b> one spreadsheet at a time, one tab, one calendar, Sync now, preview, undo, and every date and time feature. You can move the free spreadsheet slot at any time.</p>
+<p><b>Pro</b> ($49 a year or $12 a month) adds auto-sync, routing to any calendar, guests and invitations, Google Meet links, colors, repeats, reminders, cancelling by status, removing events of deleted rows, a time zone column, and any number of tabs and spreadsheets. <b>Organization</b> ($499 a year) gives Pro to everyone at your email domain.</p>
+<p>After you buy, your licence key arrives by email. In the sidebar, open Upgrade, paste the key under "Already have a key?" and press Activate. The key works for the Google account you entered at checkout. Lost it? Use Resend my key at <a href="../manage/">the manage page</a>.</p>
+
+<h2 id="privacy">Privacy</h2>
+<p>The add-on asks for the least access it can:</p>
+<ul>
+<li><b>This spreadsheet only</b>, to read your schedule rows and write the Sync ID, Event link and Sync status columns. It never reads your other spreadsheets.</li>
+<li><b>Calendar events</b>, to create, update and remove the events that come from your rows. It never changes calendar settings or sharing.</li>
+<li><b>Your calendar list</b>, so you can pick a calendar, and to read each calendar's time zone.</li>
+<li><b>Your email address</b>, to match your licence key to your account.</li>
+<li><b>Sending email</b>, only to you, when auto-sync fails or stops.</li>
+</ul>
+<p>Your setup and a short sync history are stored inside this spreadsheet's add-on storage. Your licence key is stored in your Google account's add-on storage. Nothing is sent to BrightDesk: there is no BrightDesk server that receives your sheet or calendar data. Full policy: <a href="../privacy/">the privacy policy</a>.</p>
+
+  <h2 id="contact">Still stuck?</h2>
+  <p>Write to us at <a href="/support?addon=Schedule%20to%20Calendar%20Sync">brightdesk.dev/support</a> with the Sync status text you see. We usually reply within 24 hours.</p>
+</main>
+<footer><div class="wrap">
+  <div>&copy; 2026 BrightDesk &middot; <a href="../">Schedule to Calendar Sync</a> &middot; <a href="../privacy/">Privacy</a> &middot; <a href="../terms/">Terms</a> &middot; <a href="https://brightdesk.dev/services/">Need something custom built?</a></div>
+  <div>Google Sheets&trade; and Google Calendar&trade; are trademarks of Google LLC.</div>
+</div></footer>
+</body>
+</html>

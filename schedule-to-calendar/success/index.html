@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Thank you: Schedule to Calendar Sync | BrightDesk</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="../"><img src="../assets/icon-128.png" alt="">Schedule to Calendar Sync</a>
+  <nav><a class="hide-sm" href="../manage/">Manage plan</a><a href="/support?addon=Schedule%20to%20Calendar%20Sync">Support</a></nav>
+</div></header>
+<main class="doc">
+  <div class="check"><svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="#0E6B5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg></div>
+  <h1 id="title">You're on Pro. Thank you.</h1>
+  <p class="meta"><span id="sub">Your licence key is on its way to the Google account you entered at checkout.</span> <span id="when">It arrives within 12 hours, usually much sooner.</span></p>
+  <p class="small" id="ref" style="display:none"></p>
+
+  <h2>When it arrives</h2>
+  <div class="grid2" style="align-items:start">
+    <ol class="steps">
+      <li><b>Open your spreadsheet.</b> Any spreadsheet where you use the add-on.</li>
+      <li><b>Extensions, Schedule to Calendar Sync, Open.</b> The sidebar opens on the right.</li>
+      <li><b>Upgrade.</b> It's at the bottom of the sidebar's Home screen ("Free plan. Upgrade").</li>
+      <li><b>Paste the key under "Already have a key?" and press Activate.</b> You'll see "Pro is active until" and the date.</li>
+    </ol>
+    <img src="../assets/upgrade-panel.png" width="300" height="560" alt="The add-on's Upgrade panel with a licence key pasted under Already have a key? and the Activate button." style="max-width:300px;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;justify-self:center">
+  </div>
+
+  <div class="warn" id="emailNote"><b>Didn't get it?</b> Check spam and Promotions, then use <b>Resend my key</b> on the <a href="../manage/">manage page</a>. The key works for the Google account you entered at checkout; if you use a different one, the manage page says how to move it.</div>
+
+  <div class="card" id="orgCard" style="display:none;margin:16px 0">
+    <h2 style="font-size:20px;margin-top:0">Sharing with your team</h2>
+    <p>Your Organization key works for every Google account on your domain. Send it to your team: each person pastes the same key in their own sidebar. A Google Workspace admin can also install the add-on for everyone from the Admin console (Apps, Google Workspace Marketplace apps).</p>
+  </div>
+
+  <h2>Next: turn on auto-sync</h2>
+  <p>On the sidebar's Home screen, switch on <b>Sync automatically when the sheet changes</b>. Edits then update their events within seconds, and "Also sync when the spreadsheet opens" catches changes made by formulas.</p>
+
+  <p style="margin-top:28px"><a class="btn primary" href="../manage/">Manage your plan</a> <a class="btn" href="../help/">Read the help</a></p>
+</main>
+<footer><div class="wrap">
+  <div>&copy; 2026 BrightDesk &middot; <a href="../">Schedule to Calendar Sync</a> &middot; <a href="../privacy/">Privacy</a> &middot; <a href="../terms/">Terms</a> &middot; <a href="../help/">Help</a> &middot; <a href="https://brightdesk.dev/services/">Need something custom built?</a></div>
+  <div><a href="/support?addon=Schedule%20to%20Calendar%20Sync">Support</a></div>
+</div></footer>
+<script>
+  // Set to true once the Stripe webhook (web/api/stripe-webhook.js) emails keys automatically.
+  var KEYS_AUTOMATIC = false;
+  (function () {
+    var q = new URLSearchParams(location.search);
+    if (KEYS_AUTOMATIC) document.getElementById('when').textContent = 'It usually arrives within 2 minutes.';
+    var sid = q.get('session_id') || '';
+    if (/^cs_/.test(sid)) {
+      var ref = document.getElementById('ref');
+      ref.textContent = 'Order reference: ' + sid.slice(-8) + ' (quote it if you contact support).';
+      ref.style.display = 'block';
+    }
+    if ((q.get('plan') || '').toLowerCase() === 'org') {
+      document.getElementById('title').textContent = 'Your organization is on Pro. Thank you.';
+      document.getElementById('sub').textContent = 'Your Organization key is on its way to the email you entered at checkout.';
+      document.getElementById('orgCard').style.display = 'block';
+    }
+  })();
+</script>
+</body>
+</html>
