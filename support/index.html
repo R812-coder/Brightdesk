@@ -132,6 +132,8 @@
                     <option value="Sheet Health Check">Sheet Health Check</option>
                     <option value="Notifications for Google Sheets">Notifications for Google Sheets</option>
                     <option value="Calendar Events for Google Forms">Calendar Events for Google Forms</option>
+                    <option value="Form to Calendar Bookings">Form to Calendar Bookings</option>
+                    <option value="Schedule to Calendar Sync">Schedule to Calendar Sync</option>
                     <option value="Timesheet for Google Calendar">Timesheet for Google Calendar</option>
                     <option value="Sheet Attendance">Sheet Attendance</option>
                     <option value="Sheet Approvals">Sheet Approvals</option>
@@ -180,6 +182,16 @@
     </div>
 
     <script>
+        // Links like /support?addon=Schedule%20to%20Calendar%20Sync&category=Billing pre-fill the form.
+        (function () {
+            var q = new URLSearchParams(location.search);
+            [['addon', 'addon'], ['category', 'category'], ['email', 'email'], ['message', 'message']].forEach(function (p) {
+                var v = q.get(p[0]), el = document.getElementById(p[1]);
+                if (!v || !el) return;
+                if (el.tagName === 'SELECT') { if ([].some.call(el.options, function (o) { return o.value === v; })) el.value = v; }
+                else el.value = v;
+            });
+        })();
         function submitForm() {
             var addon = document.getElementById('addon').value;
             var category = document.getElementById('category').value;
