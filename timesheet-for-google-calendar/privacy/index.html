@@ -110,10 +110,10 @@
 
 <div class="content">
     <h1>Privacy Policy</h1>
-    <p class="effective">Effective date: March 9, 2026</p>
+    <p class="effective">Effective date: November 14, 2026 (version 1.2). Previous version: March 9, 2026.</p>
 
     <div class="highlight-box">
-        <p><strong>The short version:</strong> Timesheet for Google Calendar reads your calendar events to generate timesheets in your spreadsheet. Your data never leaves Google's servers. We don't collect, store, transmit, or sell your data. We have no servers, no databases, and no analytics.</p>
+        <p><strong>The short version:</strong> Timesheet for Google Calendar reads your calendar events to generate timesheets in your spreadsheet. Your calendar and spreadsheet data never leave Google's servers and never reach us. To check that a licence key is yours, the add-on reads your Google account's email address. If your organization uses the Organization plan, a small licence record for your domain is kept in the add-on's own storage at Google (section 5). We have no servers, no databases, and no analytics, and we never sell data.</p>
     </div>
 
     <h2>1. What the Add-on Does</h2>
@@ -126,6 +126,7 @@
         <li><strong>spreadsheets.currentonly</strong> — Write access limited to the currently active Google Sheets&trade; spreadsheet. The add-on creates formatted timesheet tabs in this spreadsheet only.</li>
         <li><strong>script.container.ui</strong> — Permission to display the configuration sidebar within Google Sheets&trade;.</li>
     </ul>
+    <p>Your Google account's email address is read from the ID of your primary calendar (part of <code>calendar.readonly</code>). It is used only to check that a licence key belongs to you or to your organization's domain.</p>
 
     <h2>3. How Your Data Is Used</h2>
     <p>Calendar event data (titles, times, colors, descriptions) is read solely to generate your timesheet. Specifically:</p>
@@ -144,22 +145,29 @@
         <ul>
             <li>Your calendar events or event content</li>
             <li>Your spreadsheet data</li>
-            <li>Your Google account information</li>
-            <li>Your email address or personal information</li>
             <li>Usage analytics or telemetry</li>
             <li>Any data whatsoever outside of Google's infrastructure</li>
         </ul>
+        <p>The one exception is the Organization licence record described in section 5, which only exists if someone at your domain activates an Organization key.</p>
     </div>
 
     <h2>5. Data Storage</h2>
     <p>Your project mappings (color-to-project assignments, keyword rules, and hourly rates) are stored using Google Apps Script's PropertiesService, which keeps data within Google's infrastructure tied to your specific spreadsheet or user account. The developer (BrightDesk) has no access to this stored configuration data.</p>
+    <p><strong>Licence checks.</strong> Your licence key and your account's email address are saved in your own user storage (PropertiesService UserProperties), so the email doesn't have to be read again each time. BrightDesk can't see them.</p>
+    <p><strong>Organization plan.</strong> When someone activates an Organization key, the add-on saves one licence record for the domain in its shared storage (Apps Script Script Properties). This storage is inside Google's infrastructure, and BrightDesk can view it in the add-on's script editor. The record holds:</p>
+    <ul>
+        <li>the organization's domain and the licence key;</li>
+        <li>the email address of the person who activated it, and the date, so colleagues know whom to ask about renewal;</li>
+        <li>for each person who uses the plan, a one-way code made from their email address (not the address itself) and the last date they opened the add-on, used only to count active people.</li>
+    </ul>
+    <p>If the person who activated the plan shares team defaults, the color mappings, keyword rules, rates and settings they choose are stored the same way, so colleagues' spreadsheets can start from them. Nothing from anyone's calendar or spreadsheet is stored there. This record is used only to provide the Organization plan.</p>
 
     <h2>6. Data Protection</h2>
     <p>Timesheet for Google Calendar protects your data through the following mechanisms:</p>
     <ul>
         <li><strong>No external transmission:</strong> All data processing occurs entirely within Google's infrastructure using Google Apps Script. Your Google Calendar and Google Sheets data is never transmitted to any external server, third-party service, or developer-owned system.</li>
         <li><strong>Minimal scope access:</strong> The add-on requests only the minimum OAuth scopes necessary to function. Calendar access is read-only (<code>calendar.readonly</code>) — the add-on cannot modify or delete your calendar events. Spreadsheet access is limited to the current spreadsheet only (<code>spreadsheets.currentonly</code>).</li>
-        <li><strong>No developer access:</strong> The developer (BrightDesk) has no ability to access, view, or retrieve any user's Google Calendar data, spreadsheet content, or configuration settings. There are no developer-controlled servers or databases.</li>
+        <li><strong>No developer access:</strong> The developer (BrightDesk) has no ability to access, view, or retrieve any user's Google Calendar data, spreadsheet content, or personal configuration settings. The only data BrightDesk can see is the Organization licence record and shared team defaults described in section 5. There are no developer-controlled servers or databases.</li>
         <li><strong>Google infrastructure security:</strong> All data remains protected by Google's own security infrastructure, including encryption in transit and at rest, as provided by the Google Apps Script platform and Google Workspace services.</li>
         <li><strong>No logging or tracking:</strong> The add-on does not log, record, or track any user activity, calendar content, or spreadsheet data. No analytics, telemetry, or monitoring tools are used.</li>
     </ul>
@@ -168,18 +176,19 @@
     <p><strong>Google Calendar data:</strong> Calendar event data (titles, times, colors, descriptions) is accessed in real-time only during timesheet generation. This data is read from the Google Calendar API, processed in memory to create timesheet rows, and written to your spreadsheet. <strong>No calendar data is cached, stored, or retained by the add-on after generation completes.</strong> Calendar data exists only in temporary memory during the generation process and is discarded immediately afterward.</p>
     <p><strong>Configuration data:</strong> Your project mappings, keyword rules, and settings are stored via Google Apps Script's PropertiesService. This data is retained until you take one of the following actions:</p>
     <ul>
-        <li><strong>Manual deletion:</strong> You can clear all configuration data at any time using Extensions → Timesheet for Google Calendar → Clear Timesheet Data, or by uninstalling the add-on.</li>
+        <li><strong>Manual deletion:</strong> Extensions → Timesheet for Google Calendar → Clear Timesheet Data removes the generated tabs. Uninstalling the add-on removes its stored configuration.</li>
         <li><strong>Uninstallation:</strong> When you uninstall the add-on from Google Workspace, all associated PropertiesService data (both DocumentProperties and UserProperties) is removed by Google's platform.</li>
         <li><strong>Spreadsheet deletion:</strong> If you delete the Google Sheets spreadsheet, all DocumentProperties associated with that spreadsheet are automatically deleted by Google.</li>
     </ul>
     <p><strong>Generated timesheet data:</strong> The timesheet output (Timesheet, Summary, and Review tabs) is standard spreadsheet content owned entirely by you. It remains in your spreadsheet until you delete it. The add-on has no ongoing access to or control over this generated data.</p>
-    <p><strong>Requesting data deletion:</strong> Since the developer does not collect or store any user data on external systems, there is no developer-held data to delete. All data resides within your Google account and can be deleted by you at any time through the methods described above. If you have any questions about data deletion, contact us at <a href="mailto:support-calendartimesheet@googlegroups.com">support-calendartimesheet@googlegroups.com</a>.</p>
+    <p><strong>Organization records:</strong> the person who activated the Organization plan can remove the licence record, and stop sharing team defaults, from the add-on's Plans and licence section. We also delete an organization's record and team defaults on request.</p>
+    <p><strong>Requesting data deletion:</strong> Apart from Organization records, the developer does not collect or store any user data, so there is no developer-held data to delete. All data resides within your Google account and can be deleted by you at any time through the methods described above. If you have any questions about data deletion, contact us at <a href="mailto:support-calendartimesheet@googlegroups.com">support-calendartimesheet@googlegroups.com</a>.</p>
 
     <h2>8. Third-Party Services</h2>
     <p>Timesheet for Google Calendar uses <strong>zero external APIs or third-party services</strong>. All code runs entirely within Google Apps Script. No data is transmitted outside of Google's servers at any point.</p>
 
     <h2>9. Data Sharing</h2>
-    <p>We do not share, sell, rent, or trade any user data with any third party. There is no data to share — we don't collect any.</p>
+    <p>We do not share, sell, rent, or trade any user data with any third party.</p>
 
     <h2>10. Children's Privacy</h2>
     <p>Timesheet for Google Calendar is a professional billing tool not directed at children under 13. We do not knowingly collect information from children.</p>
