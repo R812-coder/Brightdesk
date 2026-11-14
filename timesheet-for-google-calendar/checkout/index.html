@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upgrade to Pro — Timesheet for Google Calendar</title>
-    <meta name="description" content="Upgrade Timesheet for Google Calendar to Pro. Unlimited calendars, date ranges, color mappings, keyword rules, and full reporting for $39/year.">
+    <title>Plans and pricing — Timesheet for Google Calendar</title>
+    <meta name="description" content="Timesheet for Google Calendar plans: Pro for $49 a year or $7 a month, or Organization for $499 a year for everyone at your Google Workspace domain. 7-day free trial.">
     <link rel="canonical" href="https://brightdesk.dev/timesheet-for-google-calendar/checkout/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,6 +264,19 @@
             h1 { font-size: 1.5rem; }
             .trust { gap: 1rem; }
         }
+
+        .plan-buttons { display: grid; gap: 0.6rem; margin-top: 1.25rem; }
+        .btn-secondary-plan { display: flex; align-items: center; justify-content: center; padding: 0.8rem 1rem; border: 2px solid var(--color-border); border-radius: 10px; color: var(--color-text); text-decoration: none; font-weight: 600; font-size: 0.95rem; background: #fff; }
+        .btn-secondary-plan:hover { border-color: var(--color-accent); color: var(--color-accent); }
+        .plan :target, .plan:target { outline: 3px solid #f59e0b; outline-offset: 3px; }
+        .plan-links { margin-top: 0.9rem; font-size: 0.85rem; display: grid; gap: 0.35rem; }
+        .plan-links a { color: var(--color-accent); }
+        .buying-for { display: none; background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; border-radius: 10px; padding: 0.7rem 1rem; font-size: 0.9rem; margin: -1rem auto 2rem; max-width: 560px; }
+        .trial-line { color: var(--color-text-secondary); font-size: 0.95rem; margin: -1.5rem 0 2.25rem; }
+        .founders { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 10px; padding: 0.8rem 1rem; font-size: 0.9rem; margin: 0 auto 2.5rem; max-width: 640px; text-align: left; }
+        .not-ready { opacity: .55; pointer-events: none; }
+        .buying-for, .plans, .plan { scroll-margin-top: 1rem; }
+
     </style>
 </head>
 <body>
@@ -282,58 +295,63 @@
 
 <div class="content">
     <h1>Choose your plan</h1>
-    <p class="subtitle">Start free, upgrade when you need more.</p>
+    <p class="subtitle">Every plan includes every feature. The difference is who it covers.</p>
+    <p class="trial-line">New here? Install the add-on first: the first 7 days are free, with no card.</p>
+    <div class="buying-for" id="buyingFor" role="status"></div>
 
     <div class="plans">
-        <!-- FREE -->
-        <div class="plan">
-            <div class="plan-name">Free</div>
-            <div class="plan-price">$0</div>
-            <div class="plan-price-sub">Free forever</div>
+        <!-- PRO -->
+        <div class="plan recommended" id="pro">
+            <div class="plan-badge">Most people</div>
+            <div class="plan-name">Pro</div>
+            <div class="plan-price">$49 <span class="period">/ year</span></div>
+            <div class="plan-price-sub">or $7 a month. For one Google account.</div>
             <ul class="plan-features">
-                <li><span class="icon check">&#10003;</span> 1 calendar</li>
-                <li><span class="icon check">&#10003;</span> 2-week date range</li>
-                <li><span class="icon check">&#10003;</span> 3 color mappings</li>
-                <li><span class="icon check">&#10003;</span> 3 keyword rules</li>
-                <li><span class="icon check">&#10003;</span> Timesheet tab</li>
-                <li><span class="icon check">&#10003;</span> Quarter-hour rounding</li>
-                <li><span class="icon dash">&mdash;</span> Summary tab</li>
-                <li><span class="icon dash">&mdash;</span> Review tab (error detection)</li>
-                <li><span class="icon dash">&mdash;</span> Description parsing</li>
-                <li><span class="icon dash">&mdash;</span> No branding footer</li>
+                <li><span class="icon check">&#10003;</span><span><strong>Unlimited</strong> calendars and date ranges</span></li>
+                <li><span class="icon check">&#10003;</span><span>Projects and rates by <strong>event colour</strong> and <strong>keyword</strong></span></li>
+                <li><span class="icon check">&#10003;</span><span><strong>project:</strong> and <strong>rate:</strong> lines in event descriptions</span></li>
+                <li><span class="icon check">&#10003;</span><span><strong>Summary tab</strong> with totals by project</span></li>
+                <li><span class="icon check">&#10003;</span><span><strong>Review tab</strong> that flags overlaps and untitled events</span></li>
+                <li><span class="icon check">&#10003;</span><span>Your calendar&rsquo;s time zone, wherever you are</span></li>
+                <li><span class="icon check">&#10003;</span><span>Every spreadsheet in your account</span></li>
             </ul>
-            <div class="btn-free">Current plan</div>
+            <div class="plan-buttons">
+                <a href="#" data-plan="proYear" id="pro-year" class="btn-checkout" target="_blank" rel="noopener">
+                    Get Pro yearly, $49
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#" data-plan="proMonth" id="pro-month" class="btn-secondary-plan" target="_blank" rel="noopener">Get Pro monthly, $7</a>
+            </div>
+            <div class="plan-links"><span style="color: var(--color-text-secondary);">Yearly saves 42% against monthly.</span></div>
         </div>
 
-        <!-- PRO -->
-        <div class="plan recommended">
-            <div class="plan-badge">Recommended</div>
-            <div class="plan-name">Pro</div>
-            <div class="plan-price">$39 <span class="period">/ year</span></div>
-            <div class="plan-price-sub">That's $3.25/month &mdash; less than one billable hour</div>
+        <!-- ORGANIZATION -->
+        <div class="plan" id="org">
+            <div class="plan-name">Organization</div>
+            <div class="plan-price">$499 <span class="period">/ year</span></div>
+            <div class="plan-price-sub">Everyone at your Google Workspace domain, up to 50 people.</div>
             <ul class="plan-features">
-                <li><span class="icon check">&#10003;</span> <strong>Unlimited</strong> calendars</li>
-                <li><span class="icon check">&#10003;</span> <strong>Unlimited</strong> date range</li>
-                <li><span class="icon check">&#10003;</span> <strong>All 11</strong> color mappings</li>
-                <li><span class="icon check">&#10003;</span> <strong>Unlimited</strong> keyword rules</li>
-                <li><span class="icon check">&#10003;</span> Timesheet tab</li>
-                <li><span class="icon check">&#10003;</span> Configurable rounding</li>
-                <li><span class="icon check">&#10003;</span> <strong>Summary tab</strong> (project totals)</li>
-                <li><span class="icon check">&#10003;</span> <strong>Review tab</strong> (billing error detection)</li>
-                <li><span class="icon check">&#10003;</span> <strong>Description parsing</strong> (notes field)</li>
-                <li><span class="icon check">&#10003;</span> <strong>No branding</strong> footer</li>
+                <li><span class="icon check">&#10003;</span><span><strong>Everything in Pro</strong>, for everyone @yourcompany.com</span></li>
+                <li><span class="icon check">&#10003;</span><span><strong>One key, activated once.</strong> Nobody else pastes anything</span></li>
+                <li><span class="icon check">&#10003;</span><span><strong>Team defaults:</strong> share colour mappings, rules and rates</span></li>
+                <li><span class="icon check">&#10003;</span><span>See how many people use it</span></li>
+                <li><span class="icon check">&#10003;</span><span>Priority support, reply within one business day</span></li>
+                <li><span class="icon check">&#10003;</span><span>Pay by card, or by invoice for your finance team</span></li>
             </ul>
-
-            <!-- ============================================
-                 REPLACE THIS URL WITH YOUR STRIPE PAYMENT LINK
-                 ============================================ -->
-            <a href="https://buy.stripe.com/4gM5kC1J19E3coAcY377O00"
-               class="btn-checkout" target="_blank">
-                Upgrade to Pro
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            <div class="plan-buttons">
+                <a href="#" data-plan="org" id="org-buy" class="btn-checkout" target="_blank" rel="noopener">
+                    Get Organization, $499
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="plan-links">
+                <a href="mailto:support-calendartimesheet@googlegroups.com?subject=30-day%20Organization%20trial&amp;body=Our%20domain%3A%20%0AHow%20many%20people%3A%20">Ask for a free 30-day team trial</a>
+                <a href="../teams/">How it works for teams, and installing it for your whole domain</a>
+            </div>
         </div>
     </div>
+
+    <p class="founders">Already a subscriber? Your price doesn&rsquo;t change. Subscriptions bought before November 2026 keep renewing at $39 a year.</p>
 
     <!-- Trust signals -->
     <div class="trust">
@@ -351,9 +369,8 @@
         </div>
     </div>
 
-    <!-- Already have a key? -->
-    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 2.5rem;">
-        Already have a license key? Open the add-on sidebar &rarr; Settings tab &rarr; paste your key.
+    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 2.5rem;">
+        Already have a licence key? In any Google Sheet: Extensions &rarr; Timesheet for Google Calendar &rarr; Plans and licence key, then paste it.
     </p>
 
     <!-- FAQ -->
@@ -361,31 +378,74 @@
         <h2>Questions</h2>
 
         <div class="faq-item">
-            <div class="faq-q">How do I receive my license key?</div>
-            <div class="faq-a">After payment, you'll be redirected to a confirmation page. Your license key will be emailed to you, usually within a few hours. Paste it in the add-on sidebar under Settings to activate Pro.</div>
+            <div class="faq-q">How do I receive my licence key?</div>
+            <div class="faq-a">By email, usually within a few hours of paying. Paste it in the add-on under Plans and licence key. The add-on shows your plan and the day it runs until.</div>
         </div>
 
         <div class="faq-item">
-            <div class="faq-q">Can I use the key on multiple spreadsheets?</div>
-            <div class="faq-a">Yes. Your license is tied to your Google account, not a specific spreadsheet. Once activated, Pro works across all your spreadsheets.</div>
+            <div class="faq-q">Which Google account does a Pro key work for?</div>
+            <div class="faq-a">The one you enter at checkout as the Google account that will use the add-on. If you paste it while signed in to a different account, the add-on tells you which account the key belongs to. It works in every spreadsheet in that account.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">How does the Organization plan work?</div>
+            <div class="faq-a">You enter your company domain at checkout and get one key. Paste it once in any account at that domain, and everyone with an @yourcompany.com Google account gets the full add-on the next time they open it. Your admin can install the add-on for everyone from the Google Admin console; <a href="../teams/" style="color: var(--color-accent);">here&rsquo;s how</a>. Personal Gmail addresses can&rsquo;t use an Organization key.</div>
         </div>
 
         <div class="faq-item">
             <div class="faq-q">What happens when my subscription renews?</div>
-            <div class="faq-a">You'll receive a new license key by email each year. Just paste the new key to extend your Pro access.</div>
+            <div class="faq-a">Each yearly renewal brings a new key by email, and each monthly payment brings next month&rsquo;s key. Ten days before a key ends, the add-on reminds you. Paste the new key and you&rsquo;re set.</div>
         </div>
 
         <div class="faq-item">
-            <div class="faq-q">What if I'm not satisfied?</div>
+            <div class="faq-q">What if I&rsquo;m not satisfied?</div>
             <div class="faq-a">Full refund within 14 days, no questions asked. Email support-calendartimesheet@googlegroups.com.</div>
         </div>
 
         <div class="faq-item">
             <div class="faq-q">How do I cancel?</div>
-            <div class="faq-a">You can cancel anytime from the <a href="./manage/" style="color: var(--color-accent);">subscription management page</a> or by emailing support. Your Pro access continues until the end of the billing period.</div>
+            <div class="faq-a">Anytime, from the <a href="./manage/" style="color: var(--color-accent);">subscription management page</a> or by emailing support. Your key keeps working until the end of the period you paid for.</div>
         </div>
     </div>
 </div>
+
+<script>
+// Stripe Payment Links. Paste the three links here (Stripe setup steps in the plan doc).
+var STRIPE_LINKS = {
+    proYear: 'https://buy.stripe.com/eVq6oGevNaI7gEQ8HN77O0d',   // $49 / year
+    proMonth: 'https://buy.stripe.com/3cI8wOgDV17x3S48HN77O0e',  // $7 / month
+    org: 'https://buy.stripe.com/9B614m5Zh5nN3S4e2777O0f'        // $499 / year, with the "domain" custom field
+};
+(function () {
+    var q = new URLSearchParams(location.search);
+    var account = (q.get('account') || '').trim();
+    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(account);
+    document.querySelectorAll('a[data-plan]').forEach(function (a) {
+        var link = STRIPE_LINKS[a.getAttribute('data-plan')];
+        if (!link) { a.classList.add('not-ready'); a.setAttribute('aria-disabled', 'true'); a.removeAttribute('href'); return; }
+        a.href = link + (valid ? (link.indexOf('?') < 0 ? '?' : '&') + 'prefilled_email=' + encodeURIComponent(account) : '');
+    });
+    if (valid) {
+        var box = document.getElementById('buyingFor');
+        box.textContent = 'Buying for ' + account + '. Enter this as the Google account at checkout, so the key works there.';
+        box.style.display = 'block';
+    }
+    // Arriving from the add-on with #pro-year, #pro-month or #org: show the plans with the
+    // chosen one outlined (CSS :target), instead of jumping to the button and hiding the price.
+    var target = location.hash && document.getElementById(location.hash.slice(1));
+    if (target && target.closest('.plans')) {
+        var top = valid ? document.getElementById('buyingFor') : document.querySelector('.plans');
+        var card = target.closest('.plan') || target;
+        var show = function () {
+            top.scrollIntoView({ block: 'start' });
+            // Phones stack the plans: if the chosen card is still below the fold, go to it.
+            if (card.getBoundingClientRect().top > window.innerHeight * 0.5) card.scrollIntoView({ block: 'start' });
+        };
+        if (document.readyState === 'complete') setTimeout(show, 0);
+        else window.addEventListener('load', function () { setTimeout(show, 0); });
+    }
+})();
+</script>
 
 <footer>
     <p class="footer-text">
