@@ -275,6 +275,32 @@
         .trial-line { color: var(--color-text-secondary); font-size: 0.95rem; margin: -1.5rem 0 2.25rem; }
         .founders { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 10px; padding: 0.8rem 1rem; font-size: 0.9rem; margin: 0 auto 2.5rem; max-width: 640px; text-align: left; }
         .not-ready { opacity: .55; pointer-events: none; }
+
+        /* For people who bill by the hour */
+        .extras { text-align: left; margin: 0 auto 3rem; max-width: 720px; }
+        .extras h2 { font-size: 1.35rem; letter-spacing: -0.01em; margin-bottom: 0.35rem; text-align: center; }
+        .extras-sub { color: var(--color-text-secondary); font-size: 0.95rem; text-align: center; margin-bottom: 1.5rem; }
+        .kit { display: flex; gap: 1.25rem; align-items: center; justify-content: space-between; background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 14px; padding: 1.25rem 1.4rem; margin-bottom: 0.75rem; }
+        .kit-name, .extra-name { font-weight: 700; color: var(--color-text); display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+        .kit-name { font-size: 1.05rem; }
+        .kit-desc, .extra-desc { color: var(--color-text-secondary); font-size: 0.88rem; margin-top: 0.25rem; line-height: 1.5; }
+        .kit-buy { text-align: right; flex: none; }
+        .kit-price { font-size: 1.5rem; font-weight: 800; color: var(--color-text); line-height: 1; }
+        .kit-price span, .extra-price span { font-size: 0.8rem; font-weight: 500; color: var(--color-text-secondary); }
+        .kit-was { font-size: 0.8rem; color: var(--color-text-secondary); margin: 0.2rem 0 0.6rem; }
+        .soon { font-size: 0.7rem; font-weight: 700; color: #92400e; background: #fef3c7; border-radius: 100px; padding: 0.15rem 0.55rem; }
+        .extras-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--color-border); }
+        .extras-list li { display: flex; gap: 1rem; align-items: center; justify-content: space-between; padding: 0.9rem 0.25rem; border-bottom: 1px solid var(--color-border); }
+        .extra-side { display: flex; align-items: center; gap: 0.9rem; flex: none; }
+        .extra-price { font-weight: 800; color: var(--color-text); }
+        .extra-go { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--color-accent); border: 1.5px solid #bfdbfe; border-radius: 8px; padding: 0.4rem 0.8rem; text-decoration: none; background: #fff; white-space: nowrap; }
+        .extra-go:hover { border-color: var(--color-accent); }
+        .extra-go.buy { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+        .extras-foot { font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 0.9rem; text-align: center; }
+        @media (max-width: 600px) {
+            .kit, .extras-list li { flex-direction: column; align-items: flex-start; }
+            .kit-buy { text-align: left; }
+        }
     </style>
 </head>
 <body>
@@ -371,6 +397,42 @@
         Already have a licence key? In any Google Sheet: Extensions &rarr; Timesheet for Google Calendar &rarr; Plans and licence key, then paste it.
     </p>
 
+    <!-- For people who bill by the hour: Ready-made automations -->
+    <section class="extras" aria-labelledby="extras-title">
+        <h2 id="extras-title">For people who bill by the hour</h2>
+        <p class="extras-sub">Ready-made automations that pick up where your timesheet stops. Pay once, make your copy, and they run in your own Google account.</p>
+        <div class="kit" data-extra="billing-kit">
+            <div>
+                <div class="kit-name">Freelancer billing kit <span class="soon">Coming soon</span></div>
+                <div class="kit-desc">Invoices from your timesheet, unpaid invoice reminders and a retainer tracker, set up to work together: bill from your hours, chase what&rsquo;s late and see when a client is near their limit.</div>
+            </div>
+            <div class="kit-buy">
+                <div class="kit-price">$69 <span>once</span></div>
+                <div class="kit-was">$89 bought separately</div>
+                <a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-checkout#billing-kit" target="_blank" rel="noopener">Notify me</a>
+            </div>
+        </div>
+        <ul class="extras-list">
+            <li data-extra="timesheet-invoices">
+                <div><div class="extra-name">Invoices from your timesheet <span class="soon">Coming soon</span></div><div class="extra-desc">One numbered PDF invoice per client from your Timesheet tab, with your logo, saved to Drive.</div></div>
+                <div class="extra-side"><span class="extra-price">$39<span> once</span></span><a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-checkout#timesheet-invoices" target="_blank" rel="noopener">Notify me</a></div>
+            </li>
+            <li data-extra="invoice-reminders">
+                <div><div class="extra-name">Unpaid invoice reminders <span class="soon">Coming soon</span></div><div class="extra-desc">A polite reminder email when an invoice is overdue, and again a week later. Tick Paid and it stops.</div></div>
+                <div class="extra-side"><span class="extra-price">$25<span> once</span></span><a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-checkout#invoice-reminders" target="_blank" rel="noopener">Notify me</a></div>
+            </li>
+            <li data-extra="retainer-tracker">
+                <div><div class="extra-name">Retainer tracker with alerts <span class="soon">Coming soon</span></div><div class="extra-desc">Hours used against each client’s monthly retainer, with an email at 80% and 100%.</div></div>
+                <div class="extra-side"><span class="extra-price">$25<span> once</span></span><a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-checkout#retainer-tracker" target="_blank" rel="noopener">Notify me</a></div>
+            </li>
+            <li data-extra="monday-hours-report">
+                <div><div class="extra-name">Monday hours report <span class="soon">Coming soon</span></div><div class="extra-desc">Last week’s hours by project, emailed to you or your client every Monday.</div></div>
+                <div class="extra-side"><span class="extra-price">$19<span> once</span></span><a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-checkout#monday-hours-report" target="_blank" rel="noopener">Notify me</a></div>
+            </li>
+        </ul>
+        <p class="extras-foot">Separate from your Timesheet plan. <a href="https://brightdesk.dev/automations/?utm_source=timesheet-checkout" target="_blank" rel="noopener" style="color: var(--color-accent);">See all ready-made automations</a></p>
+    </section>
+
     <!-- FAQ -->
     <div class="faq">
         <h2>Questions</h2>
@@ -408,6 +470,26 @@
 </div>
 
 <script>
+// Ready-made automations. Paste a Stripe Payment Link once that automation is built:
+// its button turns into "Add for $X" and "Coming soon" disappears.
+var EXTRA_LINKS = {
+    'billing-kit': '',
+    'timesheet-invoices': '',
+    'invoice-reminders': '',
+    'retainer-tracker': '',
+    'monday-hours-report': ''
+};
+(function () {
+    document.querySelectorAll('[data-extra]').forEach(function (el) {
+        var link = EXTRA_LINKS[el.getAttribute('data-extra')];
+        if (!link) return;
+        var a = el.querySelector('.extra-go'), price = el.querySelector('.kit-price, .extra-price');
+        a.href = link; a.classList.add('buy');
+        a.textContent = 'Add for ' + (price ? price.firstChild.textContent.trim() : '');
+        var soon = el.querySelector('.soon'); if (soon) soon.remove();
+    });
+})();
+
 // Stripe Payment Links. Paste the three links here (Stripe setup steps in the plan doc).
 var STRIPE_LINKS = {
     proYear: '',   // $49 / year
