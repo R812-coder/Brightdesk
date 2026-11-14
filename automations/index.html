@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ready-made Google Workspace automations | BrightDesk</title>
-<meta name="description" content="Fixed-price automations for Google Sheets, Forms, Calendar and Gmail: invoices from your timesheet, form responses to PDF, mail merge with attachments and more. Pay once, make your copy, run it in your own account.">
+<meta name="description" content="Fixed-price automations for Google Sheets, Forms, Calendar and Gmail: invoices from your timesheet, unpaid invoice reminders, retainer tracking, form responses to PDF, mail merge with attachments and more. Pay once, make your copy, run it in your own account.">
 <link rel="canonical" href="https://brightdesk.dev/automations/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -30,6 +30,8 @@ h2.group { font-size: 24px; margin-top: 56px; padding-bottom: 12px; border-botto
 .auto { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
 .auto:target { background: linear-gradient(90deg, #FEF7E1, rgba(254,247,225,0)); margin: 0 -20px; padding: 28px 20px; border-radius: 12px; }
 .auto h3 { font-size: 23px; }
+.auto.bundle { background: var(--mint); border-radius: 14px; border-bottom: 0; margin: 20px -20px 8px; padding: 28px 20px; }
+.auto.bundle .pair { color: var(--teal-deep); }
 .meta { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 15px; }
 .pair { color: var(--teal); font-weight: 650; }
 .runs { color: var(--muted); }
@@ -86,8 +88,31 @@ h2.group { font-size: 24px; margin-top: 56px; padding-bottom: 12px; border-botto
   </section>
 
   <section class="wrap catalog" aria-label="Automations">
-    <h2 class="group" id="for-timesheets-and-invoices">For timesheets and invoices</h2>
+    <h2 class="group" id="for-timesheets-and-invoices">For timesheets, invoices and clients</h2>
     <ul class="autos">
+      <li class="auto bundle" id="billing-kit" data-slug="billing-kit" data-price="69">
+        <div class="auto-main">
+          <h3>Freelancer billing kit</h3>
+          <p class="meta"><span class="pair">Goes with Timesheet</span> <span class="runs">Three automations, $20 less than buying them one by one</span></p>
+          <p class="desc">Invoices from your timesheet, Unpaid invoice reminders and the Retainer tracker, set up to work together: bill from your hours, chase what is late and see when a client is close to their limit.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$69<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $69</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-billing-kit">Your email</label>
+              <input type="email" id="n-billing-kit" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Freelancer billing kit">
+              <input type="hidden" name="_subject" value="Waitlist: Freelancer billing kit">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Freelancer%20billing%20kit#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
       <li class="auto" id="timesheet-invoices" data-slug="timesheet-invoices" data-price="39">
         <div class="auto-main">
           <h3>Invoices from your timesheet</h3>
@@ -132,6 +157,75 @@ h2.group { font-size: 24px; margin-top: 56px; padding-bottom: 12px; border-botto
             </form>
           </details>
           <a class="setup" href="/services/?topic=setup&amp;about=Monday%20hours%20report#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+      <li class="auto" id="invoice-reminders" data-slug="invoice-reminders" data-price="25">
+        <div class="auto-main">
+          <h3>Unpaid invoice reminders</h3>
+          <p class="meta"><span class="pair">Goes with Timesheet</span> <span class="runs">Runs every morning</span></p>
+          <p class="desc">An invoice log in Sheets that emails a polite reminder when an invoice passes its due date, and again a week later. Tick Paid and the reminders stop.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$25<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $25</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-invoice-reminders">Your email</label>
+              <input type="email" id="n-invoice-reminders" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Unpaid invoice reminders">
+              <input type="hidden" name="_subject" value="Waitlist: Unpaid invoice reminders">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Unpaid%20invoice%20reminders#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+      <li class="auto" id="retainer-tracker" data-slug="retainer-tracker" data-price="25">
+        <div class="auto-main">
+          <h3>Retainer tracker with alerts</h3>
+          <p class="meta"><span class="pair">Goes with Timesheet</span> <span class="runs">Runs every morning</span></p>
+          <p class="desc">Shows each client’s hours this month against their retainer, and emails you when a client passes 80% and 100%, so you can tell them before you go over.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$25<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $25</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-retainer-tracker">Your email</label>
+              <input type="email" id="n-retainer-tracker" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Retainer tracker with alerts">
+              <input type="hidden" name="_subject" value="Waitlist: Retainer tracker with alerts">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Retainer%20tracker%20with%20alerts#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+      <li class="auto" id="client-hours-sheet" data-slug="client-hours-sheet" data-price="19">
+        <div class="auto-main">
+          <h3>Client hours sheet</h3>
+          <p class="meta"><span class="pair">Goes with Timesheet</span> <span class="runs">Runs every hour</span></p>
+          <p class="desc">A spreadsheet per client, shared with them, that shows only their hours and notes from your timesheet. No more pasting screenshots into emails.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$19<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $19</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-client-hours-sheet">Your email</label>
+              <input type="email" id="n-client-hours-sheet" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Client hours sheet">
+              <input type="hidden" name="_subject" value="Waitlist: Client hours sheet">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Client%20hours%20sheet#contact">Set it up for me, +$49</a>
         </div>
       </li>
     </ul>
@@ -309,7 +403,11 @@ h2.group { font-size: 24px; margin-top: 56px; padding-bottom: 12px; border-botto
 <script>
 // Paste each Stripe Payment Link here once that automation is built. Empty = "Notify me".
 var BUY_LINKS = {
+  'billing-kit': '',
   'timesheet-invoices': '',
+  'invoice-reminders': '',
+  'retainer-tracker': '',
+  'client-hours-sheet': '',
   'monday-hours-report': '',
   'form-to-pdf': '',
   'booking-reminders': '',
