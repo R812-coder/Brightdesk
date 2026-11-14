@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ready-made Google Workspace automations | BrightDesk</title>
+<meta name="description" content="Fixed-price automations for Google Sheets, Forms, Calendar and Gmail: invoices from your timesheet, form responses to PDF, mail merge with attachments and more. Pay once, make your copy, run it in your own account.">
+<link rel="canonical" href="https://brightdesk.dev/automations/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/favicon-180.png">
+<meta name="theme-color" content="#0F766E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ready-made Google Workspace automations | BrightDesk">
+<meta property="og:description" content="Fixed prices, paid once. Make your copy and it runs in your own Google account.">
+<meta property="og:url" content="https://brightdesk.dev/automations/">
+<meta property="og:image" content="https://brightdesk.dev/assets/brand/og-image.png">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-opsz.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/bd.css">
+<style>
+.intro { padding-top: 48px; padding-bottom: 48px; }
+.intro h1 { max-width: 14ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 36px; margin-top: 26px; list-style: none; }
+.facts li { padding-left: 18px; position: relative; font-weight: 600; color: var(--ink); }
+.facts li::before { content: ""; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
+
+.catalog { padding-bottom: 32px; }
+h2.group { font-size: 24px; margin-top: 56px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+.autos { list-style: none; }
+.auto { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
+.auto:target { background: linear-gradient(90deg, #FEF7E1, rgba(254,247,225,0)); margin: 0 -20px; padding: 28px 20px; border-radius: 12px; }
+.auto h3 { font-size: 23px; }
+.meta { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 15px; }
+.pair { color: var(--teal); font-weight: 650; }
+.runs { color: var(--muted); }
+.desc { margin-top: 10px; max-width: 40em; }
+.auto-buy { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.price { font-size: 28px; font-weight: 760; color: var(--ink); line-height: 1; letter-spacing: -0.02em; }
+.price span { font-size: 15px; font-weight: 550; color: var(--muted); margin-left: 6px; letter-spacing: 0; }
+.notify summary { list-style: none; display: block; }
+.notify summary::-webkit-details-marker { display: none; }
+.notify[open] summary { display: none; }
+.notify-form { display: grid; gap: 8px; }
+.notify-form label { font-size: 14px; font-weight: 650; color: var(--ink); }
+.notify-form input[type="email"] { padding: 9px 11px; }
+.notify-form .btn { font-size: 15px; padding: 10px 14px; }
+.setup { font-size: 15px; text-align: center; }
+.thanks { font-weight: 650; color: #166534; background: #DDF3E6; border-radius: 10px; padding: 10px 12px; font-size: 15px; }
+
+.faq { padding-top: 72px; padding-bottom: 96px; }
+.faq dl { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 56px; }
+.faq dt { font-size: 19px; font-weight: 700; color: var(--ink); }
+.faq dd { margin-top: 6px; max-width: 32em; }
+
+@media (max-width: 760px) {
+  .auto { grid-template-columns: 1fr; gap: 16px; }
+  .auto-buy { max-width: 320px; }
+  .faq dl { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap top">
+  <a class="brand" href="/" aria-label="BrightDesk home"><img src="/assets/brand/icon.svg" alt="" width="34" height="34">BrightDesk</a>
+  <nav aria-label="Main">
+    <ul class="nav">
+      <li><a href="/#addons">Add-ons</a></li>
+      <li><a href="/automations/" aria-current="page">Ready-made</a></li>
+      <li><a href="/services/">Custom work</a></li>
+      <li><a href="/support/">Support</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="wrap intro" aria-labelledby="t">
+    <h1 id="t">Ready-made automations</h1>
+    <p class="lede">Each one is a Google Sheet, Form or Doc with the script already inside. Pay once, make your copy, follow three short steps, and it runs in your own Google account.</p>
+    <ul class="facts">
+      <li>30 days of email help included</li>
+      <li>14-day money-back guarantee</li>
+      <li>Set it up for me: +$49</li>
+    </ul>
+  </section>
+
+  <section class="wrap catalog" aria-label="Automations">
+    <h2 class="group" id="for-timesheets-and-invoices">For timesheets and invoices</h2>
+    <ul class="autos">
+      <li class="auto" id="timesheet-invoices" data-slug="timesheet-invoices" data-price="39">
+        <div class="auto-main">
+          <h3>Invoices from your timesheet</h3>
+          <p class="meta"><span class="pair">Goes with Timesheet</span> <span class="runs">Runs from a menu in your timesheet</span></p>
+          <p class="desc">One numbered PDF invoice per client, built from your Timesheet tab and a Google Docs template with your logo. Saved to a Drive folder, with an optional Gmail draft to each client.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$39<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $39</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-timesheet-invoices">Your email</label>
+              <input type="email" id="n-timesheet-invoices" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Invoices from your timesheet">
+              <input type="hidden" name="_subject" value="Waitlist: Invoices from your timesheet">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Invoices%20from%20your%20timesheet#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+      <li class="auto" id="monday-hours-report" data-slug="monday-hours-report" data-price="19">
+        <div class="auto-main">
+          <h3>Monday hours report</h3>
+          <p class="meta"><span class="pair">Goes with Timesheet</span> <span class="runs">Runs every Monday morning</span></p>
+          <p class="desc">Emails you, and your client or manager if you like, last week&#x27;s hours by project straight from your calendar.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$19<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $19</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-monday-hours-report">Your email</label>
+              <input type="email" id="n-monday-hours-report" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Monday hours report">
+              <input type="hidden" name="_subject" value="Waitlist: Monday hours report">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Monday%20hours%20report#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+    </ul>
+    <h2 class="group" id="for-forms-and-bookings">For forms and bookings</h2>
+    <ul class="autos">
+      <li class="auto" id="form-to-pdf" data-slug="form-to-pdf" data-price="29">
+        <div class="auto-main">
+          <h3>Form responses to PDF</h3>
+          <p class="meta"><span class="pair">Goes with Form to Calendar</span> <span class="runs">Runs on every form response</span></p>
+          <p class="desc">Each Google Form response fills a Docs template, becomes a PDF in your Drive and is emailed to the person who filled it in. Works for receipts, intake forms and certificates.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$29<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $29</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-form-to-pdf">Your email</label>
+              <input type="email" id="n-form-to-pdf" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Form responses to PDF">
+              <input type="hidden" name="_subject" value="Waitlist: Form responses to PDF">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Form%20responses%20to%20PDF#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+      <li class="auto" id="booking-reminders" data-slug="booking-reminders" data-price="25">
+        <div class="auto-main">
+          <h3>Booking reminders</h3>
+          <p class="meta"><span class="pair">Goes with Form to Calendar</span> <span class="runs">Runs on every booking, then hourly</span></p>
+          <p class="desc">Emails everyone who books through your form a confirmation straight away and a reminder 24 hours before.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$25<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $25</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-booking-reminders">Your email</label>
+              <input type="email" id="n-booking-reminders" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Booking reminders">
+              <input type="hidden" name="_subject" value="Waitlist: Booking reminders">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Booking%20reminders#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+      <li class="auto" id="shift-emails" data-slug="shift-emails" data-price="25">
+        <div class="auto-main">
+          <h3>Shift emails from your schedule</h3>
+          <p class="meta"><span class="pair">Goes with Schedule to Calendar</span> <span class="runs">Runs every Sunday evening</span></p>
+          <p class="desc">Emails each person on your schedule sheet their own shifts for the coming week.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$25<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $25</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-shift-emails">Your email</label>
+              <input type="email" id="n-shift-emails" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Shift emails from your schedule">
+              <input type="hidden" name="_subject" value="Waitlist: Shift emails from your schedule">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Shift%20emails%20from%20your%20schedule#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+    </ul>
+    <h2 class="group" id="for-email-and-drive">For email and Drive</h2>
+    <ul class="autos">
+      <li class="auto" id="mail-merge" data-slug="mail-merge" data-price="29">
+        <div class="auto-main">
+          <h3>Mail merge with attachments</h3>
+          <p class="meta"><span class="pair">Works on its own</span> <span class="runs">Runs from a menu in your sheet</span></p>
+          <p class="desc">Personal emails from a sheet, each with its own attachment from Drive and images in the body. Send yourself a test first; a send log makes sure nobody gets it twice.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$29<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $29</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-mail-merge">Your email</label>
+              <input type="email" id="n-mail-merge" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Mail merge with attachments">
+              <input type="hidden" name="_subject" value="Waitlist: Mail merge with attachments">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Mail%20merge%20with%20attachments#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+      <li class="auto" id="gmail-attachments-to-drive" data-slug="gmail-attachments-to-drive" data-price="19">
+        <div class="auto-main">
+          <h3>Gmail attachments to Drive</h3>
+          <p class="meta"><span class="pair">Works on its own</span> <span class="runs">Runs every hour</span></p>
+          <p class="desc">Saves attachments from emails with a label you choose into a Drive folder and lists each file in a sheet.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$19<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $19</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-gmail-attachments-to-drive">Your email</label>
+              <input type="email" id="n-gmail-attachments-to-drive" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Gmail attachments to Drive">
+              <input type="hidden" name="_subject" value="Waitlist: Gmail attachments to Drive">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Gmail%20attachments%20to%20Drive#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+      <li class="auto" id="sheet-backup" data-slug="sheet-backup" data-price="15">
+        <div class="auto-main">
+          <h3>Nightly sheet backup</h3>
+          <p class="meta"><span class="pair">Works on its own</span> <span class="runs">Runs every night</span></p>
+          <p class="desc">Copies a spreadsheet into a Drive folder every night and keeps the last 30 copies.</p>
+        </div>
+        <div class="auto-buy">
+          <p class="price">$15<span> once</span></p>
+          <a class="btn btn-main buy" href="#" hidden>Buy for $15</a>
+          <details class="notify">
+            <summary class="btn btn-line">Notify me</summary>
+            <form action="https://formspree.io/f/xnpjpvvo" method="POST" class="notify-form">
+              <label for="n-sheet-backup">Your email</label>
+              <input type="email" id="n-sheet-backup" name="email" autocomplete="email" required>
+              <input type="hidden" name="automation" value="Nightly sheet backup">
+              <input type="hidden" name="_subject" value="Waitlist: Nightly sheet backup">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button class="btn btn-main" type="submit">Email me when it's ready</button>
+            </form>
+          </details>
+          <a class="setup" href="/services/?topic=setup&amp;about=Nightly%20sheet%20backup#contact">Set it up for me, +$49</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="wrap faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">Questions</h2>
+    <dl>
+      <div><dt>How do I get it after paying?</dt><dd>You go straight to a page with a "Make my copy" button and the setup steps. The same link comes by email, so you can come back to it.</dd></div>
+      <div><dt>Will Google show a warning?</dt><dd>The first time you run your copy, Google says it hasn't verified the app, because it's your own script in your own account. The setup page shows the two clicks to continue.</dd></div>
+      <div><dt>Can it be changed to fit my sheet?</dt><dd>"Set it up for me" covers fitting it to your sheet. Anything bigger becomes a <a href="/services/">custom build</a> with a fixed quote.</dd></div>
+      <div><dt>Something I need isn't here.</dt><dd><a href="/services/#contact">Describe it</a>. If a few people ask for the same thing, it joins this list.</dd></div>
+    </dl>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="/"><img src="/assets/brand/icon.svg" alt="" width="34" height="34">BrightDesk</a>
+      <ul>
+        <li><a href="/#addons">Add-ons</a></li>
+        <li><a href="/automations/">Ready-made</a></li>
+        <li><a href="/services/">Custom work</a></li>
+        <li><a href="/support/">Support</a></li>
+      </ul>
+    </div>
+    <p class="tm">© 2026 BrightDesk. Google Sheets™, Google Forms™, Google Calendar™ and Gmail™ are trademarks of Google LLC. BrightDesk isn't affiliated with or endorsed by Google.</p>
+  </div>
+</footer>
+<script>
+// Paste each Stripe Payment Link here once that automation is built. Empty = "Notify me".
+var BUY_LINKS = {
+  'timesheet-invoices': '',
+  'monday-hours-report': '',
+  'form-to-pdf': '',
+  'booking-reminders': '',
+  'shift-emails': '',
+  'mail-merge': '',
+  'gmail-attachments-to-drive': '',
+  'sheet-backup': ''
+};
+// The $49 "Set it up for me" Payment Link. Empty = the custom-work form.
+var SETUP_LINK = '';
+
+(function () {
+  document.querySelectorAll('.auto').forEach(function (li) {
+    var link = BUY_LINKS[li.getAttribute('data-slug')];
+    if (link) {
+      var b = li.querySelector('.buy');
+      b.href = link; b.hidden = false;
+      li.querySelector('.notify').remove();
+    }
+    if (SETUP_LINK) li.querySelector('.setup').href = SETUP_LINK;
+  });
+  // Send waitlist requests without leaving the page; plain form post if this fails.
+  document.querySelectorAll('.notify-form').forEach(function (f) {
+    f.addEventListener('submit', function (ev) {
+      if (!window.fetch) return;
+      ev.preventDefault();
+      var btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'Sending';
+      fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
+        .then(function (r) { if (!r.ok) throw new Error(); f.outerHTML = '<p class="thanks" role="status">Thanks. You’ll get one email when it’s ready.</p>'; })
+        .catch(function () { btn.disabled = false; btn.textContent = 'Try again'; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
