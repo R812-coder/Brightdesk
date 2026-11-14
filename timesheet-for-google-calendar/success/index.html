@@ -196,6 +196,40 @@
             max-width: 640px;
             margin: 0 auto;
         }
+
+        /* After paying: billing automations */
+        .extras { text-align: left; border-top: 1px solid var(--color-border); margin-top: 3rem; padding-top: 2.75rem; }
+        .extras h2 { font-size: 1.3rem; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
+        .extras-sub { color: var(--color-text-secondary); font-size: 0.92rem; margin-bottom: 1.4rem; }
+        .kit { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 14px; padding: 1.25rem 1.4rem; margin-bottom: 0.75rem; }
+        .kit-top { display: flex; gap: 1rem; justify-content: space-between; align-items: flex-start; }
+        .kit-name, .extra-name { font-weight: 700; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+        .kit-name { font-size: 1.05rem; }
+        .kit-desc, .extra-desc { color: var(--color-text-secondary); font-size: 0.86rem; margin-top: 0.25rem; line-height: 1.5; }
+        .kit-price { text-align: right; flex: none; font-size: 1.45rem; font-weight: 700; line-height: 1.1; }
+        .kit-price small, .extra-price small { font-size: 0.78rem; font-weight: 500; color: var(--color-text-secondary); }
+        .kit-was { display: block; font-size: 0.78rem; font-weight: 500; color: var(--color-text-secondary); margin-top: 0.2rem; }
+        .soon { font-size: 0.7rem; font-weight: 700; color: #92400e; background: #fef3c7; border-radius: 100px; padding: 0.15rem 0.55rem; }
+        .kit-form { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+        .kit-form label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+        .kit-form input[type=email] { flex: 1 1 220px; font: inherit; font-size: 0.9rem; padding: 0.6rem 0.8rem; border: 1px solid #bfdbfe; border-radius: 8px; background: #fff; }
+        .kit-form input[type=email]:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; }
+        .extra-go { display: inline-block; font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--color-accent); border: 1.5px solid #bfdbfe; border-radius: 8px; padding: 0.5rem 0.9rem; text-decoration: none; background: #fff; white-space: nowrap; cursor: pointer; }
+        .extra-go:hover { border-color: var(--color-accent); }
+        .extra-go:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+        .extra-go.buy, .kit-form button { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+        .kit-done { margin-top: 0.9rem; font-size: 0.88rem; color: #166534; font-weight: 600; }
+        .extras-list { list-style: none; border-top: 1px solid var(--color-border); }
+        .extras-list li { display: flex; gap: 1rem; align-items: center; justify-content: space-between; padding: 0.85rem 0.25rem; border-bottom: 1px solid var(--color-border); }
+        .extra-side { display: flex; align-items: center; gap: 0.9rem; flex: none; }
+        .extra-price { font-weight: 700; }
+        .extras-foot { font-size: 0.83rem; color: var(--color-text-secondary); margin-top: 0.9rem; }
+        .extras-foot a { color: var(--color-accent); }
+        [hidden] { display: none !important; }
+        @media (max-width: 560px) {
+            .kit-top, .extras-list li { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .kit-price { text-align: left; }
+        }
     </style>
 </head>
 <body>
@@ -252,9 +286,6 @@
         <strong>Didn't get your key?</strong> Check your spam folder. If it's not there after 24 hours, email us at <a href="mailto:support-calendartimesheet@googlegroups.com" style="color: #2563eb;">support-calendartimesheet@googlegroups.com</a> with your payment receipt and we'll sort it out right away.
     </div>
 
-    <div class="info-box" style="background:#fffbeb;border-color:#fde68a;">
-        <strong>While you wait:</strong> billing clients from your timesheet? The <a href="https://brightdesk.dev/automations/?utm_source=timesheet-success#billing-kit" style="color: #b45309;">Freelancer billing kit</a> turns it into one PDF invoice per client, chases unpaid invoices and tracks retainers, for $69 once.
-    </div>
 
     <a href="https://docs.google.com/spreadsheets/" class="btn-sheets" target="_blank">
         Open Google Sheets
@@ -265,11 +296,87 @@
         Need help? <a href="mailto:support-calendartimesheet@googlegroups.com">Contact support</a>
         &middot; <a href="../checkout/manage/">Manage subscription</a>
     </p>
-</div>
 
+    <!-- After paying: ready-made billing automations. Shown here, not on checkout, so nothing competes with the plan. -->
+    <section class="extras" aria-labelledby="extras-title">
+        <h2 id="extras-title">Billing clients for these hours?</h2>
+        <p class="extras-sub">Ready-made automations for the step after your timesheet. Pay once, make your copy, and they run in your own Google account. They&rsquo;re separate from your Timesheet plan.</p>
+        <div class="kit" data-extra="billing-kit" data-price="69">
+            <div class="kit-top">
+                <div>
+                    <div class="kit-name">Freelancer billing kit <span class="soon">Coming soon</span></div>
+                    <div class="kit-desc">Invoices from your timesheet, unpaid invoice reminders and a retainer tracker, set up to work together: bill from your hours, chase what&rsquo;s late and see when a client is near their limit.</div>
+                </div>
+                <div class="kit-price">$69 <small>once</small><span class="kit-was">$89 bought separately</span></div>
+            </div>
+            <form class="kit-form" action="https://formspree.io/f/xnpjpvvo" method="POST">
+                <label for="kit-email">Your email</label>
+                <input type="email" id="kit-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+                <input type="hidden" name="automation" value="Freelancer billing kit">
+                <input type="hidden" name="source" value="timesheet-success">
+                <input type="hidden" name="_subject" value="Waitlist: Freelancer billing kit (Timesheet buyer)">
+                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                <button class="extra-go" type="submit">Email me when it&rsquo;s ready</button>
+            </form>
+            <p class="kit-done" role="status" hidden>You&rsquo;re on the list. We&rsquo;ll email you once, when the kit is ready.</p>
+            <a class="extra-go buy" hidden target="_blank" rel="noopener" style="margin-top:1rem">Add for $69</a>
+        </div>
+        <ul class="extras-list">
+            <li data-extra="timesheet-invoices" data-price="39">
+                <div><div class="extra-name">Invoices from your timesheet <span class="soon">Coming soon</span></div><div class="extra-desc">One numbered PDF invoice per client from your Timesheet tab, with your logo, saved to Drive.</div></div>
+                <div class="extra-side"><span class="extra-price">$39 <small>once</small></span><a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-success#timesheet-invoices" target="_blank" rel="noopener">Notify me</a></div>
+            </li>
+            <li data-extra="invoice-reminders" data-price="25">
+                <div><div class="extra-name">Unpaid invoice reminders <span class="soon">Coming soon</span></div><div class="extra-desc">A polite reminder email when an invoice is overdue, and again a week later. Tick Paid and it stops.</div></div>
+                <div class="extra-side"><span class="extra-price">$25 <small>once</small></span><a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-success#invoice-reminders" target="_blank" rel="noopener">Notify me</a></div>
+            </li>
+            <li data-extra="retainer-tracker" data-price="25">
+                <div><div class="extra-name">Retainer tracker with alerts <span class="soon">Coming soon</span></div><div class="extra-desc">Hours used against each client’s monthly retainer, with an email at 80% and 100%.</div></div>
+                <div class="extra-side"><span class="extra-price">$25 <small>once</small></span><a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-success#retainer-tracker" target="_blank" rel="noopener">Notify me</a></div>
+            </li>
+            <li data-extra="monday-hours-report" data-price="19">
+                <div><div class="extra-name">Monday hours report <span class="soon">Coming soon</span></div><div class="extra-desc">Last week’s hours by project, emailed to you or your client every Monday.</div></div>
+                <div class="extra-side"><span class="extra-price">$19 <small>once</small></span><a class="extra-go" href="https://brightdesk.dev/automations/?utm_source=timesheet-success#monday-hours-report" target="_blank" rel="noopener">Notify me</a></div>
+            </li>
+        </ul>
+        <p class="extras-foot"><a href="https://brightdesk.dev/automations/?utm_source=timesheet-success" target="_blank" rel="noopener">See all ready-made automations</a></p>
+    </section>
+</div>
 <footer>
     <p class="footer-text">Google Calendar&trade; and Google Sheets&trade; are trademarks of Google LLC. &copy; 2026 BrightDesk.</p>
 </footer>
 
+
+<script>
+// Ready-made automations. Paste a Stripe Payment Link once that automation is built:
+// its button becomes "Add for $X" and "Coming soon" disappears.
+var EXTRA_LINKS = {
+    'billing-kit': '',
+    'timesheet-invoices': '',
+    'invoice-reminders': '',
+    'retainer-tracker': '',
+    'monday-hours-report': ''
+};
+(function () {
+    document.querySelectorAll('[data-extra]').forEach(function (el) {
+        var link = EXTRA_LINKS[el.getAttribute('data-extra')];
+        if (!link) return;
+        var soon = el.querySelector('.soon'); if (soon) soon.remove();
+        var form = el.querySelector('.kit-form');
+        var a = form ? el.querySelector('a.buy') : el.querySelector('.extra-go');
+        if (form) { form.hidden = true; a.hidden = false; }
+        a.href = link; a.classList.add('buy');
+        a.textContent = 'Add for $' + el.getAttribute('data-price');
+    });
+    var f = document.querySelector('.kit-form');
+    f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'Sending\u2026';
+        fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
+            .then(function (r) { if (!r.ok) throw new Error(r.status); f.hidden = true; f.parentNode.querySelector('.kit-done').hidden = false; })
+            .catch(function () { f.submit(); });
+    });
+})();
+</script>
 </body>
 </html>
