@@ -1,227 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrightDesk — Google Workspace Add-ons</title>
-    <meta name="description" content="Simple, powerful add-ons for Google Sheets. Notifications, health checks, and more. Trusted by thousands of users.">
-    <link rel="canonical" href="https://brightdesk.dev">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #1a1a2e;
-            background: #fff;
-            line-height: 1.6;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BrightDesk: add-ons for Google Sheets, Forms and Calendar</title>
+<meta name="description" content="Google Workspace add-ons that turn calendar events into timesheets, form responses into calendar bookings, and spreadsheet rows into calendar events. Built and supported by BrightDesk.">
+<link rel="canonical" href="https://brightdesk.dev/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/favicon-180.png">
+<meta name="theme-color" content="#0F766E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrightDesk">
+<meta property="og:title" content="BrightDesk: add-ons for Google Sheets, Forms and Calendar">
+<meta property="og:description" content="Turn calendar events into timesheets, form responses into bookings, and spreadsheet rows into calendar events.">
+<meta property="og:url" content="https://brightdesk.dev/">
+<meta property="og:image" content="https://brightdesk.dev/assets/brand/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-opsz.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"BrightDesk","url":"https://brightdesk.dev/","logo":"https://brightdesk.dev/assets/brand/icon-512-square.png","email":"rayanbuilds.dev@gmail.com"}
+</script>
+<style>
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/fonts/bricolage-grotesque-latin-opsz.woff2) format("woff2-variations"), url(/assets/fonts/bricolage-grotesque-latin-opsz.woff2) format("woff2");
+}
+:root {
+  --ink: #12302B;
+  --text: #34514C;
+  --muted: #5B726E;
+  --teal: #0F766E;
+  --teal-deep: #0A4A45;
+  --amber: #F59E0B;
+  --sun: #FCD34D;
+  --mint: #EEF6F3;
+  --line: #D7E5E1;
+  --paper: #FFFFFF;
+  --wrap: 1080px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--teal); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: 28px; padding-right: 28px; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 12px; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 10; }
 
-        /* NAV */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 24px;
-        }
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #1a1a2e;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-        .logo span { color: #107cc3; }
-        nav .nav-links a {
-            color: #555;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            margin-left: 24px;
-        }
-        nav .nav-links a:hover { color: #107cc3; }
+/* Header */
+.top { display: flex; align-items: center; justify-content: space-between; padding-top: 22px; padding-bottom: 22px; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); font-weight: 750; font-size: 21px; letter-spacing: -0.01em; }
+.brand img { width: 34px; height: 34px; }
+.nav { display: flex; gap: 6px; list-style: none; }
+.nav a { display: block; padding: 8px 12px; border-radius: 8px; color: var(--text); text-decoration: none; font-weight: 550; font-size: 16px; }
+.nav a:hover { background: var(--mint); color: var(--ink); }
 
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 60px 24px 40px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .hero h1 {
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-        .hero h1 span { color: #107cc3; }
-        .hero p {
-            font-size: 18px;
-            color: #555;
-            max-width: 540px;
-            margin: 0 auto;
-        }
+/* Hero */
+.hero { position: relative; padding-top: 56px; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: end; gap: 24px; }
+.hero-copy { padding-bottom: 72px; }
+h1 {
+  font-size: clamp(40px, 5.6vw, 66px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 760;
+  color: var(--ink);
+  max-width: 13ch;
+}
+.lede { margin-top: 22px; font-size: 20px; line-height: 1.5; max-width: 34em; color: var(--text); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn { display: inline-block; padding: 13px 22px; border-radius: 12px; font-weight: 650; font-size: 17px; text-decoration: none; line-height: 1.2; }
+.btn-main { background: var(--teal); color: #fff; }
+.btn-main:hover { background: var(--teal-deep); }
+.btn-quiet { color: var(--ink); background: var(--mint); }
+.btn-quiet:hover { background: #E1EEEA; }
 
-        /* ADDONS GRID */
-        .addons {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 40px 24px 60px;
-        }
-        .section-label {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #107cc3;
-            margin-bottom: 24px;
-        }
-        .addon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .addon-card {
-            border: 1px solid #e8eaed;
-            border-radius: 12px;
-            padding: 28px 24px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
-        .addon-card:hover {
-            border-color: #107cc3;
-            box-shadow: 0 4px 24px rgba(16, 124, 195, 0.08);
-            transform: translateY(-2px);
-        }
-        .addon-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            margin-bottom: 16px;
-            object-fit: contain;
-        }
-        .addon-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .addon-card p {
-            font-size: 14px;
-            color: #666;
-            flex: 1;
-            margin-bottom: 16px;
-        }
-        .addon-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            align-self: flex-start;
-        }
-        .badge-live { background: #e6f4ea; color: #137333; }
-        .badge-soon { background: #fef7e0; color: #b06000; }
-        .badge-new { background: #e8f0fe; color: #1a73e8; }
+.sunrise { width: 100%; max-width: 520px; justify-self: end; overflow: hidden; }
+.sunrise svg { display: block; width: 100%; height: auto; }
+.desk { position: relative; height: 20px; border-radius: 10px; background: var(--teal); }
+.desk::before, .desk::after { content: ""; position: absolute; top: 10px; width: 20px; height: 70px; border-radius: 0 0 10px 10px; background: var(--teal); }
+.desk::before { left: 9%; }
+.desk::after { right: 9%; }
 
-        /* ABOUT */
-        .about {
-            background: #f8f9fa;
-            padding: 60px 24px;
-        }
-        .about-inner {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .about-inner h2 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        .about-inner p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 12px;
-        }
+.sun-disc { transform-box: view-box; transform-origin: 50% 100%; animation: rise 1.1s cubic-bezier(.2,.7,.2,1) both; }
+.sun-rays { animation: glow .7s ease-out .8s both; }
+@keyframes rise { from { transform: translateY(62%); } to { transform: translateY(0); } }
+@keyframes glow { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .sun-disc, .sun-rays { animation: none; }
+}
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 40px 24px;
-            font-size: 13px;
-            color: #999;
-            border-top: 1px solid #e8eaed;
-        }
-        footer a {
-            color: #666;
-            text-decoration: none;
-            margin: 0 12px;
-        }
-        footer a:hover { color: #333; }
+/* Add-ons */
+.addons { padding-top: 128px; padding-bottom: 88px; }
+h2 { font-size: clamp(30px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 720; color: var(--ink); }
+.section-intro { margin-top: 12px; max-width: 38em; color: var(--muted); font-size: 18px; }
+.list { list-style: none; margin-top: 40px; border-top: 2px solid var(--ink); }
+.item { display: grid; grid-template-columns: 76px minmax(0, 1fr) 210px; gap: 28px; padding: 34px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.item-icon { width: 76px; height: 76px; border-radius: 18px; }
+.item h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 25px; line-height: 1.2; letter-spacing: -0.015em; font-weight: 700; color: var(--ink); }
+.item h3 a { color: inherit; text-decoration: none; }
+.item h3 a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.flow { margin-top: 6px; color: var(--teal); font-weight: 600; font-size: 16px; }
+.flow span { color: var(--muted); font-weight: 500; padding: 0 4px; }
+.item p.what { margin-top: 10px; max-width: 40em; }
+.plan { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.status { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 650; letter-spacing: 0; padding: 4px 11px 4px 9px; border-radius: 999px; line-height: 1.3; }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.s-new { background: #FEF3C7; color: #8A4B07; }
+.s-live { background: #DDF3E6; color: #166534; }
+.s-review { background: #E6ECF7; color: #2F4B7C; }
+.item-links { display: flex; flex-direction: column; gap: 10px; padding-top: 4px; }
+.item-links .btn { text-align: center; font-size: 16px; padding: 11px 16px; }
+.btn-line { color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+.btn-line:hover { box-shadow: inset 0 0 0 1.5px var(--teal); color: var(--teal-deep); }
+.pending-note { font-size: 14px; color: var(--muted); text-align: center; line-height: 1.4; }
 
-        @media (max-width: 640px) {
-            .hero h1 { font-size: 32px; }
-            .addon-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+/* Principles */
+.how { background: var(--mint); padding: 88px 0; }
+.how-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: start; }
+.how dl { display: grid; gap: 30px; }
+.how dt { font-size: 21px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+.how dd { margin-top: 6px; max-width: 36em; }
+
+/* Custom work */
+.custom { padding-top: 88px; padding-bottom: 88px; }
+.custom-box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; padding: 40px 44px; border-radius: 24px; background: var(--teal-deep); color: #D9EFEA; }
+.custom-box h2 { color: #fff; font-size: clamp(26px, 3vw, 34px); max-width: 18em; }
+.custom-box p { margin-top: 10px; max-width: 34em; }
+.custom-box .btn { background: var(--sun); color: #3B2600; }
+.custom-box .btn:hover { background: #FDE68A; }
+
+/* Footer */
+footer { border-top: 1px solid var(--line); padding: 36px 0 48px; font-size: 15px; color: var(--muted); }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px 32px; align-items: center; }
+.foot ul { display: flex; flex-wrap: wrap; gap: 6px 22px; list-style: none; }
+.foot a { color: var(--text); text-decoration: none; }
+.foot a:hover { color: var(--teal); text-decoration: underline; }
+.tm { margin-top: 18px; font-size: 13px; }
+
+@media (max-width: 860px) {
+  .hero { padding-top: 28px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 0; }
+  .hero-copy { padding-bottom: 36px; }
+  .sunrise { max-width: 320px; justify-self: center; }
+  .item { grid-template-columns: 56px minmax(0, 1fr); gap: 18px; }
+  .item-icon { width: 56px; height: 56px; border-radius: 14px; }
+  .item-links { grid-column: 2; flex-direction: row; flex-wrap: wrap; }
+  .pending-note { text-align: left; }
+  .how-grid { grid-template-columns: 1fr; gap: 28px; }
+  .addons { padding-top: 104px; }
+}
+@media (max-width: 520px) {
+  .wrap { padding-left: 20px; padding-right: 20px; }
+  .nav a { padding: 8px 8px; font-size: 15px; }
+  .nav li:first-child { display: none; }
+  .lede { font-size: 18px; }
+  .custom-box { padding: 32px 26px; }
+}
+</style>
 </head>
 <body>
+<a class="skip" href="#addons">Skip to the add-ons</a>
 
-    <nav>
-        <a href="/" class="logo"><span>Bright</span>Desk</a>
-        <div class="nav-links">
-            <a href="#addons">Add-ons</a>
-            <a href="#about">About</a>
-            <a href="/support">Support</a>
-            <a href="mailto:rayanbuilds.dev@gmail.com">Contact</a>
+<header class="wrap top">
+  <a class="brand" href="/" aria-label="BrightDesk home"><img src="/assets/brand/icon.svg" alt="" width="34" height="34">BrightDesk</a>
+  <nav aria-label="Main">
+    <ul class="nav">
+      <li><a href="#addons">Add-ons</a></li>
+      <li><a href="/services/">Custom work</a></li>
+      <li><a href="/support/">Support</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero" aria-labelledby="hero-title">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 id="hero-title">Small add-ons for the work you still do by hand.</h1>
+        <p class="lede">Turn calendar events into timesheets, form responses into bookings, and spreadsheet rows into calendar events. Each add-on does one job inside Google Sheets, Forms or Calendar.</p>
+        <div class="actions">
+          <a class="btn btn-main" href="#addons">See the add-ons</a>
+          <a class="btn btn-quiet" href="/services/">Get something custom built</a>
         </div>
-    </nav>
+      </div>
+      <div class="sunrise" aria-hidden="true">
+        <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <defs>
+            <linearGradient id="sunfill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FDE68A"/>
+              <stop offset="1" stop-color="#F59E0B"/>
+            </linearGradient>
+            <clipPath id="horizon"><rect width="520" height="300"/></clipPath>
+          </defs>
+          <g clip-path="url(#horizon)">
+            <circle class="sun-disc" cx="260" cy="300" r="150" fill="url(#sunfill)"/>
+          </g>
+          <g class="sun-rays" stroke="#FBBF24" stroke-width="22" stroke-linecap="round">
+            <line x1="260" y1="104" x2="260" y2="52"/>
+            <line x1="398.6" y1="161.4" x2="435.4" y2="124.6"/>
+            <line x1="121.4" y1="161.4" x2="84.6" y2="124.6"/>
+            <line x1="451.5" y1="249.1" x2="501.7" y2="235.6"/>
+            <line x1="68.5" y1="249.1" x2="18.3" y2="235.6"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="desk" aria-hidden="true"></div>
+  </section>
 
-    <section class="hero">
-        <h1>Simple, powerful tools for <span>Google Workspace</span></h1>
-        <p>Add-ons that solve one problem well. No bloat, no complexity. Install and go.</p>
-    </section>
+  <section class="wrap addons" id="addons" aria-labelledby="addons-title">
+    <h2 id="addons-title">The add-ons</h2>
+    <p class="section-intro">Three are on the Google Workspace Marketplace now, and Schedule to Calendar Sync is with Google for review.</p>
 
-    <section class="addons" id="addons">
-        <div class="section-label">Our Add-ons</div>
-        <div class="addon-grid">
-
-            <!-- NOTIFICATIONS FOR GOOGLE SHEETS -->
-            <a href="/notifications-for-google-sheets/" class="addon-card">
-                <img src="/notifications-for-google-sheets/icon_128.png" alt="Notifications for Google Sheets" class="addon-icon">
-                <h3>Notifications for Google Sheets</h3>
-                <p>Send Slack, Discord, or Google Chat notifications when your spreadsheet changes. Conditional rules, custom templates, 60-second setup. No Zapier needed.</p>
-                <span class="addon-badge badge-new">New</span>
-            </a>
-
-            <!-- SHEET HEALTH CHECK -->
-            <a href="/sheet-health-check/" class="addon-card">
-                <img src="/sheet-health-check/icon-128.png" alt="Sheet Health Check" class="addon-icon">
-                <h3>Sheet Health Check</h3>
-                <p>One-click spreadsheet auditor. Scans for formula errors, inconsistencies, hardcoded values, and performance issues. Click-to-navigate to every issue.</p>
-                <span class="addon-badge badge-live">Live</span>
-            </a>
-
+    <ul class="list">
+      <li class="item">
+        <img class="item-icon" src="/form-to-calendar/assets/icon-512.png" alt="" width="76" height="76" loading="lazy">
+        <div>
+          <h3><a href="/form-to-calendar/">Form to Calendar Bookings</a> <span class="status s-new">New</span></h3>
+          <p class="flow">Google Forms <span aria-label="to">→</span> Google Calendar</p>
+          <p class="what">Each form response becomes a calendar event at the right time, in the right calendar, with the right people invited. Conflict checks, approvals and bookable time slots for rooms, time off and appointments.</p>
+          <p class="plan">Free plan for one form. Pro and Organization plans for more.</p>
         </div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="about-inner">
-            <h2>Built for people who live in spreadsheets</h2>
-            <p>We build focused Google Workspace add-ons that do one thing exceptionally well. Each tool is designed to set up in under a minute, work reliably in the background, and cost a fraction of enterprise alternatives.</p>
-            <p>No external servers. No bloat. Your data stays in Google's ecosystem.</p>
+        <div class="item-links">
+          <a class="btn btn-line" href="/form-to-calendar/">See how it works</a>
         </div>
-    </section>
-    <footer>
-        <p>&copy; 2026 BrightDesk</p>
-        <p style="margin-top: 8px;">
-            <a href="mailto:rayanbuilds.dev@gmail.com">Contact</a>
-        </p>
-    </footer>
+      </li>
 
+      <li class="item">
+        <img class="item-icon" src="/timesheet-for-google-calendar/icon-web-256.png" alt="" width="76" height="76" loading="lazy">
+        <div>
+          <h3><a href="/timesheet-for-google-calendar/">Timesheet for Google Calendar</a> <span class="status s-live">Live</span></h3>
+          <p class="flow">Google Calendar <span aria-label="to">→</span> Google Sheets</p>
+          <p class="what">Turns your calendar events into a billable timesheet: hours by project, rates and totals, sorted by event colour or keywords. A Review tab flags overlapping, untitled and uncategorized events before you send an invoice.</p>
+          <p class="plan">7-day free trial, then Pro.</p>
+        </div>
+        <div class="item-links">
+          <a class="btn btn-main" href="https://workspace.google.com/marketplace/app/timesheet_for_google_calendar/638595833401">Install</a>
+          <a class="btn btn-line" href="/timesheet-for-google-calendar/">See how it works</a>
+        </div>
+      </li>
+
+      <li class="item">
+        <img class="item-icon" src="/schedule-to-calendar/assets/icon-512.png" alt="" width="76" height="76" loading="lazy">
+        <div>
+          <h3><a href="/schedule-to-calendar/">Schedule to Calendar Sync</a> <span class="status s-review">In Google's review</span></h3>
+          <p class="flow">Google Sheets <span aria-label="to">→</span> Google Calendar</p>
+          <p class="what">Each row in your sheet becomes a calendar event and stays in step with the row. Edit the row and the same event updates, with no duplicates and times in the right time zone.</p>
+          <p class="plan">Free plan. Pro and Organization plans for auto-sync and teams.</p>
+        </div>
+        <div class="item-links">
+          <a class="btn btn-line" href="/schedule-to-calendar/">See how it works</a>
+          <p class="pending-note">You can install it once Google approves it.</p>
+        </div>
+      </li>
+
+      <li class="item">
+        <img class="item-icon" src="/notifications-for-google-sheets/icon_128.png" alt="" width="76" height="76" loading="lazy">
+        <div>
+          <h3><a href="/notifications-for-google-sheets/">Notifications for Google Sheets</a> <span class="status s-live">Live</span></h3>
+          <p class="flow">Google Sheets <span aria-label="to">→</span> Slack, Discord and Google Chat</p>
+          <p class="what">Sends a message to your team when a row is added, a cell changes or a value crosses a line you set. No Zapier account needed.</p>
+          <p class="plan">Free plan. Pro for more rules.</p>
+        </div>
+        <div class="item-links">
+          <a class="btn btn-main" href="https://workspace.google.com/marketplace/app/notifications_for_google_sheets/232233541720">Install</a>
+          <a class="btn btn-line" href="/notifications-for-google-sheets/">See how it works</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="how" aria-labelledby="how-title">
+    <div class="wrap how-grid">
+      <h2 id="how-title">How they're built</h2>
+      <dl>
+        <div>
+          <dt>They run inside your Google account.</dt>
+          <dd>Every add-on is written in Google Apps Script. Your sheets, forms and calendars stay in Google, and there's no BrightDesk server keeping a copy.</dd>
+        </div>
+        <div>
+          <dt>They ask for as little access as they can.</dt>
+          <dd>Timesheet reads your calendars and never changes them. Schedule to Calendar Sync asks for the spreadsheet you're in and your events, never your other files.</dd>
+        </div>
+        <div>
+          <dt>Support comes from the person who built them.</dt>
+          <dd>Write in through the <a href="/support/">support page</a> and you'll usually hear back within a day.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="wrap custom" aria-labelledby="custom-title">
+    <div class="custom-box">
+      <div>
+        <h2 id="custom-title">Need something built for your team?</h2>
+        <p>BrightDesk also builds custom Apps Script tools for Sheets, Forms, Calendar and Gmail. If an add-on gets you most of the way, the rest can be built.</p>
+      </div>
+      <a class="btn" href="/services/">Tell me what you need</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="/"><img src="/assets/brand/icon.svg" alt="" width="34" height="34">BrightDesk</a>
+      <ul>
+        <li><a href="#addons">Add-ons</a></li>
+        <li><a href="/services/">Custom work</a></li>
+        <li><a href="/support/">Support</a></li>
+        <li><a href="mailto:rayanbuilds.dev@gmail.com">rayanbuilds.dev@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="tm">© 2026 BrightDesk. Google Sheets™, Google Forms™ and Google Calendar™ are trademarks of Google LLC.</p>
+  </div>
+</footer>
 </body>
 </html>
